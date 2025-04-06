@@ -14,7 +14,9 @@ return {
                     -- input window
                     input = {
                         keys = {
-                            ["<Esc>"] = { "close", mode = { "n", "i" } },
+                            ['<Esc>'] = { 'close', mode = { 'n', 'i' } },
+                            ['<c-n>'] = { 'edit_vsplit', mode = { 'n', 'i' } },
+                            ['<c-p>'] = { 'edit_split', mode = { 'n', 'i' } },
                         },
                     },
                 },
