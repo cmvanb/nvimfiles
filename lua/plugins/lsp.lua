@@ -16,16 +16,12 @@ end
 
 local function nvim_lspconfig_config()
     -- Imports
-    --------------------------------------------------------------------------------
-
     local KeyMapUtils = reload('utils.keymaps')
     local TableUtils = reload('utils.table')
     local ThemeConfig = reload('theme.config')
     local ThemeSymbols = reload('theme.symbols')
 
     -- Diagnostics UI
-    --------------------------------------------------------------------------------
-
     vim.diagnostic.config({
         virtual_text = false,
         signs = {
@@ -50,8 +46,6 @@ local function nvim_lspconfig_config()
     })
 
     -- LSP functions
-    --------------------------------------------------------------------------------
-
     local function lsp_keymaps(bufnr)
         local opts = { silent = true, buffer = bufnr }
 
@@ -85,8 +79,6 @@ local function nvim_lspconfig_config()
     end
 
     -- Mason/LSP integration
-    --------------------------------------------------------------------------------
-
     local mason_lspconfig = reload('mason-lspconfig')
 
     mason_lspconfig.setup({
@@ -141,20 +133,21 @@ local function nvim_lspconfig_config()
             lspconfig[server_name].setup(default_ls_config)
         end,
 
-        lua_ls = function()
-            local ls_config =
-                TableUtils.merge(default_ls_config, {
-                    settings = {
-                        Lua = {
-                            diagnostics = {
-                                globals = { 'vim' }
-                            }
-                        }
-                    }
-                })
-
-            lspconfig.lua_ls.setup(ls_config)
-        end,
+        -- NOTE: Example of a custom handler for a specific server.
+        -- lua_ls = function()
+        --     local ls_config =
+        --         TableUtils.merge(default_ls_config, {
+        --             settings = {
+        --                 Lua = {
+        --                     diagnostics = {
+        --                         globals = { 'vim' }
+        --                     }
+        --                 }
+        --             }
+        --         })
+        --
+        --     lspconfig.lua_ls.setup(ls_config)
+        -- end,
     })
 end
 
