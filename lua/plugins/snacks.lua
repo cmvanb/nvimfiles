@@ -21,6 +21,52 @@ return {
                     },
                 },
             },
-        }
+        },
+        keys = {
+            {
+                '<leader>a',
+                function() Snacks.picker.files({
+                    hidden = true,
+                    ignored = true,
+                }) end,
+                desc = 'Search files',
+            },
+            {
+                '<leader>f',
+                function() Snacks.picker.files() end,
+                desc = 'Search files',
+            },
+            {
+                '<leader>b',
+                function() Snacks.picker.buffers({
+                    win = {
+                        input = {
+                            keys = {
+                                ['<c-w>'] = { 'bufdelete', mode = { 'n', 'i' } },
+                            },
+                        },
+                        list = { keys = { ['dd'] = 'bufdelete' } },
+                    },
+                }) end,
+                desc = 'Search buffers',
+            },
+            {
+                '<leader>g',
+                function() Snacks.picker.grep() end,
+                desc = 'Grep files',
+            },
+            {
+                '<leader>h',
+                function() Snacks.picker.help() end,
+                desc = 'Search help',
+            },
+            {
+                '<leader>e',
+                function() Snacks.explorer({
+                    replace_netrw = true,
+                }) end,
+                desc = 'File explorer',
+            },
+        },
     },
 }

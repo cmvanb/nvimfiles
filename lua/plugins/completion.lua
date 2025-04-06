@@ -47,7 +47,7 @@ local function blink_config(_, opts)
     -- Unset custom prop to pass blink.cmp validation
     opts.sources.compat = nil
 
-    -- TODO: fix
+    -- TODO: fix for better autobrackets
     -- check if we need to override symbol kinds
     -- for _, provider in pairs(opts.sources.providers or {}) do
     --     ---@cast provider blink.cmp.SourceProviderConfig|{kind?:string}
