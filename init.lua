@@ -22,7 +22,7 @@ require('editor.options')
 require('editor.highlights')
 
 -- Load plugins. Will bootstrap Lazy.nvim if necessary.
-require('plugins.manager')
+require('plugins')
 
 -- Load autocommands.
 require('autocommands')

@@ -1,5 +1,5 @@
 --------------------------------------------------------------------------------
--- Plugin manager
+-- Plugin management
 --------------------------------------------------------------------------------
 
 -- Bootstrap lazy.nvim.
@@ -28,6 +28,7 @@ vim.opt.rtp:prepend(lazy_path)
 vim.g.mapleader = ' '
 
 -- Load plugins.
-local plugin_config = reload('plugins.config')
+local plugin_loader = reload('utils.plugin_loader')
+local plugin_config = plugin_loader.load_plugins()
 
 require('lazy').setup(plugin_config)
