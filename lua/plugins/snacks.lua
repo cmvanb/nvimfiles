@@ -23,6 +23,7 @@ return {
             },
         },
         keys = {
+            -- Search functions
             {
                 '<leader>a',
                 function() Snacks.picker.files({
@@ -60,6 +61,8 @@ return {
                 function() Snacks.picker.help() end,
                 desc = 'Search help',
             },
+
+            -- File explorer
             {
                 '<leader>e',
                 function() Snacks.explorer({
@@ -67,6 +70,34 @@ return {
                 }) end,
                 desc = 'File explorer',
             },
+
+            -- TODO: Investigate why these bindings are not working.
+            -- LSP functions
+            -- {
+            --     'gd',
+            --     function() Snacks.picker.lsp_definitions() end,
+            --     desc = 'LSP: Go to type definition',
+            -- },
+            -- {
+            --     'ge',
+            --     function() Snacks.picker.diagnostics() end,
+            --     desc = 'LSP: Show diagnostics',
+            -- },
+            -- {
+            --     'gt',
+            --     function() Snacks.picker.lsp_type_definitions() end,
+            --     desc = 'LSP: Go to type definition',
+            -- },
+            -- {
+            --     'gi',
+            --     function() Snacks.picker.lsp_implementations() end,
+            --     desc = 'LSP: Go to implementation',
+            -- },
+            -- {
+            --     'gr',
+            --     function() Snacks.picker.lsp_references() end,
+            --     desc = 'LSP: Find references',
+            -- },
         },
     },
 }

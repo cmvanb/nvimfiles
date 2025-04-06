@@ -191,23 +191,23 @@ nnoremap('<leader>m',
 
 nnoremap(
     'gd',
-    function() snacks.picker.lsp_definitions() end,
+    function() Snacks.picker.lsp_definitions() end,
     { desc = 'LSP: Go to type definition' })
 nnoremap(
     'ge',
-    function() snacks.picker.diagnostics() end,
+    function() Snacks.picker.diagnostics() end,
     { desc = 'LSP: Show diagnostics' })
 nnoremap(
     'gt',
-    function() snacks.picker.lsp_type_definitions() end,
+    function() Snacks.picker.lsp_type_definitions() end,
     { desc = 'LSP: Go to type definition' })
 nnoremap(
     'gi',
-    function() snacks.picker.lsp_implementations() end,
+    function() Snacks.picker.lsp_implementations() end,
     { desc = 'LSP: Go to implementation' })
 nnoremap(
     'gr',
-    function() snacks.picker.lsp_references() end,
+    function() Snacks.picker.lsp_references() end,
     { desc = 'LSP: Find references' })
 nnoremap(
     'gp',
