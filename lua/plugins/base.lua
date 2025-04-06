@@ -6,6 +6,11 @@ return {
     -- Sugar for UNIX shell commands.
     { 'tpope/vim-eunuch' },
 
+    -- Surround.
+    -- sa: add, sd: delete, sr: replace
+    -- ib: inner select, ab: outer select (VISUAL mode)
+    { 'machakann/vim-sandwich' },
+
     -- Better buffer deletion
     { 'famiu/bufdelete.nvim' },
 
