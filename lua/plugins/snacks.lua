@@ -71,6 +71,13 @@ return {
                 desc = 'File explorer',
             },
 
+            -- Insertion
+            {
+                '<leader>i',
+                function() Snacks.picker.icons() end,
+                desc = 'Insert icon',
+            },
+
             -- TODO: Investigate why these bindings are not working.
             -- LSP functions
             -- {
