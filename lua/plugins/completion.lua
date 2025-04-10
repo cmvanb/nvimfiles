@@ -127,6 +127,7 @@ return {
             keymap = {
                 preset = 'enter',
                 ['<Right>'] = { 'select_and_accept' },
+                ['<C-j>'] = { 'select_and_accept' },
             },
         },
         config = config,
