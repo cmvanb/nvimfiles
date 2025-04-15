@@ -2,6 +2,18 @@
 -- Snacks.nvim plugins
 --------------------------------------------------------------------------------
 
+-- Highlights
+local HighlightsUtils = reload('utils.highlights')
+local hi = HighlightsUtils.highlight
+local ln = HighlightsUtils.link
+
+ln('SnacksPickerFile',    'File')
+ln('SnacksPickerDir',     'Directory')
+ln('SnacksPickerTotals',  'Title')
+ln('SnacksPickerPrompt',  'Title')
+ln('SnacksPickerBorder',  'WinSeparator')
+
+-- Config
 return {
     {
         'folke/snacks.nvim',

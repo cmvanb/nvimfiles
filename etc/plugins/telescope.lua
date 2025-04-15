@@ -2,6 +2,20 @@
 -- Telescope configuration
 --------------------------------------------------------------------------------
 
+-- Highlights
+local HighlightsUtils = reload('utils.highlights')
+local ln = HighlightsUtils.link
+
+ln('TelescopeNormal',         'FloatMenuNormal')
+ln('TelescopeBorder',         'WinSeparator')
+ln('TelescopeTitle',          'Title')
+ln('TelescopePromptCounter',  'TelescopeTitle')
+ln('TelescopePromptPrefix',   'TelescopeTitle')
+ln('TelescopeMatching',       'FloatMenuItemMatch')
+ln('TelescopeSelection',      'FloatMenuSelection')
+ln('TelescopePreviewNormal',  'Normal')
+
+-- Config
 local telescope = reload('telescope')
 local actions = reload('telescope.actions')
 

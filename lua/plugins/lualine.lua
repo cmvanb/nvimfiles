@@ -2,6 +2,19 @@
 -- Lualine configuration
 --------------------------------------------------------------------------------
 
+-- Highlights
+local HighlightsUtils = reload('utils.highlights')
+local hi = HighlightsUtils.highlight
+
+hi('LualineDiffAdd',     { fg = 'green_4', bg = 'primary_3', attrs = 'bold' },   { fg = 'ansi_green' })
+hi('LualineDiffChange',  { fg = 'orange_6', bg = 'primary_3', attrs = 'bold' },  { fg = 'ansi_yellow' })
+hi('LualineDiffDelete',  { fg = 'red_5', bg = 'primary_3', attrs = 'bold' },     { fg = 'ansi_red' })
+hi('LualineDiagError',   { fg = 'red_6', bg = 'primary_4', attrs = 'bold' },     { fg = 'ansi_red' })
+hi('LualineDiagWarn',    { fg = 'yellow_5', bg = 'primary_4', attrs = 'bold' },  { fg = 'ansi_yellow' })
+hi('LualineDiagInfo',    { fg = 'text_10', bg = 'primary_4', attrs = 'bold' },   { fg = 'ansi_white' })
+hi('LualineDiagHint',    { fg = 'orange_7', bg = 'primary_4', attrs = 'bold' },  { fg = 'ansi_magenta' })
+
+-- Theme
 local SystemTheme = reload('theme.system')
 local ThemeSymbols = reload('theme.symbols')
 
@@ -98,6 +111,7 @@ local theme = {
     }
 }
 
+-- Config
 local function config()
     reload('lualine').setup({
         options = {

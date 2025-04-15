@@ -2,6 +2,15 @@
 -- Gitsigns configuration
 --------------------------------------------------------------------------------
 
+-- Highlights
+local HighlightsUtils = reload('utils.highlights')
+local hi = HighlightsUtils.highlight
+
+hi('GitSignsAddCul',           { fg = 'green_3', bg = 'primary_2', attrs = 'bold' },     { fg = 'ansi_green', bg = 'ansi_blue' })
+hi('GitSignsChangeCul',        { fg = 'orange_3', bg = 'primary_2', attrs = 'bold' },    { fg = 'ansi_yellow', bg = 'ansi_blue' })
+hi('GitSignsDeleteCul',        { fg = 'red_3', bg = 'primary_2', attrs = 'bold' },       { fg = 'ansi_red', bg = 'ansi_blue' })
+
+-- Config
 local function config()
     local ThemeSymbols = reload('theme.symbols')
 
