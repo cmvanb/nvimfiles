@@ -19,6 +19,7 @@ local function config()
             'lua',
             'make',
             'markdown',
+            'markdown_inline',
             'nix',
             'python',
             'rust',
