@@ -22,11 +22,26 @@ local function _noremap(mode, keys, command, options)
     vim.keymap.set(mode, keys, command, options)
 end
 
+local function _is_key_mapped(mode, key)
+    local keymaps = vim.api.nvim_get_keymap(mode)
+
+    for _, keymap in ipairs(keymaps) do
+        if keymap.lhs == key then
+            return true
+        end
+    end
+
+    return false
+end
+
 -- Map functions
 --------------------------------------------------------------------------------
 
 function KeyMapUtils.unmap(keys, options)
     options = options or {}
+    if not _is_key_mapped('', keys) then
+        return
+    end
     vim.keymap.del('', keys, options)
 end
 
