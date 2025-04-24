@@ -25,6 +25,14 @@ return {
         },
         opts = {
             file_types = { 'markdown', 'Avante' },
+            code = {
+                sign = false,
+                highlight = 'RenderMarkdownCode',
+                left_margin = 4,
+                left_pad = 2,
+                right_pad = 2,
+                width = 'block',
+            },
         },
         ft = { 'markdown', 'Avante' },
     },
