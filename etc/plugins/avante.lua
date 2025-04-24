@@ -27,5 +27,9 @@ return {
             'MunifTanjim/nui.nvim',
             'MeanderingProgrammer/render-markdown.nvim',
         },
+        -- NOTE: Does not work.
+        claude = {
+            api_key_name = { "cat", "/home/surfer/.local/secrets/anthropic" },
+        },
     }
 }
