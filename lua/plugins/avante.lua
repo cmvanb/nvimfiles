@@ -5,7 +5,6 @@
 -- Highlights
 local HighlightsUtils = reload('utils.highlights')
 local hi = HighlightsUtils.highlight
-local ln = HighlightsUtils.link
 
 hi('AvanteConflictCurrent',   { bg = 'red_1' },    { bg = 'ansi_red' })
 hi('AvanteConflictIncoming',  { bg = 'green_1' },  { bg = 'ansi_green' })
