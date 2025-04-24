@@ -7,7 +7,7 @@ local HighlightsUtils = reload('utils.highlights')
 local hi = HighlightsUtils.highlight
 local ln = HighlightsUtils.link
 
-hi('RenderMarkdownCode',  { bg = 'primary_1' },                                     { bg = 'ansi_blue' })
+hi('RenderMarkdownCode',  { bg = 'primary_1' },  { bg = 'ansi_blue' })
 
 ln('RenderMarkdownH1Bg',  'Title')
 ln('RenderMarkdownH2Bg',  'Title')
