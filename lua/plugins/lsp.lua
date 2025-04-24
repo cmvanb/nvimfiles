@@ -66,6 +66,18 @@ local function nvim_lspconfig_config()
             'ga',
             vim.lsp.buf.code_action,
             TableUtils.merge(opts, { desc = 'LSP: Code action' }))
+        KeyMapUtils.noremap(
+            'gj',
+            vim.diagnostic.goto_next,
+            TableUtils.merge(opts, { desc = 'LSP: Next diagnostic' }))
+        KeyMapUtils.noremap(
+            'gk',
+            vim.diagnostic.goto_prev,
+            TableUtils.merge(opts, { desc = 'LSP: Previous diagnostic' }))
+        KeyMapUtils.noremap(
+            'gl',
+            vim.diagnostic.open_float,
+            TableUtils.merge(opts, { desc = 'LSP: Show diagnostic' }))
     end
 
     local function lsp_attach(_, bufnr)

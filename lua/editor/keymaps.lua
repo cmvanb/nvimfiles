@@ -192,7 +192,7 @@ nnoremap('<leader>m',
 nnoremap(
     'gd',
     function() Snacks.picker.lsp_definitions() end,
-    { desc = 'LSP: Go to type definition' })
+    { desc = 'LSP: Go to definition' })
 nnoremap(
     'ge',
     function() Snacks.picker.diagnostics() end,
@@ -209,18 +209,6 @@ nnoremap(
     'gr',
     function() Snacks.picker.lsp_references() end,
     { desc = 'LSP: Find references' })
-nnoremap(
-    'gp',
-    vim.diagnostic.open_float,
-    { desc = 'LSP: Show diagnostic' })
-nnoremap(
-    'gj',
-    vim.diagnostic.goto_next,
-    { desc = 'LSP: Next diagnostic' })
-nnoremap(
-    'gk',
-    vim.diagnostic.goto_prev,
-    { desc = 'LSP: Previous diagnostic' })
 
 -- Buffer management
 --------------------------------------------------------------------------------
