@@ -167,6 +167,9 @@ ln('@lsp.mod.defaultLibrary',  'Special')
 -- Special snowflakes
 --------------------------------------------------------------------------------
 
+-- Markdown highlights all underscores as errors, just disable it.
+hi('markdownError', { fg = 'NONE', bg = 'NONE' }, { fg = 'NONE', bg = 'NONE' })
+
 -- Highlight notes everywhere, just like todos.
 vim.api.nvim_create_augroup('HighlightNotes', { clear = true })
 vim.api.nvim_create_autocmd({ 'BufEnter', 'FileType' }, {
