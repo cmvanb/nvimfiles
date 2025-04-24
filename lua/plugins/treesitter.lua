@@ -3,7 +3,7 @@
 --------------------------------------------------------------------------------
 
 local function config()
-    reload('nvim-treesitter.configs').setup({
+    require('nvim-treesitter.configs').setup({
         ensure_installed = {
             'bash',
             'c',
@@ -54,10 +54,7 @@ end
 return {
     {
         'nvim-treesitter/nvim-treesitter',
-        build = function()
-            local ts_update = reload('nvim-treesitter.install').update({ with_sync = true })
-            ts_update()
-        end,
+        build = ':TSUpdate',
         config = config,
     },
     { 'nvim-treesitter/playground' },
