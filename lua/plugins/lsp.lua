@@ -78,6 +78,9 @@ local function nvim_lspconfig_config()
             'gl',
             vim.diagnostic.open_float,
             TableUtils.merge(opts, { desc = 'LSP: Show diagnostic' }))
+
+        KeyMapUtils.unmap('<C-W>d')
+        KeyMapUtils.unmap('<C-W><C-D>')
     end
 
     local function lsp_attach(_, bufnr)
