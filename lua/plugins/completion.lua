@@ -69,15 +69,15 @@ return {
                 opts = {},
                 version = not vim.g.lazyvim_blink_main and '*',
             },
+            {
+                'L3MON4D3/LuaSnip',
+                version = 'v2.*',
+            },
+
         },
         event = 'InsertEnter',
 
         opts = {
-            snippets = {
-                expand = function(snippet, _)
-                    return CmpUtils.expand(snippet)
-                end,
-            },
             appearance = {
                 -- sets the fallback highlight groups to nvim-cmp's highlight groups
                 -- useful for when your theme doesn't support blink.cmp
@@ -87,6 +87,7 @@ return {
                 -- adjusts spacing to ensure icons are aligned
                 nerd_font_variant = 'mono',
             },
+
             completion = {
                 accept = {
                     -- experimental auto-brackets support
@@ -112,6 +113,18 @@ return {
             signature = {
                 enabled = true,
             },
+
+            snippets = {
+                preset = 'luasnip',
+                expand = function(snippet, _)
+                    return CmpUtils.expand(snippet)
+                end,
+            },
+            -- snippets = {
+            --     expand = function(snippet, _)
+            --         return CmpUtils.expand(snippet)
+            --     end,
+            -- },
 
             sources = {
                 -- adding any nvim-cmp sources here will enable them
