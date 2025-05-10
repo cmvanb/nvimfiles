@@ -136,8 +136,8 @@ vnoremap('L', '>gv', { desc = 'Indent right' })
 -- Formatting
 nnoremap(';', '=', { desc = 'Format selected' })
 xnoremap(';', '=', { desc = 'Format selected' })
-nnoremap('<leader>;', 'gg=G', { desc = 'Format buffer' })
-nnoremap('<leader>.', ':TSJToggle<cr>', { desc = 'Split/join formatting' })
+nnoremap('<F17>', 'gg=G', { desc = 'Format buffer' })
+nnoremap('<F16>', ':TSJToggle<cr>', { desc = 'Split/join formatting' })
 
 -- Insert line break
 nnoremap('<Enter>', 'i<CR><esc>`^', { desc = 'Insert line break' })
