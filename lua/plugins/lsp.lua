@@ -22,6 +22,7 @@ local function nvim_lspconfig_config()
     local ThemeSymbols = reload('theme.symbols')
 
     -- Diagnostics UI
+    ----------------------------------------------------------------------------
     vim.diagnostic.config({
         virtual_text = false,
         signs = {
@@ -46,8 +47,13 @@ local function nvim_lspconfig_config()
     })
 
     -- LSP functions
+    ----------------------------------------------------------------------------
     local function lsp_keymaps(bufnr)
         local opts = { silent = true, buffer = bufnr }
+
+        -- Unmap some defaults
+        KeyMapUtils.unmap('<C-W>d')
+        KeyMapUtils.unmap('<C-W><C-D>')
 
         -- LSP actions
         KeyMapUtils.noremap(
@@ -78,9 +84,6 @@ local function nvim_lspconfig_config()
             'gl',
             vim.diagnostic.open_float,
             TableUtils.merge(opts, { desc = 'LSP: Show diagnostic' }))
-
-        KeyMapUtils.unmap('<C-W>d')
-        KeyMapUtils.unmap('<C-W><C-D>')
     end
 
     local function lsp_attach(_, bufnr)
@@ -93,25 +96,8 @@ local function nvim_lspconfig_config()
         end, { desc = 'Format buffer with language server' })
     end
 
-    -- Mason/LSP integration
-    local mason_lspconfig = reload('mason-lspconfig')
-
-    mason_lspconfig.setup({
-        -- A list of tools to automatically install if they're not already installed.
-        ensure_installed = {
-            'bashls',
-            'clangd',
-            'cssls',
-            'dockerls',
-            'html',
-            'jsonls',
-            'lua_ls',
-            'pyright',
-            'ts_ls',
-            'yamlls',
-        },
-    })
-
+    -- LSP capabilities
+    ----------------------------------------------------------------------------
     local base_capabilities =
         reload('blink.cmp').get_lsp_capabilities()
 
@@ -137,32 +123,64 @@ local function nvim_lspconfig_config()
         capabilities = lsp_capabilities,
     }
 
+    -- LSP server configuration
+    ----------------------------------------------------------------------------
     local lspconfig = reload('lspconfig')
 
-    -- Configure LSP handlers for each installed server. The first entry (without a
-    -- key) will be the default handler and will be called for each installed server
-    -- that doesn't have a dedicated handler.
-    --  see: https://github.com/williamboman/mason.nvim/discussions/92
-    mason_lspconfig.setup_handlers({
-        function(server_name)
-            lspconfig[server_name].setup(default_ls_config)
-        end,
+    -- Lua
+    lspconfig.lua_ls.setup(
+        TableUtils.merge(default_ls_config, {
+            on_init = function(client)
+                local path = client.workspace_folders[1].name
+                if not vim.loop.fs_stat(path .. '/.luarc.json') and not vim.loop.fs_stat(path .. '/.luarc.jsonc') then
+                    client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+                        runtime = {
+                            -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                            version = 'LuaJIT'
+                        },
+                        workspace = {
+                            -- Make the server aware of Neovim runtime files
+                            library = { vim.env.VIMRUNTIME }
+                            -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+                            -- library = vim.api.nvim_get_runtime_file("", true)
+                        }
+                    })
 
-        -- NOTE: Example of a custom handler for a specific server.
-        -- lua_ls = function()
-        --     local ls_config =
-        --         TableUtils.merge(default_ls_config, {
-        --             settings = {
-        --                 Lua = {
-        --                     diagnostics = {
-        --                         globals = { 'vim' }
-        --                     }
-        --                 }
-        --             }
-        --         })
-        --
-        --     lspconfig.lua_ls.setup(ls_config)
-        -- end,
+                    client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+                end
+                return true
+            end,
+
+            settings = {
+                Lua = {
+                    telemetry = {
+                        enable = false,
+                    },
+                },
+            },
+        })
+    )
+
+    -- Mason/LSP integration
+    ----------------------------------------------------------------------------
+    local mason_lspconfig = reload('mason-lspconfig')
+
+    mason_lspconfig.setup({
+        -- Enable after Neovim 0.11.0
+        automatic_enable = true,
+        -- A list of tools to automatically install if they're not already installed.
+        ensure_installed = {
+            'bashls',
+            'clangd',
+            'cssls',
+            'dockerls',
+            'html',
+            'jsonls',
+            'lua_ls',
+            'pyright',
+            'ts_ls',
+            'yamlls',
+        },
     })
 end
 
