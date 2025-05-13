@@ -226,6 +226,18 @@ nnoremap('<C-w>', ':Bdelete<cr>', { silent = true, desc = 'Close buffer' })
 -- Quit NVIM
 noremap('<leader>w', ':wqa!<cr>', { desc = 'Quit NVIM' })
 
+-- Tab management
+--------------------------------------------------------------------------------
+
+-- Open new tab
+noremap('<C-A-t>', ':tabnew<cr>', { silent = true, desc = 'New tab' })
+
+-- Next tab
+nnoremap('<C-A-Right>', ':tabnext<cr>', { silent = true, desc = 'Next tab' })
+
+-- Prev tab
+nnoremap('<C-A-Left>', ':tabprev<cr>', { silent = true, desc = 'Previous tab' })
+
 -- Window management
 --------------------------------------------------------------------------------
 
@@ -265,9 +277,6 @@ nnoremap(
 
 -- Close window
 nnoremap('<C-A-w>', ':close<cr>', { silent = true, desc = 'Close window' })
-
--- Open new tab with current buffer
-noremap('<C-A-t>', ':tab split<cr>', { silent = true, desc = 'Tab split' })
 
 -- Git
 --------------------------------------------------------------------------------
