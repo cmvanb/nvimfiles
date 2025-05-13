@@ -76,7 +76,7 @@ hi('SpecialKey',                { fg = 'debug' },                               
 hi('DiagnosticError',           { fg = 'red_5', attrs = 'bold' },                         { fg = 'ansi_red' })
 hi('DiagnosticWarn',            { fg = 'yellow_5', attrs = 'bold' },                      { fg = 'ansi_bryellow' })
 hi('DiagnosticInfo',            { fg = 'text_10', attrs = 'bold' },                       { fg = 'ansi_white' })
-hi('DiagnosticHint',            { fg = 'primary_12', attrs = 'bold' },                      { fg = 'ansi_brblue' })
+hi('DiagnosticHint',            { fg = 'primary_12', attrs = 'bold' },                    { fg = 'ansi_brblue' })
 hi('DiagnosticUnderlineError',  { sp = 'red_5', attrs = 'undercurl' },                    { fg = 'ansi_red' })
 hi('DiagnosticUnderlineWarn',   { sp = 'yellow_5', attrs = 'undercurl' },                 { fg = 'ansi_yellow' })
 hi('DiagnosticUnderlineInfo',   { sp = 'text_10', attrs = 'undercurl' },                  { fg = 'ansi_white' })
@@ -108,7 +108,7 @@ hi('CMenuItemMatch',      { fg = 'yellow_6', attrs = 'bold' },                  
 
 hi('FloatMenuNormal',     { fg = 'text_10', bg = 'editor_bg' },                  { fg = 'ansi_cyan', bg = 'ansi_black' })
 hi('FloatMenuSelection',  { fg = 'text_15', bg = 'primary_7', attrs = 'bold' },  { fg = 'ansi_brwhite', bg = 'ansi_black', attrs = 'bold' })
-hi('FloatMenuItemMatch',  { fg = 'magenta_5', attrs = 'bold' },                   { fg = 'ansi_cyan', bg = 'ansi_blue' })
+hi('FloatMenuItemMatch',  { fg = 'magenta_5', attrs = 'bold' },                  { fg = 'ansi_cyan', bg = 'ansi_blue' })
 
 -- Links
 ln('QuickFixLine',  'FloatMenuSelection')
@@ -123,7 +123,7 @@ hi('Comment',      { fg = 'text_6', attrs = 'italic' },                         
 hi('Type',         { fg = 'secondary_12' },                                                { fg = 'ansi_brcyan', attrs = 'bold' })
 hi('Constant',     { fg = 'magenta_5' },                                                   { fg = 'ansi_brmagenta' })
 hi('Special',      { fg = 'yellow_5', attrs = 'bold' },                                    { fg = 'ansi_yellow' })
-hi('SpecialText',  { fg = 'secondary_12', attrs = 'bold' },                                                     { fg = 'ansi_brblack' })
+hi('SpecialText',  { fg = 'secondary_12', attrs = 'bold' },                                { fg = 'ansi_brblack' })
 hi('Underlined',   { fg = 'primary_15', attrs = 'underline' },                             { fg = 'ansi_blue', attrs = 'underline' })
 hi('Delimiter',    { fg = 'green_4' },                                                     { fg = 'ansi_green' })
 hi('String',       { fg = 'orange_6' },                                                    { fg = 'ansi_yellow' })
