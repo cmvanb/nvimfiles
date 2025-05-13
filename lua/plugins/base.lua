@@ -23,4 +23,7 @@ return {
     { 'LnL7/vim-nix' },
     { 'ziglang/zig.vim' },
     { 'imsnif/kdl.vim' },
+
+    -- Cursor FX
+    { 'sphamba/smear-cursor.nvim', opts = {} },
 }
