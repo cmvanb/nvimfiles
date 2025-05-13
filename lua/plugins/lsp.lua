@@ -4,10 +4,10 @@
 -- Based on: https://github.com/VonHeikemen/lsp-zero.nvim/wiki/Under-the-hood
 --------------------------------------------------------------------------------
 
-local ThemeConfig = reload('theme.config')
-local ThemeSymbols = reload('theme.symbols')
-local KeyMapUtils = reload('utils.keymaps')
-local TableUtils = reload('utils.table')
+local ThemeConfig = require('theme.config')
+local ThemeSymbols = require('theme.symbols')
+local KeyMapUtils = require('utils.keymaps')
+local TableUtils = require('utils.table')
 
 -- LSP generic on_attach configuration
 ----------------------------------------------------------------------------
@@ -95,7 +95,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 local function mason_config()
-    reload('mason').setup({
+    require('mason').setup({
         ui = {
             border = ThemeConfig.border,
         },
@@ -105,11 +105,11 @@ end
 local function lsp_config()
     -- LSP generic configuration
     ----------------------------------------------------------------------------
-    reload('lspconfig')
+    require('lspconfig')
 
     local lsp_capabilities =
         -- Enable blink.cmp and merge default capabilities
-        reload('blink.cmp').get_lsp_capabilities({
+        require('blink.cmp').get_lsp_capabilities({
             textDocument = {
                 -- Enable snippets with LuaSnip.
                 completion = {
@@ -206,7 +206,7 @@ local function lsp_config()
 
     -- Mason/LSP integration
     ----------------------------------------------------------------------------
-    local mason_lspconfig = reload('mason-lspconfig')
+    local mason_lspconfig = require('mason-lspconfig')
 
     mason_lspconfig.setup({
         -- A list of tools to automatically install if they're not already installed.
