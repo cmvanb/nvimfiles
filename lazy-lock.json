@@ -1,6 +1,7 @@
 {
   "blink.cmp": { "branch": "main", "commit": "022521a8910a5543b0251b21c9e1a1e989745796" },
   "bufdelete.nvim": { "branch": "master", "commit": "f6bcea78afb3060b198125256f897040538bcb81" },
+  "codecompanion.nvim": { "branch": "main", "commit": "d19670a44c35e9ba0674cc7a25ff3b8f22bbf062" },
   "copilot.vim": { "branch": "release", "commit": "d1e8429bef7f7709586886b0a23a46fbecc685c4" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
   "git-messenger.vim": { "branch": "master", "commit": "edc603d4cda7894a743e383e16c638e206d03148" },
