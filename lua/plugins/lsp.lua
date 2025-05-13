@@ -9,6 +9,91 @@ local ThemeSymbols = reload('theme.symbols')
 local KeyMapUtils = reload('utils.keymaps')
 local TableUtils = reload('utils.table')
 
+-- LSP generic on_attach configuration
+----------------------------------------------------------------------------
+local function lsp_diagnostics()
+    vim.diagnostic.config({
+        virtual_text = false,
+        signs = {
+            text = {
+                [vim.diagnostic.severity.ERROR] = ThemeSymbols.diagnostic_signs.error,
+                [vim.diagnostic.severity.WARN] = ThemeSymbols.diagnostic_signs.warn,
+                [vim.diagnostic.severity.INFO] = ThemeSymbols.diagnostic_signs.info,
+                [vim.diagnostic.severity.HINT] = ThemeSymbols.diagnostic_signs.hint,
+            },
+        },
+        update_in_insert = false,
+        underline = true,
+        severity_sort = true,
+        float = {
+            focusable = false,
+            style = 'minimal',
+            border = ThemeConfig.border,
+            source = 'always',
+            header = '',
+            prefix = '',
+        },
+    })
+end
+
+local function lsp_keymaps(buffer)
+    local opts = { silent = true, buffer = buffer }
+
+    -- Unmap some defaults
+    KeyMapUtils.unmap('<C-W>d')
+    KeyMapUtils.unmap('<C-W><C-D>')
+
+    -- LSP actions
+    KeyMapUtils.noremap(
+        'gh',
+        vim.lsp.buf.hover,
+        TableUtils.merge(opts, { desc = 'LSP: Show hover' }))
+    KeyMapUtils.noremap(
+        'gs',
+        vim.lsp.buf.signature_help,
+        TableUtils.merge(opts, { desc = 'LSP: Show signature help' }))
+    KeyMapUtils.noremap(
+        'gc',
+        vim.lsp.buf.rename,
+        TableUtils.merge(opts, { desc = 'LSP: Rename' }))
+    KeyMapUtils.noremap(
+        'ga',
+        vim.lsp.buf.code_action,
+        TableUtils.merge(opts, { desc = 'LSP: Code action' }))
+    KeyMapUtils.noremap(
+        'gj',
+        vim.diagnostic.goto_next,
+        TableUtils.merge(opts, { desc = 'LSP: Next diagnostic' }))
+    KeyMapUtils.noremap(
+        'gk',
+        vim.diagnostic.goto_prev,
+        TableUtils.merge(opts, { desc = 'LSP: Previous diagnostic' }))
+    KeyMapUtils.noremap(
+        'gl',
+        vim.diagnostic.open_float,
+        TableUtils.merge(opts, { desc = 'LSP: Show diagnostic' }))
+end
+
+vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('my.lsp', {}),
+    callback = function(args)
+        -- TODO: Check client capabilities before creating keymaps.
+        -- see: https://neovim.io/doc/user/lsp.html
+
+        -- local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+        -- if client:supports_method('textDocument/implementation') then
+        --     -- Create a keymap for vim.lsp.buf.implementation ...
+        -- end
+
+        lsp_diagnostics()
+        lsp_keymaps(args.buf)
+
+        vim.api.nvim_buf_create_user_command(args.buf, 'LspFormat', function()
+            vim.lsp.buf.format()
+        end, { desc = 'Format buffer with language server' })
+    end,
+})
+
 local function mason_config()
     reload('mason').setup({
         ui = {
@@ -18,82 +103,10 @@ local function mason_config()
 end
 
 local function lsp_config()
-    -- LSP generic on_attach configuration
+    -- LSP generic configuration
     ----------------------------------------------------------------------------
-    local function lsp_diagnostics()
-        vim.diagnostic.config({
-            virtual_text = false,
-            signs = {
-                text = {
-                    [vim.diagnostic.severity.ERROR] = ThemeSymbols.diagnostic_signs.error,
-                    [vim.diagnostic.severity.WARN] = ThemeSymbols.diagnostic_signs.warn,
-                    [vim.diagnostic.severity.INFO] = ThemeSymbols.diagnostic_signs.info,
-                    [vim.diagnostic.severity.HINT] = ThemeSymbols.diagnostic_signs.hint,
-                },
-            },
-            update_in_insert = false,
-            underline = true,
-            severity_sort = true,
-            float = {
-                focusable = false,
-                style = 'minimal',
-                border = ThemeConfig.border,
-                source = 'always',
-                header = '',
-                prefix = '',
-            },
-        })
-    end
+    reload('lspconfig')
 
-    local function lsp_keymaps(bufnr)
-        local opts = { silent = true, buffer = bufnr }
-
-        -- Unmap some defaults
-        KeyMapUtils.unmap('<C-W>d')
-        KeyMapUtils.unmap('<C-W><C-D>')
-
-        -- LSP actions
-        KeyMapUtils.noremap(
-            'gh',
-            vim.lsp.buf.hover,
-            TableUtils.merge(opts, { desc = 'LSP: Show hover' }))
-        KeyMapUtils.noremap(
-            'gs',
-            vim.lsp.buf.signature_help,
-            TableUtils.merge(opts, { desc = 'LSP: Show signature help' }))
-        KeyMapUtils.noremap(
-            'gc',
-            vim.lsp.buf.rename,
-            TableUtils.merge(opts, { desc = 'LSP: Rename' }))
-        KeyMapUtils.noremap(
-            'ga',
-            vim.lsp.buf.code_action,
-            TableUtils.merge(opts, { desc = 'LSP: Code action' }))
-        KeyMapUtils.noremap(
-            'gj',
-            vim.diagnostic.goto_next,
-            TableUtils.merge(opts, { desc = 'LSP: Next diagnostic' }))
-        KeyMapUtils.noremap(
-            'gk',
-            vim.diagnostic.goto_prev,
-            TableUtils.merge(opts, { desc = 'LSP: Previous diagnostic' }))
-        KeyMapUtils.noremap(
-            'gl',
-            vim.diagnostic.open_float,
-            TableUtils.merge(opts, { desc = 'LSP: Show diagnostic' }))
-    end
-
-    local function lsp_attach(_, bufnr)
-        lsp_diagnostics()
-        lsp_keymaps(bufnr)
-
-        vim.api.nvim_buf_create_user_command(bufnr, 'LspFormat', function()
-            vim.lsp.buf.format()
-        end, { desc = 'Format buffer with language server' })
-    end
-
-    -- LSP generic capabilities
-    ----------------------------------------------------------------------------
     local lsp_capabilities =
         -- Enable blink.cmp and merge default capabilities
         reload('blink.cmp').get_lsp_capabilities({
@@ -113,12 +126,7 @@ local function lsp_config()
             },
         })
 
-    -- LSP generic configuration
-    ----------------------------------------------------------------------------
-    reload('lspconfig')
-
     vim.lsp.config('*', {
-        on_attach = lsp_attach,
         capabilities = lsp_capabilities,
     })
 
