@@ -43,7 +43,7 @@ local default_terminal_symbols = {
         git_branch = '',
         section_separator_left = '',
         section_separator_right = '',
-        tab_page = '  ',
+        tab_page = '󱔗  ',
     },
     packer = {
         working = '',
