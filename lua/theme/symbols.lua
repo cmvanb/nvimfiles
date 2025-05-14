@@ -45,14 +45,6 @@ local default_terminal_symbols = {
         section_separator_right = '',
         tab_page = '󱔗  ',
     },
-    packer = {
-        working = '',
-        error = '⨯',
-        done = '',
-        removed = '-',
-        moved = '󰁔',
-        header = '─',
-    },
     telescope = {
         prompt_char = '❱',
         select_char = '·',
@@ -144,14 +136,6 @@ local linux_vt_symbols = {
         section_separator_left = '>',
         section_separator_right = '<',
         tab_page = '@',
-    },
-    packer = {
-        working = '?',
-        error = 'x',
-        done = 'O',
-        removed = '-',
-        moved = '→',
-        header = '-',
     },
     telescope = {
         prompt_char = '>',
