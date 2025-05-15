@@ -45,9 +45,8 @@ local default_terminal_symbols = {
         section_separator_right = '',
         tab_page = '󱔗  ',
     },
-    telescope = {
-        prompt_char = '❱',
-        select_char = '·',
+    picker = {
+        prompt = '',
     },
     kinds = {
       Array         = ' ',
@@ -137,9 +136,8 @@ local linux_vt_symbols = {
         section_separator_right = '<',
         tab_page = '@',
     },
-    telescope = {
-        prompt_char = '>',
-        select_char = '·',
+    picker = {
+        prompt = '>',
     },
     indent_char = '│',
 }

@@ -41,7 +41,7 @@ local function config()
                 },
             },
             sorting_strategy = 'ascending',
-            prompt_prefix = ThemeSymbols.telescope.prompt_char .. ' ',
+            prompt_prefix = ThemeSymbols.picker.prompt .. ' ',
             selection_caret = '  ',
             vimgrep_arguments = {
                 'rg',

@@ -2,11 +2,11 @@
 -- Snacks.nvim plugins
 --------------------------------------------------------------------------------
 
--- Highlights
+local ThemeSymbols = require('theme.symbols')
 local HighlightsUtils = reload('utils.highlights')
-local hi = HighlightsUtils.highlight
 local ln = HighlightsUtils.link
 
+-- Highlights
 ln('SnacksPickerFile',    'File')
 ln('SnacksPickerDir',     'Directory')
 ln('SnacksPickerTotals',  'Title')
@@ -22,6 +22,7 @@ return {
         opts = {
             picker = {
                 enabled = true,
+                prompt = ThemeSymbols.picker.prompt .. ' ',
                 win = {
                     -- input window
                     input = {
