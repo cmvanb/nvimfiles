@@ -5,8 +5,11 @@
 local ThemeSymbols = require('theme.symbols')
 local HighlightsUtils = reload('utils.highlights')
 local ln = HighlightsUtils.link
+local hi = HighlightsUtils.highlight
 
 -- Highlights
+hi('SnacksPicker',        { bg = 'editor_bg' },  { bg = 'ansi_black' })
+
 ln('SnacksPickerFile',    'File')
 ln('SnacksPickerDir',     'Directory')
 ln('SnacksPickerTotals',  'Title')
@@ -23,6 +26,46 @@ return {
             picker = {
                 enabled = true,
                 prompt = ThemeSymbols.picker.prompt .. ' ',
+
+                -- Picker layout
+                ----------------------------------------------------------------
+                layouts = {
+                    custom = {
+                        layout = {
+                            backdrop = false,
+                            box = 'horizontal',
+                            width = 0.8,
+                            min_width = 120,
+                            height = 0.8,
+                            {
+                                box = 'vertical',
+                                -- NOTE: For a flat/borderless layout, consider:
+                                -- border = { '▗', '▄', '▖', '▌', '▘', '▀', '▝', '▐' },
+                                border = 'single',
+                                title = '{title} {live} {flags}',
+                                {
+                                    win = 'input',
+                                    height = 1,
+                                    border = 'bottom',
+                                },
+                                {
+                                    win = 'list',
+                                    border = 'none',
+                                },
+                            },
+                            {
+                                win = 'preview',
+                                title = '{preview}',
+                                border = 'single',
+                                width = 0.5,
+                            },
+                        },
+                    }
+                },
+                layout = 'custom',
+
+                -- Picker keymaps
+                ----------------------------------------------------------------
                 win = {
                     -- input window
                     input = {
@@ -35,6 +78,9 @@ return {
                 },
             },
         },
+
+        -- Editor keymaps
+        ------------------------------------------------------------------------
         keys = {
             -- Search functions
             {
@@ -91,8 +137,8 @@ return {
                 desc = 'Insert icon',
             },
 
-            -- TODO: Investigate why these bindings are not working.
             -- LSP functions
+            -- TODO: Investigate why these bindings are not working.
             -- {
             --     'gd',
             --     function() Snacks.picker.lsp_definitions() end,
