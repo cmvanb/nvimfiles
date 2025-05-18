@@ -10,7 +10,7 @@ local opt = vim.opt
 opt.title = true
 
 -- Use per-window statusbar
-opt.laststatus = 2
+opt.laststatus = 3
 
 -- Show column and line info
 opt.ruler = true
