@@ -6,13 +6,13 @@
 local HighlightsUtils = require('utils.highlights')
 local hi = HighlightsUtils.highlight
 
-hi('LualineDiffAdd',     { fg = 'green_4', bg = 'primary_5', attrs = 'bold' },   { fg = 'ansi_green' })
-hi('LualineDiffChange',  { fg = 'orange_6', bg = 'primary_5', attrs = 'bold' },  { fg = 'ansi_yellow' })
-hi('LualineDiffDelete',  { fg = 'red_5', bg = 'primary_5', attrs = 'bold' },     { fg = 'ansi_red' })
-hi('LualineDiagError',   { fg = 'red_6', bg = 'primary_5', attrs = 'bold' },     { fg = 'ansi_red' })
-hi('LualineDiagWarn',    { fg = 'yellow_5', bg = 'primary_5', attrs = 'bold' },  { fg = 'ansi_yellow' })
-hi('LualineDiagInfo',    { fg = 'text_10', bg = 'primary_5', attrs = 'bold' },   { fg = 'ansi_white' })
-hi('LualineDiagHint',    { fg = 'orange_7', bg = 'primary_5', attrs = 'bold' },  { fg = 'ansi_magenta' })
+hi('LualineDiffAdd',     { fg = 'green_4', bg = 'primary_5', attrs = 'bold' },    { fg = 'ansi_green' })
+hi('LualineDiffChange',  { fg = 'orange_6', bg = 'primary_5', attrs = 'bold' },   { fg = 'ansi_yellow' })
+hi('LualineDiffDelete',  { fg = 'red_5', bg = 'primary_5', attrs = 'bold' },      { fg = 'ansi_red' })
+hi('LualineDiagError',   { fg = 'red_5', bg = 'primary_5', attrs = 'bold' },      { fg = 'ansi_red' })
+hi('LualineDiagWarn',    { fg = 'orange_6', bg = 'primary_5', attrs = 'bold' },   { fg = 'ansi_yellow' })
+hi('LualineDiagInfo',    { fg = 'text_10', bg = 'primary_5', attrs = 'bold' },    { fg = 'ansi_white' })
+hi('LualineDiagHint',    { fg = 'magenta_5', bg = 'primary_5', attrs = 'bold' },  { fg = 'ansi_brmagenta' })
 
 -- Theme
 local SystemTheme = require('theme.system')
@@ -128,6 +128,47 @@ return {
                 },
             },
 
+            -- Buffer line
+            --------------------------------------------------------------------
+            tabline = {
+                lualine_a = {
+                    {
+                        'buffers',
+                        symbols = {
+                            modified = ' ' .. ThemeSymbols.lualine.file_modified,
+                            alternate_file = '',
+                        },
+                    },
+                },
+                lualine_b = {
+                },
+                lualine_c = {
+                },
+                lualine_x = {
+                },
+                lualine_y = {
+                },
+                lualine_z = {
+                    {
+                        'tabs',
+                        mode = 1,
+                        fmt = function(_, context)
+                            return ThemeSymbols.lualine.tab_page .. context.tabnr
+                        end,
+                        show_modified_status = false,
+                        separator = {
+                            left = ThemeSymbols.lualine.section_separator_right,
+                            right = ''
+                        },
+                        padding = { left = 1, right = 1 },
+                        tabs_color = {
+                            active = 'lualine_z_normal',
+                            inactive = 'lualine_y_normal',
+                        },
+                    },
+                }
+            },
+
             -- Status line
             --------------------------------------------------------------------
             sections = {
@@ -207,47 +248,6 @@ return {
                 lualine_x = {},
                 lualine_y = {},
                 lualine_z = {},
-            },
-
-            -- Buffer line
-            --------------------------------------------------------------------
-            tabline = {
-                lualine_a = {
-                    {
-                        'buffers',
-                        symbols = {
-                            modified = ' ' .. ThemeSymbols.lualine.file_modified,
-                            alternate_file = '',
-                        },
-                    },
-                },
-                lualine_b = {
-                },
-                lualine_c = {
-                },
-                lualine_x = {
-                },
-                lualine_y = {
-                },
-                lualine_z = {
-                    {
-                        'tabs',
-                        mode = 1,
-                        fmt = function(_, context)
-                            return ThemeSymbols.lualine.tab_page .. context.tabnr
-                        end,
-                        show_modified_status = false,
-                        separator = {
-                            left = ThemeSymbols.lualine.section_separator_right,
-                            right = ''
-                        },
-                        padding = { left = 1, right = 1 },
-                        tabs_color = {
-                            active = 'lualine_z_normal',
-                            inactive = 'lualine_y_normal',
-                        },
-                    },
-                }
             },
 
         },

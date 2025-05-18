@@ -74,13 +74,13 @@ hi('Directory',                 { fg = 'primary_10' },                          
 hi('SpecialKey',                { fg = 'debug' },                                         { fg = 'ansi_brmagenta' })
 
 hi('DiagnosticError',           { fg = 'red_5', attrs = 'bold' },                         { fg = 'ansi_red' })
-hi('DiagnosticWarn',            { fg = 'yellow_5', attrs = 'bold' },                      { fg = 'ansi_bryellow' })
+hi('DiagnosticWarn',            { fg = 'orange_6', attrs = 'bold' },                      { fg = 'ansi_yellow' })
 hi('DiagnosticInfo',            { fg = 'text_10', attrs = 'bold' },                       { fg = 'ansi_white' })
-hi('DiagnosticHint',            { fg = 'primary_12', attrs = 'bold' },                    { fg = 'ansi_brblue' })
+hi('DiagnosticHint',            { fg = 'magenta_5', attrs = 'bold' },                     { fg = 'ansi_brmagenta' })
 hi('DiagnosticUnderlineError',  { sp = 'red_5', attrs = 'undercurl' },                    { fg = 'ansi_red' })
-hi('DiagnosticUnderlineWarn',   { sp = 'yellow_5', attrs = 'undercurl' },                 { fg = 'ansi_yellow' })
+hi('DiagnosticUnderlineWarn',   { sp = 'orange_6', attrs = 'undercurl' },                 { fg = 'ansi_yellow' })
 hi('DiagnosticUnderlineInfo',   { sp = 'text_10', attrs = 'undercurl' },                  { fg = 'ansi_white' })
-hi('DiagnosticUnderlineHint',   { sp = 'orange_7', attrs = 'undercurl' },                 { fg = 'ansi_magenta' })
+hi('DiagnosticUnderlineHint',   { sp = 'magenta_5', attrs = 'undercurl' },                { fg = 'ansi_brmagenta' })
 hi('SpellBad',                  { sp = 'red_5', attrs = 'undercurl' },                    { fg = 'ansi_red', attrs = 'underline' })
 
 -- Links

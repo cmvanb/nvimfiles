@@ -10,11 +10,11 @@ local default_terminal_symbols = {
         error = '󰅜 ',
         warn  = ' ',
         hint  = '󰌵 ',
-        info  = 'ℹ ',
+        info  = ' ',
     },
     diff_signs = {
         added = '+',
-        changed = '~',
+        changed = '●',
         removed = '-',
     },
     git_signs = {
@@ -90,7 +90,8 @@ local default_terminal_symbols = {
         Value         = ' ',
         Variable      = '󰀫 ',
     },
-    indent_char = '▏',
+    -- indent_char = '▏',
+    indent_char = '┋',
 }
 
 local linux_vt_symbols = {
@@ -105,7 +106,7 @@ local linux_vt_symbols = {
     },
     diff_signs = {
         added = '+',
-        changed = '~',
+        changed = '*',
         removed = '-',
     },
     git_signs = {
