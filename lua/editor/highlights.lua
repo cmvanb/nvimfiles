@@ -76,11 +76,11 @@ hi('SpecialKey',                { fg = 'debug' },                               
 hi('DiagnosticError',           { fg = 'red_5', attrs = 'bold' },                         { fg = 'ansi_red' })
 hi('DiagnosticWarn',            { fg = 'orange_6', attrs = 'bold' },                      { fg = 'ansi_yellow' })
 hi('DiagnosticInfo',            { fg = 'text_10', attrs = 'bold' },                       { fg = 'ansi_white' })
-hi('DiagnosticHint',            { fg = 'magenta_5', attrs = 'bold' },                     { fg = 'ansi_brmagenta' })
+hi('DiagnosticHint',            { fg = 'yellow_7', attrs = 'bold' },                     { fg = 'ansi_brmagenta' })
 hi('DiagnosticUnderlineError',  { sp = 'red_5', attrs = 'undercurl' },                    { fg = 'ansi_red' })
 hi('DiagnosticUnderlineWarn',   { sp = 'orange_6', attrs = 'undercurl' },                 { fg = 'ansi_yellow' })
 hi('DiagnosticUnderlineInfo',   { sp = 'text_10', attrs = 'undercurl' },                  { fg = 'ansi_white' })
-hi('DiagnosticUnderlineHint',   { sp = 'magenta_5', attrs = 'undercurl' },                { fg = 'ansi_brmagenta' })
+hi('DiagnosticUnderlineHint',   { sp = 'yellow_7', attrs = 'undercurl' },                { fg = 'ansi_brmagenta' })
 hi('SpellBad',                  { sp = 'red_5', attrs = 'undercurl' },                    { fg = 'ansi_red', attrs = 'underline' })
 
 -- Links

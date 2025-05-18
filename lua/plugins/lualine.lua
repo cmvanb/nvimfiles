@@ -12,7 +12,7 @@ hi('LualineDiffDelete',  { fg = 'red_5', bg = 'primary_5', attrs = 'bold' },    
 hi('LualineDiagError',   { fg = 'red_5', bg = 'primary_5', attrs = 'bold' },      { fg = 'ansi_red' })
 hi('LualineDiagWarn',    { fg = 'orange_6', bg = 'primary_5', attrs = 'bold' },   { fg = 'ansi_yellow' })
 hi('LualineDiagInfo',    { fg = 'text_10', bg = 'primary_5', attrs = 'bold' },    { fg = 'ansi_white' })
-hi('LualineDiagHint',    { fg = 'magenta_5', bg = 'primary_5', attrs = 'bold' },  { fg = 'ansi_brmagenta' })
+hi('LualineDiagHint',    { fg = 'yellow_7', bg = 'primary_5', attrs = 'bold' },  { fg = 'ansi_brmagenta' })
 
 -- Theme
 local SystemTheme = require('theme.system')
