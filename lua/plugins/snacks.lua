@@ -27,6 +27,12 @@ return {
                 enabled = true,
                 prompt = ThemeSymbols.picker.prompt .. ' ',
 
+                sources = {
+                    icons = {
+                        icon_sources = { 'nerd_fonts', 'emoji', 'unicode' },
+                    },
+                },
+
                 -- Picker layout
                 ----------------------------------------------------------------
                 layouts = {
@@ -165,5 +171,25 @@ return {
             --     desc = 'LSP: Find references',
             -- },
         },
+        config = function(_, opts)
+            require('snacks').setup(opts)
+
+            require('snacks.picker.source.icons').sources['unicode'] = {
+                url = 'https://gist.githubusercontent.com/cmvanb/09184db6be4837c6efc365415148af6e/raw/d695721b1179fd9936dd3cefdd4ec5acbaf14581/unicode-table.json',
+                v = 1,
+                build = function(data)
+                    local ret = {}
+                    for _, item in pairs(data) do
+                        table.insert(ret, {
+                            name = item.name,
+                            icon = item.icon,
+                            source = 'unicode',
+                            category = item.category,
+                        })
+                    end
+                    return ret
+                end,
+            }
+        end,
     },
 }
