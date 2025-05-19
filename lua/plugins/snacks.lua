@@ -142,6 +142,17 @@ return {
                 function() Snacks.picker.icons() end,
                 desc = 'Insert icon',
             },
+            {
+                '<leader>u',
+                function() Snacks.picker.icons({
+                    sources = {
+                        icons = {
+                            icon_sources = { 'unicode' },
+                        },
+                    },
+                }) end,
+                desc = 'Insert unicode',
+            }
 
             -- LSP functions
             -- TODO: Investigate why these bindings are not working.
