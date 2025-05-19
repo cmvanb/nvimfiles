@@ -41,9 +41,9 @@ local default_terminal_symbols = {
         file_modified = '●',
         file_readonly = '󰌾',
         git_branch = '',
-        section_separator_left = '▌',
-        section_separator_right = '▐',
-        tab_page = '󱔗  ',
+        section_separator_left = '🭬',
+        section_separator_right = '🭮',
+        tab_page = '  ',
     },
     picker = {
         prompt = '',
