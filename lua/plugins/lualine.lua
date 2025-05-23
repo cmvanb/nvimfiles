@@ -6,13 +6,13 @@
 local HighlightsUtils = require('utils.highlights')
 local hi = HighlightsUtils.highlight
 
-hi('LualineDiffAdd',     { fg = 'green_4', bg = 'primary_5', attrs = 'bold' },    { fg = 'ansi_green' })
-hi('LualineDiffChange',  { fg = 'orange_6', bg = 'primary_5', attrs = 'bold' },   { fg = 'ansi_yellow' })
-hi('LualineDiffDelete',  { fg = 'red_5', bg = 'primary_5', attrs = 'bold' },      { fg = 'ansi_red' })
-hi('LualineDiagError',   { fg = 'red_5', bg = 'primary_5', attrs = 'bold' },      { fg = 'ansi_red' })
-hi('LualineDiagWarn',    { fg = 'orange_6', bg = 'primary_5', attrs = 'bold' },   { fg = 'ansi_yellow' })
-hi('LualineDiagInfo',    { fg = 'text_10', bg = 'primary_5', attrs = 'bold' },    { fg = 'ansi_white' })
-hi('LualineDiagHint',    { fg = 'yellow_7', bg = 'primary_5', attrs = 'bold' },  { fg = 'ansi_brmagenta' })
+hi('LualineDiffAdd',     { fg = 'green_4', bg = 'primary_6', attrs = 'bold' },    { fg = 'ansi_green' })
+hi('LualineDiffChange',  { fg = 'orange_6', bg = 'primary_6', attrs = 'bold' },   { fg = 'ansi_yellow' })
+hi('LualineDiffDelete',  { fg = 'red_5', bg = 'primary_6', attrs = 'bold' },      { fg = 'ansi_red' })
+hi('LualineDiagError',   { fg = 'red_5', bg = 'primary_6', attrs = 'bold' },      { fg = 'ansi_red' })
+hi('LualineDiagWarn',    { fg = 'orange_6', bg = 'primary_6', attrs = 'bold' },   { fg = 'ansi_yellow' })
+hi('LualineDiagInfo',    { fg = 'text_10', bg = 'primary_6', attrs = 'bold' },    { fg = 'ansi_white' })
+hi('LualineDiagHint',    { fg = 'yellow_7', bg = 'primary_6', attrs = 'bold' },  { fg = 'ansi_brmagenta' })
 
 -- Theme
 local SystemTheme = require('theme.system')
@@ -25,16 +25,16 @@ local colors = {
         fg = SystemTheme.color_hash('text_15'),
     },
     middle = {
-        bg = SystemTheme.color_hash('primary_5'),
+        bg = SystemTheme.color_hash('primary_6'),
         fg = SystemTheme.color_hash('text_12'),
     },
     inner = {
-        bg = SystemTheme.color_hash('primary_2'),
-        fg = SystemTheme.color_hash('text_9'),
+        bg = SystemTheme.color_hash('primary_3'),
+        fg = SystemTheme.color_hash('text_10'),
     },
     inactive = {
         bg = SystemTheme.color_hash('gray_2'),
-        fg = SystemTheme.color_hash('text_9'),
+        fg = SystemTheme.color_hash('text_8'),
     },
 
     -- Mode colors
