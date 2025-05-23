@@ -8,6 +8,7 @@ local hi = HighlightsUtils.highlight
 local ln = HighlightsUtils.link
 
 hi('RenderMarkdownCode',  { bg = 'primary_1' },  { bg = 'ansi_blue' })
+hi('RenderMarkdownDash',  { fg = 'text_6' },  { fg = 'ansi_brblack' })
 
 ln('RenderMarkdownH1Bg',  'Title')
 ln('RenderMarkdownH2Bg',  'Title')
