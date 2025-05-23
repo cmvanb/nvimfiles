@@ -46,7 +46,11 @@ local function lsp_keymaps(buffer)
     -- LSP actions
     KeyMapUtils.noremap(
         'gh',
-        vim.lsp.buf.hover,
+        function()
+            vim.lsp.buf.hover({
+                border = ThemeConfig.border,
+            })
+        end,
         TableUtils.merge(opts, { desc = 'LSP: Show hover' }))
     KeyMapUtils.noremap(
         'gs',
