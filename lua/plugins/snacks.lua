@@ -79,6 +79,8 @@ return {
                             ['<Esc>'] = { 'close', mode = { 'n', 'i' } },
                             ['<c-n>'] = { 'edit_vsplit', mode = { 'n', 'i' } },
                             ['<c-p>'] = { 'edit_split', mode = { 'n', 'i' } },
+                            ['<c-k>'] = { 'preview_scroll_up', mode = { 'n', 'i' } },
+                            ['<c-j>'] = { 'preview_scroll_down', mode = { 'n', 'i' } },
                         },
                     },
                 },
