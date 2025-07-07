@@ -26,4 +26,7 @@ return {
 
     -- Cursor FX
     { 'sphamba/smear-cursor.nvim', opts = {} },
+
+    -- Rust
+    { 'mrcjkb/rustaceanvim' },
 }
