@@ -100,6 +100,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 local function mason_config()
     require('mason').setup({
+        PATH = "append",
         ui = {
             border = ThemeConfig.border,
         },
@@ -143,7 +144,6 @@ local function lsp_config()
         'jsonls',
         'lua_ls',
         'pyright',
-        'rust_analyzer',
         'ts_ls',
         'yamlls',
     })
