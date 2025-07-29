@@ -123,7 +123,7 @@ hi('Comment',      { fg = 'text_6', attrs = 'italic' },                         
 hi('Type',         { fg = 'secondary_15' },                                                { fg = 'ansi_brcyan', attrs = 'bold' })
 hi('Constant',     { fg = 'magenta_5' },                                                   { fg = 'ansi_brmagenta' })
 hi('Special',      { fg = 'yellow_5', attrs = 'bold' },                                    { fg = 'ansi_yellow' })
-hi('SpecialText',  { fg = 'magenta_6', attrs = 'bold' },                                   { fg = 'ansi_brblack' })
+hi('SpecialText',  { fg = 'yellow_7', attrs = 'bold' },                                   { fg = 'ansi_brblack' })
 hi('Underlined',   { fg = 'primary_15', attrs = 'underline' },                             { fg = 'ansi_blue', attrs = 'underline' })
 hi('Delimiter',    { fg = 'green_4' },                                                     { fg = 'ansi_green' })
 hi('String',       { fg = 'orange_6' },                                                    { fg = 'ansi_yellow' })
