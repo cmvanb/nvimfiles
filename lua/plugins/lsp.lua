@@ -9,8 +9,24 @@ local ThemeSymbols = require('theme.symbols')
 local KeyMapUtils = require('utils.keymaps')
 local TableUtils = require('utils.table')
 
+-- Language servers to enable by default
+--------------------------------------------------------------------------------
+local language_servers = {
+    'bashls',
+    'clangd',
+    'cssls',
+    'dockerls',
+    'html',
+    'jsonls',
+    'lua_ls',
+    'pyright',
+    'svelte',
+    'ts_ls',
+    'yamlls',
+}
+
 -- LSP generic on_attach configuration
-----------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 local function lsp_diagnostics()
     vim.diagnostic.config({
         virtual_text = false,
@@ -135,18 +151,7 @@ local function lsp_config()
         capabilities = lsp_capabilities,
     })
 
-    vim.lsp.enable({
-        'bashls',
-        'clangd',
-        'cssls',
-        'dockerls',
-        'html',
-        'jsonls',
-        'lua_ls',
-        'pyright',
-        'ts_ls',
-        'yamlls',
-    })
+    vim.lsp.enable(language_servers)
 
     -- LSP specific configuration
     ----------------------------------------------------------------------------
@@ -156,8 +161,7 @@ local function lsp_config()
         on_init = function(client)
             if client.workspace_folders then
                 local path = client.workspace_folders[1].name
-                if
-                    path ~= vim.fn.stdpath('config')
+                if path ~= vim.fn.stdpath('config')
                     and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
                 then
                     return
@@ -213,19 +217,9 @@ local function lsp_config()
     local mason_lspconfig = require('mason-lspconfig')
 
     mason_lspconfig.setup({
-        -- A list of tools to automatically install if they're not already installed.
-        ensure_installed = {
-            'bashls',
-            'clangd',
-            'cssls',
-            'dockerls',
-            'html',
-            'jsonls',
-            'lua_ls',
-            'pyright',
-            'ts_ls',
-            'yamlls',
-        },
+        -- Tools to automatically install if they're not already installed.
+        -- NOTE: Doesn't have to be only language servers, can also be DAPs, linters, etc.
+        ensure_installed = language_servers,
     })
 end
 
