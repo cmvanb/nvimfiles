@@ -41,6 +41,9 @@ opt.autoindent = true
 -- Don't wrap lines
 opt.wrap = false
 
+-- Break lines at word boundaries
+opt.linebreak = true
+
 -- File encoding
 opt.fileencoding = 'utf-8'
 
