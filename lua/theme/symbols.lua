@@ -14,7 +14,7 @@ local default_terminal_symbols = {
     },
     diff_signs = {
         added = '+',
-        changed = '●',
+        changed = '~',
         removed = '-',
     },
     git_signs = {
