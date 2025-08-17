@@ -10,6 +10,9 @@ local KeyMapUtils = require('utils.keymaps')
 local TableUtils = require('utils.table')
 
 -- Language servers to enable by default
+--
+-- Mason will automatically install these.
+-- NOTE: Not limited to language servers, can also be DAPs, linters, formatters, etc.
 --------------------------------------------------------------------------------
 local language_servers = {
     'bashls',
@@ -25,9 +28,10 @@ local language_servers = {
     'yamlls',
 }
 
--- LSP generic on_attach configuration
+-- LSP on_attach configuration
 --------------------------------------------------------------------------------
-local function lsp_diagnostics()
+-- LSP attach diagnostics
+local function lsp_attach_diagnostics()
     vim.diagnostic.config({
         virtual_text = false,
         signs = {
@@ -52,7 +56,16 @@ local function lsp_diagnostics()
     })
 end
 
-local function lsp_keymaps(buffer)
+-- LSP attach keymaps
+local function lsp_attach_keymaps(buffer)
+    -- TODO: Check client capabilities before creating keymaps.
+    -- see: https://neovim.io/doc/user/lsp.html
+
+    -- local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+    -- if client:supports_method('textDocument/implementation') then
+    --     -- Create a keymap for vim.lsp.buf.implementation ...
+    -- end
+
     local opts = { silent = true, buffer = buffer }
 
     -- Unmap some defaults
@@ -82,11 +95,11 @@ local function lsp_keymaps(buffer)
         TableUtils.merge(opts, { desc = 'LSP: Code action' }))
     KeyMapUtils.noremap(
         'gj',
-        vim.diagnostic.goto_next,
+        function() vim.diagnostic.jump({ count = 1, float = true }) end,
         TableUtils.merge(opts, { desc = 'LSP: Next diagnostic' }))
     KeyMapUtils.noremap(
         'gk',
-        vim.diagnostic.goto_prev,
+        function() vim.diagnostic.jump({ count = -1, float = true }) end,
         TableUtils.merge(opts, { desc = 'LSP: Previous diagnostic' }))
     KeyMapUtils.noremap(
         'gl',
@@ -94,19 +107,12 @@ local function lsp_keymaps(buffer)
         TableUtils.merge(opts, { desc = 'LSP: Show diagnostic' }))
 end
 
+-- LSP attach autocommand
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('my.lsp', {}),
     callback = function(args)
-        -- TODO: Check client capabilities before creating keymaps.
-        -- see: https://neovim.io/doc/user/lsp.html
-
-        -- local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-        -- if client:supports_method('textDocument/implementation') then
-        --     -- Create a keymap for vim.lsp.buf.implementation ...
-        -- end
-
-        lsp_diagnostics()
-        lsp_keymaps(args.buf)
+        lsp_attach_diagnostics()
+        lsp_attach_keymaps(args.buf)
 
         vim.api.nvim_buf_create_user_command(args.buf, 'LspFormat', function()
             vim.lsp.buf.format()
@@ -158,44 +164,40 @@ local function lsp_config()
     -- Lua
     vim.lsp.config('lua_ls', {
         on_init = function(client)
+            -- If this is a Lua project which is not a Neovim config, exit early.
             if client.workspace_folders then
                 local path = client.workspace_folders[1].name
                 if path ~= vim.fn.stdpath('config')
+                    -- TODO: Needs more robust Neovim config detection, or at
+                    -- least a soft-coded path. It would be nice to detect not
+                    -- only our own setup but others as well.
+                    and path ~= '/home/surfer/Code/dotfiles/config/nvim'
                     and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
                 then
                     return
                 end
             end
 
+            -- Otherwise, configure for Neovim.
             client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
                 runtime = {
-                    -- Tell the language server which version of Lua you're using (most
-                    -- likely LuaJIT in the case of Neovim)
                     version = 'LuaJIT',
-                    -- Tell the language server how to find Lua modules same way as Neovim
-                    -- (see `:h lua-module-load`)
                     path = {
                         'lua/?.lua',
                         'lua/?/init.lua',
                     },
                 },
-                -- Make the server aware of Neovim runtime files
                 workspace = {
                     checkThirdParty = false,
                     library = {
-                        vim.env.VIMRUNTIME
-                        -- Depending on the usage, you might want to add additional paths
-                        -- here.
-                        -- '${3rd}/luv/library'
-                        -- '${3rd}/busted/library'
+                        vim.env.VIMRUNTIME,
+                        '${3rd}/luv/library',
+
+                        -- Or pull in all of 'runtimepath'.
+                        -- NOTE: this is a lot slower and will cause issues when working on
+                        -- your own configuration. see: https://github.com/neovim/nvim-lspconfig/issues/3189
+                        -- vim.api.nvim_get_runtime_file('', true),
                     }
-                    -- Or pull in all of 'runtimepath'.
-                    -- NOTE: this is a lot slower and will cause issues when working on
-                    -- your own configuration.
-                    -- See https://github.com/neovim/nvim-lspconfig/issues/3189
-                    -- library = {
-                    --   vim.api.nvim_get_runtime_file('', true),
-                    -- }
                 }
             })
 
@@ -216,8 +218,6 @@ local function lsp_config()
     local mason_lspconfig = require('mason-lspconfig')
 
     mason_lspconfig.setup({
-        -- Tools to automatically install if they're not already installed.
-        -- NOTE: Doesn't have to be only language servers, can also be DAPs, linters, etc.
         ensure_installed = language_servers,
     })
 end
