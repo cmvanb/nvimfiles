@@ -34,6 +34,10 @@ local language_servers = {
 local function lsp_attach_diagnostics()
     vim.diagnostic.config({
         virtual_text = false,
+        virtual_lines = {
+            current_line = true,
+            source = true,
+        },
         signs = {
             text = {
                 [vim.diagnostic.severity.ERROR] = ThemeSymbols.diagnostic_signs.error,
@@ -49,7 +53,7 @@ local function lsp_attach_diagnostics()
             focusable = false,
             style = 'minimal',
             border = ThemeConfig.border,
-            source = 'always',
+            source = true,
             header = '',
             prefix = '',
         },
