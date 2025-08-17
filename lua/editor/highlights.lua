@@ -28,7 +28,7 @@ vim.cmd('syntax reset')
 -- Highlights
 hi('Normal',                    { fg = 'editor_text_normal', bg = 'editor_bg' },          { fg = 'ansi_cyan', bg = 'ansi_black' })
 hi('NormalFloat',               { fg = 'editor_text_normal', bg = 'editor_bg' },          { fg = 'ansi_cyan', bg = 'ansi_black' })
-hi('NonText',                   { fg = 'gray_2' },                                        { fg = 'ansi_brwhite' })
+hi('NonText',                   { fg = 'primary_8' },                                     { fg = 'ansi_brwhite' })
 hi('EndOfBuffer',               { fg = 'primary_4' },                                     { })
 hi('LineNr',                    { fg = 'primary_6' },                                     { fg = 'ansi_blue' })
 hi('Cursor',                    { fg = 'gray_0', bg = 'text_15' },                        { fg = 'ansi_black', bg = 'ansi_brwhite' })
@@ -75,11 +75,11 @@ hi('SpecialKey',                { fg = 'debug' },                               
 
 hi('DiagnosticError',           { fg = 'red_5', attrs = 'bold' },                         { fg = 'ansi_red' })
 hi('DiagnosticWarn',            { fg = 'orange_6', attrs = 'bold' },                      { fg = 'ansi_yellow' })
-hi('DiagnosticInfo',            { fg = 'text_10', attrs = 'bold' },                       { fg = 'ansi_white' })
+hi('DiagnosticInfo',            { fg = 'text_12', attrs = 'bold' },                       { fg = 'ansi_white' })
 hi('DiagnosticHint',            { fg = 'yellow_7', attrs = 'bold' },                      { fg = 'ansi_brmagenta' })
 hi('DiagnosticUnderlineError',  { sp = 'red_5', attrs = 'undercurl' },                    { fg = 'ansi_red' })
 hi('DiagnosticUnderlineWarn',   { sp = 'orange_6', attrs = 'undercurl' },                 { fg = 'ansi_yellow' })
-hi('DiagnosticUnderlineInfo',   { sp = 'text_10', attrs = 'undercurl' },                  { fg = 'ansi_white' })
+hi('DiagnosticUnderlineInfo',   { sp = 'text_8', attrs = 'undercurl' },                  { fg = 'ansi_white' })
 hi('DiagnosticUnderlineHint',   { sp = 'yellow_7', attrs = 'undercurl' },                 { fg = 'ansi_brmagenta' })
 hi('SpellBad',                  { sp = 'red_5', attrs = 'undercurl' },                    { fg = 'ansi_red', attrs = 'underline' })
 
