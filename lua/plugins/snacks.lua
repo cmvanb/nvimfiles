@@ -83,6 +83,13 @@ return {
                             ['<c-j>'] = { 'preview_scroll_down', mode = { 'n', 'i' } },
                         },
                     },
+
+                    -- preview window
+                    preview = {
+                        -- TODO: This doesn't work. We might need to change the
+                        -- diagnostics config on the fly when using the picker.
+                        diagnostics = false,
+                    }
                 },
             },
         },
@@ -133,6 +140,7 @@ return {
             {
                 '<leader>e',
                 function() Snacks.explorer({
+                    -- NOTE: Doesn't seem to work.
                     replace_netrw = true,
                 }) end,
                 desc = 'File explorer',

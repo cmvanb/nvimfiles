@@ -15,6 +15,7 @@ return {
     { 'famiu/bufdelete.nvim' },
 
     -- Redirect command output to new buffer.
+    -- NOTE: Not working.
     { 'sbulav/nredir.nvim' },
 
     -- Syntax rules.
