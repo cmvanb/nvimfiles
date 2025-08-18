@@ -179,6 +179,6 @@ vim.api.nvim_create_augroup('HighlightNotes', { clear = true })
 vim.api.nvim_create_autocmd({ 'BufEnter', 'FileType' }, {
     group = 'HighlightNotes',
     callback = function()
-        vim.fn.matchadd('Todo', 'TODO:\\|NOTE:\\|see:')
+        vim.fn.matchadd('Todo', 'TODO:\\|NOTE:\\|see:\\|QUESTION:')
     end,
 })
