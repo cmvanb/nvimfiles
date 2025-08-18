@@ -50,7 +50,7 @@ hi('MoreMsg',                   { fg = 'gray_15', bg = 'gray_5', attrs = 'bold' 
 
 hi('Visual',                    { fg = 'gray_0', bg = 'primary_15' },                     { fg = 'ansi_white', bg = 'ansi_blue' })
 hi('IncSearch',                 { fg = 'gray_0', bg = 'green_4', attrs = 'bold' },        { fg = 'ansi_black', bg = 'ansi_green' })
-hi('Search',                    { fg = 'gray_0', bg = 'magenta_5', attrs = 'bold' },      { fg = 'ansi_black', bg = 'ansi_magenta' })
+hi('Search',                    { fg = 'gray_0', bg = 'primary_12', attrs = 'bold' },      { fg = 'ansi_black', bg = 'ansi_magenta' })
 hi('CurSearch',                 { fg = 'gray_0', bg = 'green_4', attrs = 'bold' },        { fg = 'ansi_black', bg = 'ansi_green' })
 
 hi('Folded',                    { bg = 'primary_1' },                                     { bg = 'ansi_blue' })
