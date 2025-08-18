@@ -166,7 +166,7 @@ ln('@type.builtin',                'Special')
 ln('@type.qualifier',              'Keyword')
 ln('@variable',                    'Identifier')
 ln('@variable.builtin',            'Identifier')
-ln('@lsp.mod.defaultLibrary',      'Special')
+ln('@lsp.mod.defaultLibrary',      'Type')
 
 -- Special snowflakes
 --------------------------------------------------------------------------------
