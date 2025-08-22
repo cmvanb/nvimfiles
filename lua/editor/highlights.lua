@@ -146,6 +146,7 @@ ln('@constant.builtin.python',     'Constant')
 ln('@constructor',                 'Function')
 ln('@function.builtin',            'Special')
 ln('@function.call',               'Function')
+ln('@function.macro',              'Special')
 ln('@punctuation.delimiter',       'Delimiter')
 ln('@markup.list',                 'Delimiter')
 ln('@markup.heading.1',            'Title')
@@ -167,6 +168,7 @@ ln('@type.qualifier',              'Keyword')
 ln('@variable',                    'Identifier')
 ln('@variable.builtin',            'Identifier')
 ln('@lsp.mod.defaultLibrary',      'Type')
+ln('@lsp.type.macro',              'Special')
 
 -- Special snowflakes
 --------------------------------------------------------------------------------
