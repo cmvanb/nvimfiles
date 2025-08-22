@@ -42,6 +42,7 @@ return {
                             box = 'horizontal',
                             width = 0.8,
                             min_width = 120,
+                            max_width = 188,
                             height = 0.8,
                             {
                                 box = 'vertical',
@@ -63,7 +64,7 @@ return {
                                 win = 'preview',
                                 title = '{preview}',
                                 border = 'single',
-                                width = 0.5,
+                                width = 0.6,
                             },
                         },
                     }
