@@ -7,13 +7,15 @@ return {
         "olimorris/codecompanion.nvim",
         opts = {
             adapters = {
-                anthropic = function()
-                    return require("codecompanion.adapters").extend("anthropic", {
-                        env = {
-                            api_key = "cmd:rbw get 'Anthropic/Claude API Key'",
-                        },
-                    })
-                end,
+                http = {
+                    anthropic = function()
+                        return require("codecompanion.adapters").extend("anthropic", {
+                            env = {
+                                api_key = "cmd:rbw get 'Anthropic/Claude API Key'",
+                            },
+                        })
+                    end,
+                },
             },
             strategies = {
                 chat = {
