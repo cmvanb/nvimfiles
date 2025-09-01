@@ -1,5 +1,8 @@
 vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
-    pattern = "*.json",
+    pattern = {
+        '*.json',
+        '*/config/waybar/river-config',
+    },
     callback = function(args)
         -- Get the filename without the path
         local filename = vim.fn.fnamemodify(args.file, ':t')
@@ -7,7 +10,10 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
         -- NOTE: This is a hack for VSCode settings.json and keybindings.json.
         -- Would be nice to have a better detection mechanism to avoid false
         -- positives.
-        if filename == "settings.json" or filename == "keybindings.json" then
+        if filename == 'settings.json'
+            or filename == 'keybindings.json'
+            or filename == 'river-config'
+        then
             vim.bo.filetype = 'jsonc'
         else
             vim.bo.filetype = 'json'
