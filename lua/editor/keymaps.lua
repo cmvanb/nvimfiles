@@ -5,25 +5,25 @@
 -- Imports
 --------------------------------------------------------------------------------
 
-local KeyMapUtils = reload('utils.keymaps')
+local keys = reload('utils.keymaps')
 
 -- Shortcuts
 --------------------------------------------------------------------------------
 
 local map, nmap, xmap, imap, unmap =
-    KeyMapUtils.map,
-    KeyMapUtils.nmap,
-    KeyMapUtils.xmap,
-    KeyMapUtils.imap,
-    KeyMapUtils.unmap
+    keys.map,
+    keys.nmap,
+    keys.xmap,
+    keys.imap,
+    keys.unmap
 
 local noremap, nnoremap, xnoremap, inoremap, onoremap, vnoremap =
-    KeyMapUtils.noremap,
-    KeyMapUtils.nnoremap,
-    KeyMapUtils.xnoremap,
-    KeyMapUtils.inoremap,
-    KeyMapUtils.onoremap,
-    KeyMapUtils.vnoremap
+    keys.noremap,
+    keys.nnoremap,
+    keys.xnoremap,
+    keys.inoremap,
+    keys.onoremap,
+    keys.vnoremap
 
 -- Remove some default mappings
 --------------------------------------------------------------------------------

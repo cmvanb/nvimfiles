@@ -4,10 +4,10 @@
 -- Based on: https://github.com/VonHeikemen/lsp-zero.nvim/wiki/Under-the-hood
 --------------------------------------------------------------------------------
 
-local ThemeConfig = require('theme.config')
-local ThemeSymbols = require('theme.symbols')
-local KeyMapUtils = require('utils.keymaps')
-local TableUtils = require('utils.table')
+local theme_config = require('theme.config')
+local theme_symbols = require('theme.symbols')
+local keys = require('utils.keymaps')
+local tbl = require('utils.table')
 
 -- Language servers to enable by default
 --
@@ -37,10 +37,10 @@ local function lsp_attach_diagnostics()
         virtual_lines = false,
         signs = {
             text = {
-                [vim.diagnostic.severity.ERROR] = ThemeSymbols.diagnostic_signs.error,
-                [vim.diagnostic.severity.WARN] = ThemeSymbols.diagnostic_signs.warn,
-                [vim.diagnostic.severity.INFO] = ThemeSymbols.diagnostic_signs.info,
-                [vim.diagnostic.severity.HINT] = ThemeSymbols.diagnostic_signs.hint,
+                [vim.diagnostic.severity.ERROR] = theme_symbols.diagnostic_signs.error,
+                [vim.diagnostic.severity.WARN] = theme_symbols.diagnostic_signs.warn,
+                [vim.diagnostic.severity.INFO] = theme_symbols.diagnostic_signs.info,
+                [vim.diagnostic.severity.HINT] = theme_symbols.diagnostic_signs.hint,
             },
         },
         update_in_insert = false,
@@ -49,7 +49,7 @@ local function lsp_attach_diagnostics()
         float = {
             focusable = false,
             style = 'minimal',
-            border = ThemeConfig.border,
+            border = theme_config.border,
             source = true,
             header = '',
             prefix = '',
@@ -121,41 +121,50 @@ local function lsp_attach_keymaps(buffer)
     local opts = { silent = true, buffer = buffer }
 
     -- Unmap some defaults
-    KeyMapUtils.unmap('<C-W>d')
-    KeyMapUtils.unmap('<C-W><C-D>')
+    keys.unmap('<C-W>d')
+    keys.unmap('<C-W><C-D>')
 
     -- LSP actions
-    KeyMapUtils.noremap(
+    keys.noremap(
         'gh',
         function()
             vim.lsp.buf.hover({
-                border = ThemeConfig.border,
+                border = theme_config.border,
             })
         end,
-        TableUtils.merge(opts, { desc = 'LSP: Show hover' }))
-    KeyMapUtils.noremap(
+        tbl.merge(opts, { desc = 'LSP: Show hover' }))
+
+    keys.noremap(
         'gs',
         vim.lsp.buf.signature_help,
-        TableUtils.merge(opts, { desc = 'LSP: Show signature help' }))
-    KeyMapUtils.noremap(
+        tbl.merge(opts, { desc = 'LSP: Show signature help' }))
+
+    keys.noremap(
         'gc',
         vim.lsp.buf.rename,
-        TableUtils.merge(opts, { desc = 'LSP: Rename' }))
-    KeyMapUtils.noremap(
+        tbl.merge(opts, { desc = 'LSP: Rename' }))
+
+    keys.noremap(
         'ga',
         vim.lsp.buf.code_action,
-        TableUtils.merge(opts, { desc = 'LSP: Code action' }))
-    KeyMapUtils.noremap(
+        tbl.merge(opts, { desc = 'LSP: Code action' }))
+
+    keys.noremap(
         'gj',
-        function() vim.diagnostic.jump({ count = 1, float = true }) end,
-        TableUtils.merge(opts, { desc = 'LSP: Next diagnostic' }))
-    KeyMapUtils.noremap(
+        function()
+            vim.diagnostic.jump({ count = 1, float = true })
+        end,
+        tbl.merge(opts, { desc = 'LSP: Next diagnostic' }))
+
+    keys.noremap(
         'gk',
-        function() vim.diagnostic.jump({ count = -1, float = true }) end,
-        TableUtils.merge(opts, { desc = 'LSP: Previous diagnostic' }))
+        function()
+            vim.diagnostic.jump({ count = -1, float = true })
+        end,
+        tbl.merge(opts, { desc = 'LSP: Previous diagnostic' }))
 
     -- TODO: This works as a 'dismiss', but it should instead globally toggle the diagnostics.
-    KeyMapUtils.noremap(
+    keys.noremap(
         'gl',
         function()
             local current = vim.diagnostic.config()
@@ -163,7 +172,7 @@ local function lsp_attach_keymaps(buffer)
                 virtual_lines = current and not current.virtual_lines,
             })
         end,
-        TableUtils.merge(opts, { desc = 'LSP: Show diagnostic' }))
+        tbl.merge(opts, { desc = 'LSP: Show diagnostic' }))
 end
 
 -- LSP attach autocommand
@@ -183,7 +192,7 @@ local function mason_config()
     require('mason').setup({
         PATH = "append",
         ui = {
-            border = ThemeConfig.border,
+            border = theme_config.border,
         },
     })
 end

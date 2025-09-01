@@ -7,18 +7,18 @@ local KeyMapUtils = {}
 -- Imports
 --------------------------------------------------------------------------------
 
-local TableUtils = require('utils.table')
+local tbl = require('utils.table')
 
 -- Private functions
 --------------------------------------------------------------------------------
 
 local function _map(mode, keys, command, options)
-    options = TableUtils.merge(options or {}, { noremap = false })
+    options = tbl.merge(options or {}, { noremap = false })
     vim.keymap.set(mode, keys, command, options)
 end
 
 local function _noremap(mode, keys, command, options)
-    options = TableUtils.merge(options or {}, { noremap = true })
+    options = tbl.merge(options or {}, { noremap = true })
     vim.keymap.set(mode, keys, command, options)
 end
 

@@ -2,7 +2,7 @@
 -- Path utilities
 --------------------------------------------------------------------------------
 
-local TableUtils = require('utils.table')
+local tbl = require('utils.table')
 
 local PathUtils = {}
 
@@ -19,7 +19,7 @@ end
 function PathUtils.append_to_package_path(path)
     local paths = _get_package_paths()
 
-    if TableUtils.contains(paths, path) then
+    if tbl.contains(paths, path) then
         return
     end
 
@@ -32,7 +32,7 @@ end
 function PathUtils.prepend_to_package_path(path)
     local paths = _get_package_paths()
 
-    if TableUtils.contains(paths, path) then
+    if tbl.contains(paths, path) then
         return
     end
 
