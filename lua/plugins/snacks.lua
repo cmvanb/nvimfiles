@@ -31,6 +31,13 @@ return {
                     icons = {
                         icon_sources = { 'nerd_fonts', 'emoji', 'unicode' },
                     },
+                    files = {
+                        on_change = function(picker, item)
+                            vim.schedule(function()
+                                picker.preview.win:set_title(item.file)
+                            end)
+                        end,
+                    },
                 },
 
                 formatters = {
