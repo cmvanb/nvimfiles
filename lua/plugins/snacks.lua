@@ -31,6 +31,7 @@ return {
                     icons = {
                         icon_sources = { 'nerd_fonts', 'emoji', 'unicode' },
                     },
+                    -- show full file path in picker preview title
                     files = {
                         on_change = function(picker, item)
                             vim.schedule(function()
@@ -40,6 +41,7 @@ return {
                     },
                 },
 
+                -- don't truncate long file paths
                 formatters = {
                     file = {
                         truncate = 10000,
