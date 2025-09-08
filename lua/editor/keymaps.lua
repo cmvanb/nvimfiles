@@ -139,9 +139,6 @@ xnoremap(';', '=', { desc = 'Format selected' })
 nnoremap('<F17>', 'gg=G', { desc = 'Format buffer' })
 nnoremap('<F16>', ':TSJToggle<cr>', { desc = 'Split/join formatting' })
 
--- Insert line break
-nnoremap('<Enter>', 'i<CR><esc>`^', { desc = 'Insert line break' })
-
 -- Search
 --------------------------------------------------------------------------------
 
