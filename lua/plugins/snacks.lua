@@ -24,17 +24,30 @@ return {
         lazy = false,
         opts = {
             picker = {
-                enabled = true,
                 prompt = ThemeSymbols.picker.prompt .. ' ',
 
                 sources = {
                     icons = {
                         icon_sources = { 'nerd_fonts', 'emoji', 'unicode' },
                     },
-                    -- show full file path in picker preview title
                     files = {
+                        -- show full file path in picker preview title
                         on_change = function(picker, item)
                             vim.schedule(function()
+                                if not item or not item.file then
+                                    return
+                                end
+                                picker.preview.win:set_title(item.file)
+                            end)
+                        end,
+                    },
+                    grep = {
+                        -- show full file path in picker preview title
+                        on_change = function(picker, item)
+                            vim.schedule(function()
+                                if not item or not item.file then
+                                    return
+                                end
                                 picker.preview.win:set_title(item.file)
                             end)
                         end,
@@ -50,21 +63,28 @@ return {
 
                 -- Picker layout
                 ----------------------------------------------------------------
+                ---@class snacks.picker.layout.Config
+                layout = {
+                    cycle = true,
+                    preset = function()
+                        return vim.o.columns > 128 and 'wide' or 'tall'
+                    end,
+                },
+                ---@table<string, snacks.picker.layout.Config>
                 layouts = {
-                    custom = {
+                    ---@class snacks.picker.layout.Config
+                    wide = {
                         layout = {
                             backdrop = false,
                             box = 'horizontal',
                             width = 0.8,
-                            min_width = 120,
-                            max_width = 188,
                             height = 0.8,
+                            max_width = 160,
+                            -- input, list
                             {
                                 box = 'vertical',
-                                -- NOTE: For a flat/borderless layout, consider:
-                                -- border = { '▗', '▄', '▖', '▌', '▘', '▀', '▝', '▐' },
-                                border = 'single',
-                                title = '{title} {live} {flags}',
+                                border = 'rounded',
+                                title = '{title}',
                                 {
                                     win = 'input',
                                     height = 1,
@@ -75,22 +95,56 @@ return {
                                     border = 'none',
                                 },
                             },
+                            -- preview
                             {
                                 win = 'preview',
                                 title = '{preview}',
-                                border = 'single',
-                                width = 0.6,
+                                border = 'rounded',
+                                width = 0.65,
                             },
                         },
-                    }
+                    },
+                    ---@class snacks.picker.layout.Config
+                    tall = {
+                        layout = {
+                            backdrop = false,
+                            box = 'vertical',
+                            border = 'rounded',
+                            width = 0.9,
+                            height = 0.8,
+                            {
+                                box = 'vertical',
+                                border = 'none',
+                                title = '{title}',
+                                -- input
+                                {
+                                    win = 'input',
+                                    height = 1,
+                                    border = 'bottom',
+                                },
+                                -- list
+                                {
+                                    win = 'list',
+                                    border = 'none',
+                                },
+                            },
+                            -- preview
+                            {
+                                win = 'preview',
+                                title = '{preview}',
+                                border = 'top',
+                                height = 0.65,
+                            },
+                        },
+                    },
                 },
-                layout = 'custom',
 
-                -- Picker keymaps
+                -- Window options
                 ----------------------------------------------------------------
                 win = {
-                    -- input window
+                    -- input
                     input = {
+                        -- keymaps
                         keys = {
                             ['<Esc>'] = { 'close', mode = { 'n', 'i' } },
                             ['<c-n>'] = { 'edit_vsplit', mode = { 'n', 'i' } },
@@ -100,8 +154,13 @@ return {
                         },
                     },
 
-                    -- preview window
+                    -- preview
                     preview = {
+                        -- hide sign/statuscolumn
+                        wo = {
+                            signcolumn = 'no',
+                            statuscolumn = '',
+                        },
                         -- TODO: This doesn't work. We might need to change the
                         -- diagnostics config on the fly when using the picker.
                         diagnostics = false,
@@ -117,6 +176,7 @@ return {
             {
                 '<leader>a',
                 function() Snacks.picker.files({
+                    title = 'All Files',
                     hidden = true,
                     ignored = true,
                 }) end,
@@ -143,7 +203,9 @@ return {
             },
             {
                 '<leader>g',
-                function() Snacks.picker.grep() end,
+                function() Snacks.picker.grep({
+                    title = 'Grep Files',
+                }) end,
                 desc = 'Grep files',
             },
             {
@@ -178,7 +240,7 @@ return {
                     },
                 }) end,
                 desc = 'Insert unicode',
-            }
+            },
 
             -- LSP functions
             -- TODO: Investigate why these bindings are not working.

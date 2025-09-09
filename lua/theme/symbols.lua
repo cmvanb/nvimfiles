@@ -46,7 +46,7 @@ local default_terminal_symbols = {
         tab_page = '  ',
     },
     picker = {
-        prompt = '',
+        prompt = '❱',
     },
     kinds = {
         Array         = ' ',
