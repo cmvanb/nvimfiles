@@ -41,6 +41,9 @@ map('<C-j>', '<nop>')
 map('<C-k>', '<nop>')
 map('<C-l>', '<nop>')
 
+map('<C-d>', '<nop>')
+map('<C-f>', '<nop>')
+
 map('<C-o>', '<nop>')
 
 map('<C-n>', '<nop>')
@@ -77,6 +80,14 @@ noremap(
     { desc = 'Scroll half page down' })
 noremap(
     '<PageUp>',
+    '<C-u>',
+    { desc = 'Scroll half page up' })
+noremap(
+    '<C-f>',
+    '<C-d>',
+    { desc = 'Scroll half page down' })
+noremap(
+    '<C-d>',
     '<C-u>',
     { desc = 'Scroll half page up' })
 
