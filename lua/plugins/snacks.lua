@@ -120,12 +120,12 @@ return {
                             backdrop = false,
                             box = 'vertical',
                             border = 'rounded',
+                            title = '{title}',
                             width = 0.9,
                             height = 0.8,
                             {
                                 box = 'vertical',
                                 border = 'none',
-                                title = '{title}',
                                 -- input
                                 {
                                     win = 'input',
