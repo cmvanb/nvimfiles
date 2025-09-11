@@ -12,11 +12,20 @@ hi('SnacksPicker',        { bg = 'editor_bg' },  { bg = 'ansi_black' })
 
 ln('SnacksPickerFile',    'File')
 ln('SnacksPickerDir',     'Directory')
-ln('SnacksPickerTotals',  'Title')
+ln('SnacksPickerTotals',  'Comment')
 ln('SnacksPickerPrompt',  'Title')
 ln('SnacksPickerBorder',  'WinSeparator')
 
 -- Config
+local function show_full_path_preview_title(picker, item)
+    vim.schedule(function()
+        if not item or not item.file then
+            return
+        end
+        picker.preview.win:set_title(item.file)
+    end)
+end
+
 return {
     {
         'folke/snacks.nvim',
@@ -24,33 +33,34 @@ return {
         lazy = false,
         opts = {
             picker = {
-                prompt = ThemeSymbols.picker.prompt .. ' ',
+                prompt = ' ' .. ThemeSymbols.picker.prompt .. ' ',
 
+                -- Picker-specific configuration
+                ----------------------------------------------------------------
                 sources = {
-                    icons = {
-                        icon_sources = { 'nerd_fonts', 'emoji', 'unicode' },
+                    buffers = {
+                        on_change = show_full_path_preview_title
+                    },
+                    explorer = {
+                        layout = { preset = 'explorer' },
                     },
                     files = {
-                        -- show full file path in picker preview title
-                        on_change = function(picker, item)
-                            vim.schedule(function()
-                                if not item or not item.file then
-                                    return
-                                end
-                                picker.preview.win:set_title(item.file)
-                            end)
-                        end,
+                        on_change = show_full_path_preview_title,
+                        win = {
+                            input = {
+                                keys = {
+                                    ['<c-n>'] = { 'edit_vsplit', mode = { 'n', 'i' } },
+                                    ['<c-p>'] = { 'edit_split', mode = { 'n', 'i' } },
+                                },
+                            },
+                        },
                     },
                     grep = {
-                        -- show full file path in picker preview title
-                        on_change = function(picker, item)
-                            vim.schedule(function()
-                                if not item or not item.file then
-                                    return
-                                end
-                                picker.preview.win:set_title(item.file)
-                            end)
-                        end,
+                        on_change = show_full_path_preview_title
+                    },
+                    icons = {
+                        icon_sources = { 'nerd_fonts', 'emoji', 'unicode' },
+                        layout = { preset = 'smallmenu' },
                     },
                 },
 
@@ -61,7 +71,7 @@ return {
                     },
                 },
 
-                -- Picker layout
+                -- Picker layouts
                 ----------------------------------------------------------------
                 ---@class snacks.picker.layout.Config
                 layout = {
@@ -137,33 +147,76 @@ return {
                             },
                         },
                     },
+                    ---@class snacks.picker.layout.Config
+                    smallmenu = {
+                        preview = false,
+                        layout = {
+                            backdrop = false,
+                            width = 0.4,
+                            height = 0.4,
+                            min_width = 72,
+                            border = 'rounded',
+                            box = 'vertical',
+                            title = '{title}',
+                            {
+                                win = 'input',
+                                height = 1,
+                                border = 'bottom',
+                                title_pos = 'center',
+                            },
+                            {
+                                win = 'list',
+                                border = 'none',
+                            },
+                            {
+                                win = 'preview',
+                                title = '{preview}',
+                                border = 'none',
+                            },
+                        },
+                    },
+                    ---@class snacks.picker.layout.Config
+                    explorer = {
+                        preview = 'main',
+                        layout = {
+                            backdrop = false,
+                            width = 40,
+                            min_width = 40,
+                            height = 0,
+                            position = 'left',
+                            border = 'none',
+                            box = 'vertical',
+                            {
+                                win = 'input',
+                                height = 1,
+                                border = 'rounded',
+                            },
+                            {
+                                win = 'list',
+                                border = 'none',
+                            },
+                        },
+                    },
                 },
 
-                -- Window options
+                -- Window-specific options
                 ----------------------------------------------------------------
                 win = {
-                    -- input
                     input = {
-                        -- keymaps
                         keys = {
                             ['<Esc>'] = { 'close', mode = { 'n', 'i' } },
-                            ['<c-n>'] = { 'edit_vsplit', mode = { 'n', 'i' } },
-                            ['<c-p>'] = { 'edit_split', mode = { 'n', 'i' } },
                             ['<c-k>'] = { 'preview_scroll_up', mode = { 'n', 'i' } },
                             ['<c-j>'] = { 'preview_scroll_down', mode = { 'n', 'i' } },
                         },
                     },
 
-                    -- preview
                     preview = {
-                        -- hide sign/statuscolumn
+                        -- don't render fold/sign/statuscolumn
                         wo = {
+                            foldcolumn = '0',
                             signcolumn = 'no',
                             statuscolumn = '',
                         },
-                        -- TODO: This doesn't work. We might need to change the
-                        -- diagnostics config on the fly when using the picker.
-                        diagnostics = false,
                     }
                 },
             },
@@ -227,49 +280,29 @@ return {
             -- Insertion
             {
                 '<leader>i',
-                function() Snacks.picker.icons() end,
-                desc = 'Insert icon',
+                function() Snacks.picker.icons({
+                    title = 'Icons & Emojis',
+                }) end,
+                desc = 'Insert icons and emojis',
             },
             {
                 '<leader>u',
                 function() Snacks.picker.icons({
+                    title = 'Unicode Symbols',
                     sources = {
                         icons = {
                             icon_sources = { 'unicode' },
                         },
                     },
                 }) end,
-                desc = 'Insert unicode',
+                desc = 'Insert unicode symbols',
             },
 
-            -- LSP functions
-            -- TODO: Investigate why these bindings are not working.
-            -- {
-            --     'gd',
-            --     function() Snacks.picker.lsp_definitions() end,
-            --     desc = 'LSP: Go to type definition',
-            -- },
-            -- {
-            --     'ge',
-            --     function() Snacks.picker.diagnostics() end,
-            --     desc = 'LSP: Show diagnostics',
-            -- },
-            -- {
-            --     'gt',
-            --     function() Snacks.picker.lsp_type_definitions() end,
-            --     desc = 'LSP: Go to type definition',
-            -- },
-            -- {
-            --     'gi',
-            --     function() Snacks.picker.lsp_implementations() end,
-            --     desc = 'LSP: Go to implementation',
-            -- },
-            -- {
-            --     'gr',
-            --     function() Snacks.picker.lsp_references() end,
-            --     desc = 'LSP: Find references',
-            -- },
+            -- NOTE: LSP functions are bound by lsp.lua
         },
+
+        -- Custom icon source injection
+        ------------------------------------------------------------------------
         config = function(_, opts)
             require('snacks').setup(opts)
 
