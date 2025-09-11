@@ -60,7 +60,7 @@ hi('Title',                     { fg = 'text_15', attrs = 'bold' },             
 hi('PMenu',                     { fg = 'text_8', bg = 'editor_bg' },                      { fg = 'ansi_white', bg = 'ansi_black' })
 hi('PMenuSel',                  { fg = 'yellow_6', bg = 'primary_5', attrs = 'bold' },    { fg = 'ansi_white', bg = 'ansi_black', attrs = 'bold' })
 hi('WinSeparator',              { fg = 'primary_4' },                                     { fg = 'ansi_brblack' })
-hi('MatchParen',                { fg = 'text_8', attrs = 'bold' },                        { fg = 'ansi_brwhite', attrs = 'underline' })
+hi('MatchParen',                { fg = 'text_15', attrs = 'bold' },                       { fg = 'ansi_brwhite', attrs = 'underline' })
 
 hi('DiffAdd',                   { fg = 'green_4', attrs = 'bold' },                       { fg = 'ansi_green' })
 hi('DiffChange',                { fg = 'orange_6', attrs = 'bold' },                      { fg = 'ansi_yellow' })
