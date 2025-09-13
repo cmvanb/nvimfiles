@@ -253,6 +253,7 @@ local function lsp_config()
                     path = {
                         'lua/?.lua',
                         'lua/?/init.lua',
+                        'lua/utils/?.lua',
                     },
                 },
                 workspace = {
