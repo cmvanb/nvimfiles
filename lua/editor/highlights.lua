@@ -37,11 +37,11 @@ hi('CursorLineNr',              { fg = 'primary_12', bg = 'primary_2' },        
 hi('CursorLineFold',            { fg = 'gray_4', bg = 'primary_2' },                      { fg = 'ansi_brblue', bg = 'ansi_blue' })
 hi('CursorLineSign',            { fg = 'ansi_brwhite', bg = 'primary_2' },                { bg = 'ansi_blue' })
 
-hi('StatusLine',                { fg = 'text_10', bg = 'primary_1', attrs = 'bold' },     { fg = 'ansi_white', bg = 'ansi_blue', attrs = 'bold' })
+hi('StatusLine',                { fg = 'text_10', bg = 'primary_1', attrs = 'bold' },     { fg = 'ansi_white', bg = 'ansi_blue', attrs = 'none' })
 hi('StatusLineNC',              { fg = 'text_6', bg = 'primary_1' },                      { fg = 'ansi_brblack', bg = 'ansi_black' })
 hi('TabLine',                   { fg = 'primary_5', bg = 'primary_1', attrs = 'bold' },   { fg = 'ansi_white', bg = 'ansi_blue' })
-hi('TabLineSel',                { fg = 'primary_11', bg = 'primary_3', attrs = 'bold' },  { fg = 'ansi_white', bg = 'ansi_blue', attrs = 'bold' })
-hi('TabLineFill',               { bg = 'primary_1', attrs = 'bold' },                     { fg = 'ansi_white', bg = 'ansi_blue', attrs = 'bold' })
+hi('TabLineSel',                { fg = 'primary_11', bg = 'primary_3', attrs = 'bold' },  { fg = 'ansi_white', bg = 'ansi_blue', attrs = 'none' })
+hi('TabLineFill',               { bg = 'primary_1', attrs = 'bold' },                     { fg = 'ansi_white', bg = 'ansi_blue', attrs = 'none' })
 
 hi('MsgArea',                   { fg = 'text_10', bg = 'editor_bg' },                     { fg = 'ansi_white', bg = 'ansi_black' })
 hi('ErrorMsg',                  { fg = 'red_6', bg = 'red_1', attrs = 'bold' },           { fg = 'ansi_brred', bg = 'ansi_red' })
@@ -50,8 +50,8 @@ hi('MoreMsg',                   { fg = 'gray_15', bg = 'gray_5', attrs = 'bold' 
 
 hi('Visual',                    { fg = 'gray_0', bg = 'primary_15' },                     { fg = 'ansi_white', bg = 'ansi_blue' })
 hi('IncSearch',                 { fg = 'gray_0', bg = 'green_4', attrs = 'bold' },        { fg = 'ansi_black', bg = 'ansi_green' })
-hi('Search',                    { fg = 'gray_0', bg = 'primary_12', attrs = 'bold' },      { fg = 'ansi_black', bg = 'ansi_magenta' })
-hi('CurSearch',                 { fg = 'gray_0', bg = 'green_4', attrs = 'bold' },        { fg = 'ansi_black', bg = 'ansi_green' })
+hi('Search',                    { fg = 'gray_0', bg = 'primary_12', attrs = 'bold' },     { fg = 'ansi_black', bg = 'ansi_blue', attrs = 'none' })
+hi('CurSearch',                 { fg = 'gray_0', bg = 'green_4', attrs = 'bold' },        { fg = 'ansi_black', bg = 'ansi_green', attrs = 'none' })
 
 hi('Folded',                    { bg = 'primary_1' },                                     { bg = 'ansi_blue' })
 hi('FoldColumn',                { fg = 'gray_4', attrs = 'bold' },                        { fg = 'ansi_blue' })
@@ -60,7 +60,7 @@ hi('Title',                     { fg = 'text_15', attrs = 'bold' },             
 hi('PMenu',                     { fg = 'text_8', bg = 'editor_bg' },                      { fg = 'ansi_white', bg = 'ansi_black' })
 hi('PMenuSel',                  { fg = 'yellow_6', bg = 'primary_5', attrs = 'bold' },    { fg = 'ansi_white', bg = 'ansi_black', attrs = 'bold' })
 hi('WinSeparator',              { fg = 'primary_4' },                                     { fg = 'ansi_brblack' })
-hi('MatchParen',                { fg = 'text_15', attrs = 'bold' },                       { fg = 'ansi_brwhite', attrs = 'underline' })
+hi('MatchParen',                { fg = 'text_15', attrs = 'bold' },                       { fg = 'ansi_brwhite' })
 
 hi('DiffAdd',                   { fg = 'green_4', attrs = 'bold' },                       { fg = 'ansi_green' })
 hi('DiffChange',                { fg = 'orange_6', attrs = 'bold' },                      { fg = 'ansi_yellow' })
@@ -79,9 +79,9 @@ hi('DiagnosticInfo',            { fg = 'text_12', attrs = 'bold' },             
 hi('DiagnosticHint',            { fg = 'yellow_7', attrs = 'bold' },                      { fg = 'ansi_brmagenta' })
 hi('DiagnosticUnderlineError',  { sp = 'red_5', attrs = 'undercurl' },                    { fg = 'ansi_red' })
 hi('DiagnosticUnderlineWarn',   { sp = 'orange_6', attrs = 'undercurl' },                 { fg = 'ansi_yellow' })
-hi('DiagnosticUnderlineInfo',   { sp = 'text_8', attrs = 'undercurl' },                  { fg = 'ansi_white' })
+hi('DiagnosticUnderlineInfo',   { sp = 'text_8', attrs = 'undercurl' },                   { fg = 'ansi_white' })
 hi('DiagnosticUnderlineHint',   { sp = 'yellow_7', attrs = 'undercurl' },                 { fg = 'ansi_brmagenta' })
-hi('SpellBad',                  { sp = 'red_5', attrs = 'undercurl' },                    { fg = 'ansi_red', attrs = 'underline' })
+hi('SpellBad',                  { sp = 'red_5', attrs = 'undercurl' },                    { fg = 'ansi_red' })
 
 -- Links
 ln('CursorColumn',         'CursorLine')
@@ -124,7 +124,7 @@ hi('Type',           { fg = 'secondary_15' },                                   
 hi('Constant',       { fg = 'magenta_5' },                                                   { fg = 'ansi_brmagenta' })
 hi('Special',        { fg = 'yellow_5', attrs = 'bold' },                                    { fg = 'ansi_yellow' })
 hi('SpecialText',    { fg = 'yellow_7', attrs = 'bold' },                                    { fg = 'ansi_brblack' })
-hi('Underlined',     { fg = 'primary_15', attrs = 'underline' },                             { fg = 'ansi_blue', attrs = 'underline' })
+hi('Underlined',     { fg = 'primary_15', attrs = 'underline' },                             { fg = 'ansi_blue' })
 hi('Delimiter',      { fg = 'green_4' },                                                     { fg = 'ansi_green' })
 hi('String',         { fg = 'orange_6' },                                                    { fg = 'ansi_yellow' })
 hi('Keyword',        { fg = 'green_5', attrs = 'bold' },                                     { fg = 'ansi_brgreen', attrs = 'bold' })
