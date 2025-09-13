@@ -48,7 +48,7 @@ hi('ErrorMsg',                  { fg = 'red_6', bg = 'red_1', attrs = 'bold' }, 
 hi('WarningMsg',                { fg = 'yellow_6', bg = 'orange_3', attrs = 'bold' },     { fg = 'ansi_bryellow', bg = 'ansi_yellow' })
 hi('MoreMsg',                   { fg = 'gray_15', bg = 'gray_5', attrs = 'bold' },        { fg = 'ansi_white', bg = 'ansi_brblack' })
 
-hi('Visual',                    { fg = 'gray_0', bg = 'primary_15' },                     { fg = 'ansi_white', bg = 'ansi_blue' })
+hi('Visual',                    { fg = 'gray_0', bg = 'primary_12' },                     { fg = 'ansi_white', bg = 'ansi_blue' })
 hi('IncSearch',                 { fg = 'gray_0', bg = 'green_4', attrs = 'bold' },        { fg = 'ansi_black', bg = 'ansi_green' })
 hi('Search',                    { fg = 'gray_0', bg = 'primary_12', attrs = 'bold' },     { fg = 'ansi_black', bg = 'ansi_blue', attrs = 'none' })
 hi('CurSearch',                 { fg = 'gray_0', bg = 'green_4', attrs = 'bold' },        { fg = 'ansi_black', bg = 'ansi_green', attrs = 'none' })
