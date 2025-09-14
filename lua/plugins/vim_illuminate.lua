@@ -6,9 +6,9 @@
 local HighlightsUtils = reload('utils.highlights')
 local hi = HighlightsUtils.highlight
 
-hi('IlluminatedWordRead',   { bg = 'primary_5' },  { fg = 'ansi_white', bg = 'ansi_blue' })
-hi('IlluminatedWordText',   { bg = 'primary_5' },  { fg = 'ansi_white', bg = 'ansi_blue' })
-hi('IlluminatedWordWrite',  { bg = 'primary_5' },  { fg = 'ansi_white', bg = 'ansi_blue' })
+hi('IlluminatedWordRead',   { fg = 'text_15', attrs = 'bold' },  { fg = 'ansi_white' })
+hi('IlluminatedWordText',   { fg = 'text_15', attrs = 'bold' },  { fg = 'ansi_white' })
+hi('IlluminatedWordWrite',  { fg = 'text_15', attrs = 'bold' },  { fg = 'ansi_white' })
 
 -- Config
 return {
