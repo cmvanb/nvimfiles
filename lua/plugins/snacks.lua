@@ -6,6 +6,7 @@ local ThemeSymbols = require('theme.symbols')
 local HighlightsUtils = reload('utils.highlights')
 local ln = HighlightsUtils.link
 local hi = HighlightsUtils.highlight
+local path = require('utils.path')
 
 -- Highlights
 hi('SnacksPicker',        { bg = 'editor_bg' },  { bg = 'ansi_black' })
@@ -22,7 +23,9 @@ local function show_full_path_preview_title(picker, item)
         if not item or not item.file then
             return
         end
-        picker.preview.win:set_title(item.file)
+
+        local file_path = path.get_relative_path(item.file)
+        picker.preview.win:set_title(file_path)
     end)
 end
 
@@ -67,7 +70,8 @@ return {
                 -- don't truncate long file paths
                 formatters = {
                     file = {
-                        truncate = 10000,
+                        filename_first = true,
+                        truncate = 999,
                     },
                 },
 
