@@ -83,6 +83,14 @@ noremap(
     '<C-u>',
     { desc = 'Scroll half page up' })
 noremap(
+    '<C-j>',
+    '<C-d>',
+    { desc = 'Scroll half page down' })
+noremap(
+    '<C-k>',
+    '<C-u>',
+    { desc = 'Scroll half page up' })
+noremap(
     '<C-f>',
     '<C-d>',
     { desc = 'Scroll half page down' })
