@@ -287,6 +287,11 @@ local function lsp_config()
     local mason_lspconfig = require('mason-lspconfig')
 
     mason_lspconfig.setup({
+        automatic_enable = {
+            exclude = {
+                "rust_analyzer",
+            }
+        },
         ensure_installed = language_servers,
     })
 end
