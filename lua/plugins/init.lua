@@ -35,6 +35,7 @@ local plugin_config = plugin_loader.load_plugins()
 
 require('lazy').setup(plugin_config, {
     ui = {
+        backdrop = 100,
         border = theme_config.border,
     },
 })
