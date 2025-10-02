@@ -2,6 +2,8 @@
 -- Plugin management
 --------------------------------------------------------------------------------
 
+local theme_config = require('theme.config')
+
 -- Bootstrap lazy.nvim.
 local lazy_path = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 
@@ -31,4 +33,8 @@ vim.g.mapleader = ' '
 local plugin_loader = reload('utils.plugin_loader')
 local plugin_config = plugin_loader.load_plugins()
 
-require('lazy').setup(plugin_config)
+require('lazy').setup(plugin_config, {
+    ui = {
+        border = theme_config.border,
+    },
+})
