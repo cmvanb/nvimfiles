@@ -10,9 +10,9 @@ local keys = require('utils.keymaps')
 local tbl = require('utils.table')
 
 -- Language servers to enable by default
+-- NOTE: Not limited to language servers, can also be DAPs, linters, formatters, etc.
 --
 -- Mason will automatically install these.
--- NOTE: Not limited to language servers, can also be DAPs, linters, formatters, etc.
 --------------------------------------------------------------------------------
 local language_servers = {
     'bashls',
@@ -190,7 +190,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 local function mason_config()
     require('mason').setup({
-        PATH = "append",
+        PATH = 'append',
         ui = {
             border = theme_config.border,
         },
@@ -270,7 +270,7 @@ local function lsp_config()
                 }
             })
 
-            client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+            client:notify('workspace/didChangeConfiguration', { settings = client.config.settings })
         end,
 
         settings = {
@@ -289,7 +289,7 @@ local function lsp_config()
     mason_lspconfig.setup({
         automatic_enable = {
             exclude = {
-                "rust_analyzer",
+                'rust_analyzer',
             }
         },
         ensure_installed = language_servers,
