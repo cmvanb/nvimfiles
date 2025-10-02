@@ -192,6 +192,7 @@ local function mason_config()
     require('mason').setup({
         PATH = 'append',
         ui = {
+            backdrop = 100,
             border = theme_config.border,
         },
     })
