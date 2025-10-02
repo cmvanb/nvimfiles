@@ -16,7 +16,8 @@ require('editor.gui')
 require('editor.options')
 require('editor.highlights')
 
--- Load plugins. Will bootstrap Lazy.nvim if necessary.
+-- Load plugins.
+-- NOTE: Will bootstrap Lazy.nvim if necessary.
 require('plugins')
 
 -- Load autocommands.
