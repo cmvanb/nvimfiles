@@ -301,7 +301,8 @@ nnoremap('<C-A-w>', ':close<cr>', { silent = true, desc = 'Close window' })
 -- Git
 --------------------------------------------------------------------------------
 
-nnoremap('gm', ':GitMessenger<cr>', { desc = 'Show git log for line' })
+-- nnoremap('gm', ':GitMessenger<cr>', { desc = 'Show git log for line' })
+nnoremap('gm', ':BlameToggle<cr>', { desc = 'Toggle git blame' })
 
 -- Package management
 --------------------------------------------------------------------------------
