@@ -1,7 +1,7 @@
 vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
     pattern = {
         '*.json',
-        '*/config/waybar/river-config',
+        '**/waybar/*-config',
     },
     callback = function(args)
         -- Get the filename without the path
@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
         -- positives.
         if filename == 'settings.json'
             or filename == 'keybindings.json'
-            or filename == 'river-config'
+            or filename:match('-config$')
         then
             vim.bo.filetype = 'jsonc'
         else
