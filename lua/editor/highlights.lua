@@ -26,16 +26,16 @@ vim.cmd('syntax reset')
 --------------------------------------------------------------------------------
 
 -- Highlights
-hi('Normal',                    { fg = 'editor_text_normal', bg = 'editor_bg' },          { fg = 'ansi_cyan', bg = 'ansi_black' })
-hi('NormalFloat',               { fg = 'editor_text_normal', bg = 'editor_bg' },          { fg = 'ansi_cyan', bg = 'ansi_black' })
+hi('Normal',                    { fg = 'editor_text_normal', bg = 'NONE' },          { fg = 'ansi_cyan', bg = 'ansi_black' })
+hi('NormalFloat',               { fg = 'editor_text_normal', bg = 'NONE' },          { fg = 'ansi_cyan', bg = 'ansi_black' })
 hi('NonText',                   { fg = 'primary_8' },                                     { fg = 'ansi_brwhite' })
 hi('EndOfBuffer',               { fg = 'primary_4' },                                     { })
 hi('LineNr',                    { fg = 'primary_6' },                                     { fg = 'ansi_blue' })
 hi('Cursor',                    { fg = 'gray_0', bg = 'text_15' },                        { fg = 'ansi_black', bg = 'ansi_brwhite' })
-hi('CursorLine',                { bg = 'primary_2' },                                     { bg = 'ansi_blue' })
-hi('CursorLineNr',              { fg = 'primary_12', bg = 'primary_2' },                  { fg = 'ansi_brblue', bg = 'ansi_blue' })
-hi('CursorLineFold',            { fg = 'gray_4', bg = 'primary_2' },                      { fg = 'ansi_brblue', bg = 'ansi_blue' })
-hi('CursorLineSign',            { fg = 'ansi_brwhite', bg = 'primary_2' },                { bg = 'ansi_blue' })
+hi('CursorLine',                { bg = 'primary_6' },                                     { bg = 'ansi_blue' })
+hi('CursorLineNr',              { fg = 'primary_12', bg = 'primary_6' },                  { fg = 'ansi_brblue', bg = 'ansi_blue' })
+hi('CursorLineFold',            { fg = 'primary_6', bg = 'primary_6' },                      { fg = 'ansi_brblue', bg = 'ansi_blue' })
+hi('CursorLineSign',            { fg = 'ansi_brwhite', bg = 'primary_6' },                { bg = 'ansi_blue' })
 
 hi('StatusLine',                { fg = 'text_10', bg = 'primary_1', attrs = 'bold' },     { fg = 'ansi_white', bg = 'ansi_blue', attrs = 'none' })
 hi('StatusLineNC',              { fg = 'text_6', bg = 'primary_1' },                      { fg = 'ansi_brblack', bg = 'ansi_black' })
@@ -106,7 +106,7 @@ hi('CMenuSelection',      { fg = 'text_15', bg = 'primary_8', attrs = 'bold' }, 
 hi('CMenuItem',           { fg = 'text_10' },                                    { fg = 'ansi_brblue' })
 hi('CMenuItemMatch',      { fg = 'yellow_6', attrs = 'bold' },                   { fg = 'ansi_bryellow' })
 
-hi('FloatMenuNormal',     { fg = 'text_10', bg = 'editor_bg' },                  { fg = 'ansi_cyan', bg = 'ansi_black' })
+hi('FloatMenuNormal',     { fg = 'text_10', bg = 'NONE' },                  { fg = 'ansi_cyan', bg = 'ansi_black' })
 hi('FloatMenuSelection',  { fg = 'text_15', bg = 'primary_7', attrs = 'bold' },  { fg = 'ansi_brwhite', bg = 'ansi_black', attrs = 'bold' })
 hi('FloatMenuItemMatch',  { fg = 'magenta_5', attrs = 'bold' },                  { fg = 'ansi_cyan', bg = 'ansi_blue' })
 

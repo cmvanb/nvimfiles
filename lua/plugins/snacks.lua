@@ -9,7 +9,7 @@ local hi = HighlightsUtils.highlight
 local path = require('utils.path')
 
 -- Highlights
-hi('SnacksPicker',        { bg = 'editor_bg' },  { bg = 'ansi_black' })
+hi('SnacksPicker',        { bg = 'NONE' },  { bg = 'ansi_black' })
 
 ln('SnacksPickerFile',    'File')
 ln('SnacksPickerDir',     'Directory')

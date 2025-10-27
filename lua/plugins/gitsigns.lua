@@ -6,9 +6,10 @@
 local HighlightsUtils = reload('utils.highlights')
 local hi = HighlightsUtils.highlight
 
-hi('GitSignsAddCul',     { fg = 'green_3', bg = 'primary_2', attrs = 'bold' },   { fg = 'ansi_green', bg = 'ansi_blue' })
-hi('GitSignsChangeCul',  { fg = 'orange_3', bg = 'primary_2', attrs = 'bold' },  { fg = 'ansi_yellow', bg = 'ansi_blue' })
-hi('GitSignsDeleteCul',  { fg = 'red_3', bg = 'primary_2', attrs = 'bold' },     { fg = 'ansi_red', bg = 'ansi_blue' })
+-- NOTE: Background NONE allows fallthrough to CursorLineSign highlight
+hi('GitSignsAddCul',     { fg = 'green_3', bg = 'NONE', attrs = 'bold' },   { fg = 'ansi_green', bg = 'ansi_blue' })
+hi('GitSignsChangeCul',  { fg = 'orange_3', bg = 'NONE', attrs = 'bold' },  { fg = 'ansi_yellow', bg = 'ansi_blue' })
+hi('GitSignsDeleteCul',  { fg = 'red_3', bg = 'NONE', attrs = 'bold' },     { fg = 'ansi_red', bg = 'ansi_blue' })
 
 -- Config
 local function config()
