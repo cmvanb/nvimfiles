@@ -124,8 +124,12 @@ return {
                 enabled = false,
             },
 
+            -- see: https://cmp.saghen.dev/configuration/keymap
             keymap = {
-                preset = 'enter',
+                preset = 'none',
+
+                ['<Up>'] = { 'select_prev', 'fallback' },
+                ['<Down>'] = { 'select_next', 'fallback' },
                 ['<Right>'] = { 'select_and_accept' },
                 ['<C-j>'] = { 'select_and_accept' },
             },

@@ -51,8 +51,6 @@ map('<C-p>', '<nop>')
 imap('<C-n>', '<nop>')
 imap('<C-p>', '<nop>')
 
-map('<CR>', '<nop>')
-
 map('ga', '<nop>')
 map('gd', '<nop>')
 map('ge', '<nop>')
@@ -80,14 +78,6 @@ noremap(
     { desc = 'Scroll half page down' })
 noremap(
     '<PageUp>',
-    '<C-u>',
-    { desc = 'Scroll half page up' })
-noremap(
-    '<C-j>',
-    '<C-d>',
-    { desc = 'Scroll half page down' })
-noremap(
-    '<C-k>',
     '<C-u>',
     { desc = 'Scroll half page up' })
 noremap(
