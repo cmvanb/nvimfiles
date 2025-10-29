@@ -2,7 +2,8 @@
 -- Editor options
 --------------------------------------------------------------------------------
 
-local ThemeSymbols = reload('theme.symbols')
+local theme_symbols = require('theme.symbols')
+local theme_config = require('theme.config')
 
 local opt = vim.opt
 
@@ -26,11 +27,11 @@ opt.cursorline = true
 opt.cursorcolumn = false
 
 -- Whitespace visuals
-opt.listchars = ThemeSymbols.listchars
+opt.listchars = theme_symbols.listchars
 opt.list = true
 
 -- End-of-buffer and folds visuals
-opt.fillchars = ThemeSymbols.fillchars
+opt.fillchars = theme_symbols.fillchars
 
 -- Tabs should be 4 spaces
 opt.tabstop = 4
@@ -91,3 +92,11 @@ opt.spellsuggest = 'best,10'
 
 -- Always navigate to the first non-whitespace character (e.g. C-u, C-d)
 opt.startofline = true
+
+-- Floating window border style
+opt.winborder = theme_config.border
+
+-- `checkhealth` configuration
+vim.g.health = {
+    style = 'float',
+}
