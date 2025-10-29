@@ -53,57 +53,37 @@ local function lsp_attach_diagnostics()
             source = true,
             header = '',
             prefix = '',
+            zindex = 100,
         },
     })
 
-    -- Show virtual inline diagnostics when cursor is hovering.
+    -- Show diagnostic in floating window when cursor is hovering.
     local augroup = vim.api.nvim_create_augroup('DiagnosticHover', { clear = true })
-    local virtual_lines_shown = false
 
     vim.api.nvim_create_autocmd('CursorHold', {
         group = augroup,
         callback = function()
-            local bufnr = vim.api.nvim_get_current_buf()
-            local cursor = vim.api.nvim_win_get_cursor(0)
-            local line = cursor[1] - 1 -- Convert to 0-based indexing
-
-            -- Get diagnostics for the current line
-            local diagnostics = vim.diagnostic.get(bufnr, { lnum = line })
-
-            if #diagnostics > 0 then
-                -- Show virtual lines when hovering over diagnostic
-                if not virtual_lines_shown then
-                    vim.diagnostic.config({ virtual_lines = {
-                        spacing = 2,
-                        current_line = true,
-                        source = true,
-                    } })
-                    virtual_lines_shown = true
-                end
-            else
-                -- Hide virtual lines when not hovering over diagnostic
-                if virtual_lines_shown then
-                    vim.diagnostic.config({ virtual_lines = false })
-                    virtual_lines_shown = false
+            -- Don't open if any visible floating windows are already open.
+            for _, win in ipairs(vim.api.nvim_list_wins()) do
+                local config = vim.api.nvim_win_get_config(win)
+                if config.relative ~= '' and not config.hide then
+                    return
                 end
             end
-        end,
-    })
 
-    -- Hide virtual lines when cursor moves.
-    vim.api.nvim_create_autocmd('CursorMoved', {
-        group = augroup,
-        callback = function()
-            local bufnr = vim.api.nvim_get_current_buf()
-            local cursor = vim.api.nvim_win_get_cursor(0)
-            local line = cursor[1] - 1
-
-            local diagnostics = vim.diagnostic.get(bufnr, { lnum = line })
-
-            if #diagnostics == 0 and virtual_lines_shown then
-                vim.diagnostic.config({ virtual_lines = false })
-                virtual_lines_shown = false
-            end
+            vim.diagnostic.open_float(nil, {
+                focusable = false,
+                close_events = {
+                    'BufLeave',
+                    'CursorMoved',
+                    'InsertEnter',
+                    'FocusLost',
+                },
+                border = theme_config.border,
+                source = true,
+                prefix = ' ',
+                scope = 'cursor',
+            })
         end,
     })
 end
@@ -128,8 +108,10 @@ local function lsp_attach_keymaps(buffer)
     keys.noremap(
         'gh',
         function()
+            -- TODO: Consider dismissing the hover if it's already open.
             vim.lsp.buf.hover({
                 border = theme_config.border,
+                focusable = false,
             })
         end,
         tbl.merge(opts, { desc = 'LSP: Show hover' }))
@@ -163,13 +145,17 @@ local function lsp_attach_keymaps(buffer)
         end,
         tbl.merge(opts, { desc = 'LSP: Previous diagnostic' }))
 
-    -- TODO: This works as a 'dismiss', but it should instead globally toggle the diagnostics.
+    -- TODO: This works as a 'dismiss', but it should instead globally toggle whether diagnostics show when hovering.
     keys.noremap(
         'gl',
         function()
-            local current = vim.diagnostic.config()
-            vim.diagnostic.config({
-                virtual_lines = current and not current.virtual_lines,
+            vim.diagnostic.open_float(nil, {
+                focusable = false,
+                close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost' },
+                border = theme_config.border,
+                source = true,
+                prefix = ' ',
+                scope = 'cursor',
             })
         end,
         tbl.merge(opts, { desc = 'LSP: Show diagnostic' }))
