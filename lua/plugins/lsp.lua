@@ -123,7 +123,9 @@ local function lsp_attach_keymaps(buffer)
 
     keys.noremap(
         'gc',
-        vim.lsp.buf.rename,
+        function()
+            require('utils.lsp_rename').rename({ position = 'cursor' })
+        end,
         tbl.merge(opts, { desc = 'LSP: Rename' }))
 
     keys.noremap(
