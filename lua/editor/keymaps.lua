@@ -230,6 +230,9 @@ inoremap('<C-s>', '<esc>:wa!<cr>', { desc = 'Save all buffers' })
 nnoremap('<C-h>', ':bprev<cr>', { silent = true, desc = 'Previous buffer' })
 nnoremap('<C-l>', ':bnext<cr>', { silent = true, desc = 'Next buffer' })
 
+-- Last focused buffer
+nnoremap('<C-Tab>', '<C-6>', { desc = 'Last focused buffer' })
+
 -- Close buffer
 nnoremap('<C-w>', ':Bdelete<cr>', { silent = true, desc = 'Close buffer' })
 
