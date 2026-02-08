@@ -30,7 +30,7 @@ hi('Normal',                    { fg = 'editor_text_normal', bg = 'NONE' },     
 hi('NormalFloat',               { fg = 'editor_text_normal', bg = 'NONE' },               { fg = 'ansi_cyan', bg = 'ansi_black' })
 hi('NonText',                   { fg = 'primary_8' },                                     { fg = 'ansi_brwhite' })
 hi('EndOfBuffer',               { fg = 'primary_4' },                                     { })
-hi('LineNr',                    { fg = 'primary_6' },                                     { fg = 'ansi_blue' })
+hi('LineNr',                    { fg = 'primary_8' },                                     { fg = 'ansi_blue' })
 hi('Cursor',                    { fg = 'gray_0', bg = 'text_15' },                        { fg = 'ansi_black', bg = 'ansi_brwhite' })
 hi('CursorLine',                { bg = 'primary_6' },                                     { bg = 'ansi_blue' })
 hi('CursorLineNr',              { fg = 'primary_12', bg = 'primary_6' },                  { fg = 'ansi_brblue', bg = 'ansi_blue' })
@@ -101,14 +101,22 @@ ln('DiagnosticSignHint',   'DiagnosticHint')
 --------------------------------------------------------------------------------
 
 -- Highlights
-hi('CMenuNormal',         { fg = 'debug', bg = 'primary_1' },                    { fg = 'ansi_cyan', bg = 'ansi_black' })
-hi('CMenuSelection',      { fg = 'text_15', bg = 'primary_8', attrs = 'bold' },  { fg = 'ansi_brwhite', bg = 'ansi_black', attrs = 'bold' })
-hi('CMenuItem',           { fg = 'text_10' },                                    { fg = 'ansi_brblue' })
-hi('CMenuItemMatch',      { fg = 'yellow_6', attrs = 'bold' },                   { fg = 'ansi_bryellow' })
+hi('CMenuNormal',           { fg = 'debug', bg = 'primary_1' },                    { fg = 'ansi_cyan', bg = 'ansi_black' })
+hi('CMenuSelection',        { fg = 'text_15', bg = 'primary_8', attrs = 'bold' },  { fg = 'ansi_brwhite', bg = 'ansi_black', attrs = 'bold' })
+hi('CMenuItem',             { fg = 'text_10' },                                    { fg = 'ansi_brblue' })
+hi('CMenuItemMatch',        { fg = 'yellow_6', attrs = 'bold' },                   { fg = 'ansi_bryellow' })
 
-hi('FloatMenuNormal',     { fg = 'text_10', bg = 'NONE' },                       { fg = 'ansi_cyan', bg = 'ansi_black' })
-hi('FloatMenuSelection',  { fg = 'text_15', bg = 'primary_7', attrs = 'bold' },  { fg = 'ansi_brwhite', bg = 'ansi_black', attrs = 'bold' })
-hi('FloatMenuItemMatch',  { fg = 'magenta_5', attrs = 'bold' },                  { fg = 'ansi_cyan', bg = 'ansi_blue' })
+hi('FloatMenuNormal',       { fg = 'text_10', bg = 'NONE' },                       { fg = 'ansi_cyan', bg = 'ansi_black' })
+hi('FloatMenuSelection',    { fg = 'text_15', bg = 'primary_7', attrs = 'bold' },  { fg = 'ansi_brwhite', bg = 'ansi_black', attrs = 'bold' })
+hi('FloatMenuItemMatch',    { fg = 'magenta_5', attrs = 'bold' },                  { fg = 'ansi_cyan', bg = 'ansi_blue' })
+
+-- see: `active_window_highlights.lua`
+hi('SignColumnActive',      { fg = 'primary_8', bg = 'NONE' },                     { fg = 'ansi_brblue', bg = 'NONE' })
+hi('SignColumnInactive',    { fg = 'gray_4', bg = 'NONE' },                        { fg = 'ansi_brblack', bg = 'NONE' })
+hi('CursorLineActive',      { bg = 'primary_6' },                                  { fg = 'ansi_brcyan', bg = 'ansi_blue' })
+hi('CursorLineInactive',    { bg = 'gray_3' },                                     { fg = 'ansi_brblack', bg = 'ansi_black' })
+hi('CursorLineSCActive',    { fg = 'primary_12', bg = 'primary_6' },               { fg = 'ansi_brcyan', bg = 'ansi_blue' })
+hi('CursorLineSCInactive',  { fg = 'text_8', bg = 'gray_3' },                      { fg = 'ansi_brblack', bg = 'ansi_black' })
 
 -- Links
 ln('QuickFixLine',  'FloatMenuSelection')
