@@ -18,45 +18,52 @@ hi('LualineDiagHint',    { fg = 'yellow_7', bg = 'primary_6', attrs = 'bold' }, 
 local SystemTheme = require('theme.system')
 local ThemeSymbols = require('theme.symbols')
 
+local color
+if is_linux_virtual_terminal() then
+    color = function(_, ansi_name) return SystemTheme.color_name_to_ansi_index(ansi_name) end
+else
+    color = function(gui_name, _) return SystemTheme.color_hash(gui_name) end
+end
+
 local colors = {
     -- Bar colors
     outer = {
-        bg = SystemTheme.color_hash('primary_8'),
-        fg = SystemTheme.color_hash('text_15'),
+        bg = color('primary_8',  'ansi_blue'),
+        fg = color('text_15',    'ansi_brwhite'),
     },
     middle = {
-        bg = SystemTheme.color_hash('primary_6'),
-        fg = SystemTheme.color_hash('text_12'),
+        bg = color('primary_6',  'ansi_blue'),
+        fg = color('text_12',    'ansi_white'),
     },
     inner = {
-        bg = SystemTheme.color_hash('primary_3'),
-        fg = SystemTheme.color_hash('text_10'),
+        bg = color('primary_3',  'ansi_brblack'),
+        fg = color('text_10',    'ansi_white'),
     },
     inactive = {
-        bg = SystemTheme.color_hash('gray_2'),
-        fg = SystemTheme.color_hash('text_8'),
+        bg = color('gray_2',     'ansi_black'),
+        fg = color('text_8',     'ansi_brblack'),
     },
 
     -- Mode colors
     normal = {
-        bg = SystemTheme.color_hash('primary_8'),
-        fg = SystemTheme.color_hash('text_15'),
+        bg = color('primary_8',  'ansi_blue'),
+        fg = color('text_15',    'ansi_brwhite'),
     },
     insert = {
-        bg = SystemTheme.color_hash('green_3'),
-        fg = SystemTheme.color_hash('green_8'),
+        bg = color('green_3',    'ansi_green'),
+        fg = color('green_8',    'ansi_brgreen'),
     },
     visual = {
-        bg = SystemTheme.color_hash('magenta_4'),
-        fg = SystemTheme.color_hash('magenta_9'),
+        bg = color('magenta_4',  'ansi_magenta'),
+        fg = color('magenta_9',  'ansi_brmagenta'),
     },
     command = {
-        bg = SystemTheme.color_hash('orange_3'),
-        fg = SystemTheme.color_hash('yellow_6'),
+        bg = color('orange_3',   'ansi_yellow'),
+        fg = color('yellow_6',   'ansi_bryellow'),
     },
     replace = {
-        bg = SystemTheme.color_hash('purple_4'),
-        fg = SystemTheme.color_hash('purple_9'),
+        bg = color('purple_4',   'ansi_magenta'),
+        fg = color('purple_9',   'ansi_brmagenta'),
     },
 }
 
