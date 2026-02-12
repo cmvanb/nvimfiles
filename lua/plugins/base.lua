@@ -14,10 +14,6 @@ return {
     -- Better buffer deletion
     { 'famiu/bufdelete.nvim' },
 
-    -- Redirect command output to new buffer.
-    -- NOTE: Not working.
-    { 'sbulav/nredir.nvim' },
-
     -- Syntax rules.
     { 'khaveesh/vim-fish-syntax' },
     { 'camnw/lf-vim' },
