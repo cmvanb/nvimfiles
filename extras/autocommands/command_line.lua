@@ -1,5 +1,6 @@
 --------------------------------------------------------------------------------
 -- Show/hide command line when entering command mode
+-- NOTE: Not working as expected.
 --------------------------------------------------------------------------------
 
 local augroup = vim.api.nvim_create_augroup('CommandLine', { clear = true })
