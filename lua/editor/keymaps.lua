@@ -149,8 +149,8 @@ nnoremap('<F17>', 'gg=G', { desc = 'Format buffer' })
 nnoremap('<F16>', ':TSJToggle<cr>', { desc = 'Split/join formatting' })
 
 -- Increment/decrement numbers
-nnoremap('+', '<C-x>')
-nnoremap('-', '<C-a>')
+xnoremap('+', '<C-a>')
+xnoremap('-', '<C-x>')
 
 -- Search
 --------------------------------------------------------------------------------
