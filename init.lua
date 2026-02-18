@@ -12,7 +12,6 @@ require('utils.reload_config')
 require('utils.terminal')
 
 -- Load editor config.
-require('editor.gui')
 require('editor.options')
 require('editor.highlights')
 

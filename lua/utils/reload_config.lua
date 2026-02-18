@@ -7,7 +7,6 @@ function _G.reload_config()
     vim.cmd('noh')
 
     -- Load editor config.
-    reload('editor.gui')
     reload('editor.options')
     reload('editor.highlights')
 
