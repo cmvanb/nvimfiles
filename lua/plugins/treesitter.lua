@@ -3,7 +3,7 @@
 --------------------------------------------------------------------------------
 
 local function config()
-    require('nvim-treesitter').setup({
+    require('nvim-treesitter.configs').setup({
         ensure_installed = {
             'bash',
             'c',
@@ -45,15 +45,14 @@ local function config()
         indent = {
             enable = true
         },
-        playground = {
-            enable = true,
-        }
     })
 end
 
 return {
     {
         'nvim-treesitter/nvim-treesitter',
+        -- Treesitter plugin does not support lazy loading
+        lazy = false,
         build = ':TSUpdate',
         config = config,
     },
