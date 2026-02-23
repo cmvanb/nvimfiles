@@ -114,9 +114,9 @@ hi('FloatMenuItemMatch',    { fg = 'magenta_5', attrs = 'bold' },               
 hi('SignColumnActive',      { fg = 'primary_8', bg = 'NONE' },                     { fg = 'ansi_brblue', bg = 'NONE' })
 hi('SignColumnInactive',    { fg = 'gray_4', bg = 'NONE' },                        { fg = 'ansi_brblack', bg = 'NONE' })
 hi('CursorLineActive',      { bg = 'primary_6' },                                  { fg = 'ansi_brcyan', bg = 'ansi_blue' })
-hi('CursorLineInactive',    { bg = 'gray_3' },                                     { fg = 'ansi_brblack', bg = 'ansi_black' })
+hi('CursorLineInactive',    { bg = 'gray_2' },                                     { fg = 'ansi_brblack', bg = 'ansi_black' })
 hi('CursorLineSCActive',    { fg = 'primary_12', bg = 'primary_6' },               { fg = 'ansi_brcyan', bg = 'ansi_blue' })
-hi('CursorLineSCInactive',  { fg = 'text_8', bg = 'gray_3' },                      { fg = 'ansi_brblack', bg = 'ansi_black' })
+hi('CursorLineSCInactive',  { fg = 'gray_6', bg = 'gray_2' },                      { fg = 'ansi_brblack', bg = 'ansi_black' })
 
 -- Links
 ln('QuickFixLine',  'FloatMenuSelection')
