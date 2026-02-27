@@ -203,14 +203,31 @@ return {
                     },
                 },
 
+                -- Custom actions
+                ----------------------------------------------------------------
+                actions = {
+                    list_page_down = function(picker)
+                        local list = picker.list
+                        local delta = math.floor(list:height() / 2)
+                        list:move(math.min(delta, list:count() - list.cursor))
+                    end,
+                    list_page_up = function(picker)
+                        local list = picker.list
+                        local delta = math.floor(list:height() / 2)
+                        list:move(-math.min(delta, list.cursor - 1))
+                    end,
+                },
+
                 -- Window-specific options
                 ----------------------------------------------------------------
                 win = {
                     input = {
                         keys = {
-                            ['<Esc>'] = { 'close', mode = { 'n', 'i' } },
-                            ['<c-k>'] = { 'preview_scroll_up', mode = { 'n', 'i' } },
-                            ['<c-j>'] = { 'preview_scroll_down', mode = { 'n', 'i' } },
+                            ['<Esc>']      = { 'close', mode = { 'n', 'i' } },
+                            ['<c-k>']      = { 'preview_scroll_up', mode = { 'n', 'i' } },
+                            ['<c-j>']      = { 'preview_scroll_down', mode = { 'n', 'i' } },
+                            ['<PageDown>'] = { 'list_page_down', mode = { 'n', 'i' } },
+                            ['<PageUp>']   = { 'list_page_up',   mode = { 'n', 'i' } },
                         },
                     },
 
