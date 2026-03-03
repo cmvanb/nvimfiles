@@ -9,11 +9,15 @@ local function config()
         filetypes = {
             '*',
         },
-        user_default_options = {
-            -- Don't highlight CSS names.
-            names = false,
+        options = {
+            parsers = {
+                -- Don't highlight CSS names.
+                names = { enable = false },
+            },
+            display = {
+                mode = 'background',
+            },
             always_update = true,
-            mode = 'background',
         },
     })
 
