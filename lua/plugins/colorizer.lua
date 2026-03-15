@@ -34,6 +34,7 @@ end
 return {
     {
         'NvChad/nvim-colorizer.lua',
+        enabled = not is_linux_virtual_terminal(),
         config = config,
     },
 }
