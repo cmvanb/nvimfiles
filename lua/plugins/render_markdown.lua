@@ -25,7 +25,7 @@ return {
             'nvim-treesitter/nvim-treesitter',
         },
         opts = {
-            file_types = { 'markdown', 'Avante' },
+            file_types = { 'markdown' },
             bullet = {
                 enabled = true,
                 icons = { '•', '◦', '⬥', '⬦' },
@@ -42,6 +42,6 @@ return {
                 width = 'block',
             },
         },
-        ft = { 'markdown', 'Avante' },
+        ft = { 'markdown' },
     },
 }
