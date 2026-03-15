@@ -17,13 +17,14 @@ local map, nmap, xmap, imap, unmap =
     keys.imap,
     keys.unmap
 
-local noremap, nnoremap, xnoremap, inoremap, onoremap, vnoremap =
+local noremap, nnoremap, xnoremap, inoremap, onoremap, vnoremap, tnoremap =
     keys.noremap,
     keys.nnoremap,
     keys.xnoremap,
     keys.inoremap,
     keys.onoremap,
-    keys.vnoremap
+    keys.vnoremap,
+    keys.tnoremap
 
 -- Remove some default mappings
 --------------------------------------------------------------------------------
@@ -275,8 +276,8 @@ nnoremap(
     { silent = true, desc = 'Enlarge window width' })
 nnoremap(
     '<C-A-f>',
-    ':wincmd |<cr>',
-    { silent = true, desc = 'Maximize window width' })
+    ':wincmd |<cr>:wincmd _<cr>',
+    { silent = true, desc = 'Maximize window width and height' })
 
 -- Split windows
 nnoremap(
@@ -290,6 +291,12 @@ nnoremap(
 
 -- Close window
 nnoremap('<C-A-w>', ':close<cr>', { silent = true, desc = 'Close window' })
+
+-- Terminal
+--------------------------------------------------------------------------------
+
+nnoremap('<C-A-t>', ':belowright new +terminal<cr>', { silent = true, desc = 'Open terminal' })
+tnoremap('<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- Git
 --------------------------------------------------------------------------------

@@ -92,4 +92,8 @@ function KeyMapUtils.onoremap(keys, command, options)
     _noremap('o', keys, command, options)
 end
 
+function KeyMapUtils.tnoremap(keys, command, options)
+    _noremap('t', keys, command, options)
+end
+
 return KeyMapUtils
