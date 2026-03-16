@@ -40,8 +40,8 @@ local colors = {
         fg = color('text_10',    'ansi_white'),
     },
     inactive = {
-        bg = color('gray_2',     'ansi_black'),
-        fg = color('text_8',     'ansi_brblack'),
+        bg = color('gray_3',     'ansi_black'),
+        fg = color('gray_10',     'ansi_brblack'),
     },
 
     -- Mode colors
