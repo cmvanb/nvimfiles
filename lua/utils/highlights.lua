@@ -13,11 +13,21 @@ local theme = reload('theme.system')
 --------------------------------------------------------------------------------
 
 local function _get_24bit_theme_color(color_name)
-    return theme.color_hash(color_name)
+    local ok, result = pcall(theme.color_hash, color_name)
+    if not ok then
+        vim.notify('[highlights] color `' .. color_name .. '` not found in theme, using NONE', vim.log.levels.WARN)
+        return 'NONE'
+    end
+    return result
 end
 
 local function _get_ansi_theme_color(color_name)
-    return theme.color_name_to_ansi_index(color_name)
+    local ok, result = pcall(theme.color_name_to_ansi_index, color_name)
+    if not ok then
+        vim.notify('[highlights] color `' .. color_name .. '` not found in theme, using NONE', vim.log.levels.WARN)
+        return 'NONE'
+    end
+    return result
 end
 
 local function _construct_gui_options(foreground_color, background_color, special_color, attributes)
