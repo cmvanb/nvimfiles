@@ -36,7 +36,7 @@ local colors = {
         fg = color('text_12',    'ansi_white'),
     },
     inner = {
-        bg = color('primary_3',  'ansi_brblack'),
+        bg = color('primary_0',  'ansi_brblack'),
         fg = color('text_10',    'ansi_white'),
     },
     inactive = {
