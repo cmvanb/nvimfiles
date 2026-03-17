@@ -7,8 +7,8 @@ local HighlightsUtils = reload('utils.highlights')
 local hi = HighlightsUtils.highlight
 local ln = HighlightsUtils.link
 
-hi('RenderMarkdownCode',  { bg = 'gray_0' },  { bg = 'ansi_black' })  -- code blocks
-hi('RenderMarkdownDash',  { fg = 'secondary_6' },  { fg = 'ansi_brblack' })    -- line separator
+hi('RenderMarkdownCode',  { bg = 'black' },  { bg = 'ansi_black' })  -- code blocks
+hi('RenderMarkdownDash',  { fg = 'cyan_3' },  { fg = 'ansi_brblack' })    -- line separator
 
 ln('RenderMarkdownH1Bg',  'Title')
 ln('RenderMarkdownH2Bg',  'Title')
