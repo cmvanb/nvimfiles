@@ -12,5 +12,8 @@ hi('IlluminatedWordWrite',  { fg = 'text_15', attrs = 'bold' },  { fg = 'ansi_wh
 
 -- Config
 return {
-    { 'RRethy/vim-illuminate' },
+    {
+        'RRethy/vim-illuminate',
+        enabled = true,
+    },
 }
