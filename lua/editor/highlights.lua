@@ -140,7 +140,7 @@ hi('Function',       { fg = 'syn_function', attrs = 'bold' },                   
 hi('Number',         { fg = 'red_6' },                                                { fg = 'ansi_brred' })
 hi('Boolean',        { fg = 'red_5' },                                                { fg = 'ansi_red' })
 hi('Ignore',         { fg = 'text_3', attrs = 'bold' },                               { fg = 'ansi_brblack' })
-hi('Todo',           { fg = 'text_10', bg = 'primary_6', attrs = 'bold,nocombine' },  { fg = 'ansi_brcyan', bg = 'ansi_blue', attrs = 'bold' })
+hi('Todo',           { fg = 'text_10', bg = 'text_3', attrs = 'bold,nocombine' },  { fg = 'ansi_brcyan', bg = 'ansi_blue', attrs = 'bold' })
 hi('@markup.quote',  { fg = 'text_10', attrs = 'italic' },                            { fg = 'ansi_brblack' })
 
 -- Links
@@ -182,7 +182,6 @@ ln('@markup.link.url.markdown_inline',  'Comment')
 
 -- Special snowflakes
 --------------------------------------------------------------------------------
-
 -- Markdown highlights all underscores as errors, just disable it.
 hi('markdownError', { fg = 'NONE', bg = 'NONE' }, { fg = 'NONE', bg = 'NONE' })
 
@@ -191,6 +190,6 @@ vim.api.nvim_create_augroup('HighlightNotes', { clear = true })
 vim.api.nvim_create_autocmd({ 'BufEnter', 'FileType' }, {
     group = 'HighlightNotes',
     callback = function()
-        vim.fn.matchadd('Todo', 'TODO:\\|NOTE:\\|see:\\|QUESTION:\\|FIXME:')
+        vim.fn.matchadd('Todo', 'TODO:\\|NOTE:\\|SEE:\\|QUESTION:\\|FIXME:\\|todo:\\|note:\\|see:\\|question:\\|fixme:')
     end,
 })
