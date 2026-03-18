@@ -132,7 +132,7 @@ hi('Type',           { fg = 'syn_type' },                                       
 hi('Constant',       { fg = 'syn_constant' },                                         { fg = 'ansi_brmagenta' })
 hi('Special',        { fg = 'yellow_5', attrs = 'bold' },                             { fg = 'ansi_yellow' })
 hi('SpecialText',    { fg = 'yellow_7', attrs = 'bold' },                             { fg = 'ansi_brblack' })
-hi('Underlined',     { fg = 'primary_15', attrs = 'underline' },                      { fg = 'ansi_blue' })
+hi('Underlined',     { fg = 'web_link', attrs = 'underline' },                        { fg = 'ansi_blue' })
 hi('Delimiter',      { fg = 'green_4' },                                              { fg = 'ansi_green' })
 hi('String',         { fg = 'syn_string' },                                           { fg = 'ansi_yellow' })
 hi('Keyword',        { fg = 'green_6', attrs = 'bold' },                              { fg = 'ansi_brgreen', attrs = 'bold' })
