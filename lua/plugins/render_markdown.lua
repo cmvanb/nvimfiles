@@ -10,12 +10,12 @@ local ln = HighlightsUtils.link
 hi('RenderMarkdownCode',  { bg = 'black' },  { bg = 'ansi_black' })  -- code blocks
 hi('RenderMarkdownDash',  { fg = 'gray_4' },  { fg = 'ansi_brblack' })    -- line separator
 
-ln('RenderMarkdownH1Bg',  'Title')
-ln('RenderMarkdownH2Bg',  'Title')
-ln('RenderMarkdownH3Bg',  'Title')
-ln('RenderMarkdownH4Bg',  'Title')
-ln('RenderMarkdownH5Bg',  'Title')
-ln('RenderMarkdownH6Bg',  'Title')
+hi('RenderMarkdownH1Bg',  { fg = 'heading_1', attrs = 'bold' },  { fg = 'ansi_brwhite' })
+hi('RenderMarkdownH2Bg',  { fg = 'heading_2', attrs = 'bold' },  { fg = 'ansi_brwhite' })
+hi('RenderMarkdownH3Bg',  { fg = 'heading_3', attrs = 'bold' },  { fg = 'ansi_white' })
+hi('RenderMarkdownH4Bg',  { fg = 'heading_4', attrs = 'bold' },  { fg = 'ansi_white' })
+hi('RenderMarkdownH5Bg',  { fg = 'heading_5', attrs = 'bold' },  { fg = 'ansi_brblack' })
+hi('RenderMarkdownH6Bg',  { fg = 'heading_6', attrs = 'bold' },  { fg = 'ansi_brblack' })
 
 -- Config
 return {
