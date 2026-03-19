@@ -36,12 +36,12 @@ local colors = {
         fg = color('text_12',    'ansi_white'),
     },
     inner = {
-        bg = color('primary_0',  'ansi_brblack'),
+        bg = color('gray_1',     'ansi_brblack'),
         fg = color('text_10',    'ansi_white'),
     },
     inactive = {
-        bg = color('gray_2',     'ansi_black'),
-        fg = color('gray_10',     'ansi_brblack'),
+        bg = color('gray_3',     'ansi_black'),
+        fg = color('gray_10',    'ansi_brblack'),
     },
 
     -- Mode colors
