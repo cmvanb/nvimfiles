@@ -100,3 +100,9 @@ opt.winborder = theme_config.border
 vim.g.health = {
     style = 'float',
 }
+
+-- Disable swapfiles
+opt.swapfile = false
+
+-- Sync buffers automatically
+opt.autoread = true
