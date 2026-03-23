@@ -90,6 +90,10 @@ noremap(
     '<C-u>',
     { desc = 'Scroll half page up' })
 
+-- Top/bottom
+noremap('<Home>', '0', { desc = 'Start of line' })
+noremap('<End>', '$', { desc = 'End of line' })
+
 -- Start/end of line
 -- nnoremap('H', '0')
 -- xnoremap('H', '0')
