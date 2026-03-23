@@ -28,7 +28,7 @@ vim.cmd('syntax reset')
 -- Highlights
 hi('Normal',                    { fg = 'editor_text_normal', bg = 'NONE' },                            { fg = 'ansi_cyan', bg = 'ansi_black' })
 hi('NormalFloat',               { fg = 'editor_text_normal', bg = 'NONE' },                            { fg = 'ansi_cyan', bg = 'ansi_black' })
-hi('NonText',                   { fg = 'ansi_red' },                                                   { fg = 'ansi_brwhite' })
+hi('NonText',                   { fg = 'gray_2' },                                                     { fg = 'ansi_brwhite' })
 hi('EndOfBuffer',               { fg = 'primary_4' },                                                  { })
 hi('LineNr',                    { fg = 'primary_12' },                                                 { fg = 'ansi_blue' })
 hi('Cursor',                    { fg = 'black', bg = 'text_15' },                                      { fg = 'ansi_black', bg = 'ansi_brwhite' })

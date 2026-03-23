@@ -32,10 +32,9 @@ local default_terminal_symbols = {
         fold = ' ',
     },
     listchars = {
-        lead = '⋅',
-        tab = '―',
-        -- eol = '',
-        trail = '⋅',
+        lead = '·',
+        tab = '>―',
+        trail = '·',
     },
     lualine = {
         file_modified = '●',
@@ -125,8 +124,7 @@ local linux_vt_symbols = {
     },
     listchars = {
         lead = '·',
-        tab = '>-',
-        -- eol = '↓',
+        tab = '>―',
         trail = '·',
     },
     lualine = {
