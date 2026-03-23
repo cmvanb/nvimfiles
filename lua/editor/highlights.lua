@@ -46,7 +46,7 @@ hi('TabLineFill',               { bg = 'primary_1', attrs = 'bold' },           
 hi('MsgArea',                   { fg = 'text_10', bg = 'NONE' },                                       { fg = 'ansi_white', bg = 'ansi_black' })
 hi('ErrorMsg',                  { fg = 'red_6', bg = 'red_1', attrs = 'bold' },                        { fg = 'ansi_brred', bg = 'ansi_red' })
 hi('WarningMsg',                { fg = 'yellow_6', bg = 'orange_3', attrs = 'bold' },                  { fg = 'ansi_bryellow', bg = 'ansi_yellow' })
-hi('MoreMsg',                   { fg = 'gray_15', bg = 'gray_5', attrs = 'bold' },                     { fg = 'ansi_white', bg = 'ansi_brblack' })
+hi('MoreMsg',                   { fg = 'gray_15', bg = 'gray_6', attrs = 'bold' },                     { fg = 'ansi_white', bg = 'ansi_brblack' })
 
 hi('Visual',                    { fg = 'selection_fg', bg = 'selection_bg' },                          { fg = 'ansi_white', bg = 'ansi_blue' })
 hi('IncSearch',                 { fg = 'search_active_fg', bg = 'search_active_bg', attrs = 'bold' },  { fg = 'ansi_black', bg = 'ansi_green' })
@@ -54,7 +54,7 @@ hi('Search',                    { fg = 'search_fg', bg = 'search_bg', attrs = 'b
 hi('CurSearch',                 { fg = 'search_active_fg', bg = 'search_active_bg', attrs = 'bold' },  { fg = 'ansi_black', bg = 'ansi_green', attrs = 'none' })
 
 hi('Folded',                    { bg = 'primary_1' },                                                  { bg = 'ansi_blue' })
-hi('FoldColumn',                { fg = 'gray_4', attrs = 'bold' },                                     { fg = 'ansi_blue' })
+hi('FoldColumn',                { fg = 'gray_6', attrs = 'bold' },                                     { fg = 'ansi_blue' })
 
 hi('Title',                     { fg = 'heading_1', attrs = 'bold' },                                  { fg = 'ansi_brwhite' })
 hi('PMenu',                     { fg = 'text_8', bg = 'editor_bg' },                                   { fg = 'ansi_white', bg = 'ansi_black' })
@@ -114,9 +114,9 @@ hi('FloatMenuItemMatch',    { fg = 'magenta_5', attrs = 'bold' },               
 hi('SignColumnActive',      { fg = 'primary_12', bg = 'NONE' },                                      { fg = 'ansi_brblue', bg = 'NONE' })
 hi('SignColumnInactive',    { fg = 'gray_6', bg = 'NONE' },                                          { fg = 'ansi_brblack', bg = 'NONE' })
 hi('CursorLineActive',      { bg = 'primary_8' },                                                    { fg = 'ansi_brcyan', bg = 'ansi_blue' })
-hi('CursorLineInactive',    { bg = 'gray_2' },                                                       { fg = 'ansi_brblack', bg = 'ansi_black' })
+hi('CursorLineInactive',    { bg = 'gray_3' },                                                       { fg = 'ansi_brblack', bg = 'ansi_black' })
 hi('CursorLineSCActive',    { fg = 'primary_12', bg = 'primary_8' },                                 { fg = 'ansi_brcyan', bg = 'ansi_blue' })
-hi('CursorLineSCInactive',  { fg = 'gray_10', bg = 'gray_2' },                                       { fg = 'ansi_brblack', bg = 'ansi_black' })
+hi('CursorLineSCInactive',  { fg = 'gray_10', bg = 'gray_3' },                                       { fg = 'ansi_brblack', bg = 'ansi_black' })
 
 -- Links
 ln('QuickFixLine',  'FloatMenuSelection')
