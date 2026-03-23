@@ -271,6 +271,15 @@ local function lsp_config()
         }
     })
 
+    -- YAML
+    vim.lsp.config('yamlls', {
+        settings = {
+            yaml = {
+                customTags = { '!vault scalar' },
+            },
+        },
+    })
+
     -- Mason/LSP integration
     ----------------------------------------------------------------------------
     local mason_lspconfig = require('mason-lspconfig')
