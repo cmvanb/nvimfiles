@@ -63,6 +63,9 @@ opt.updatetime = 100
 -- Set clipboard
 opt.clipboard = 'unnamedplus'
 
+-- Scroll distance
+opt.scroll = 10
+
 -- Start scrolling before cursor reaches edge of window
 opt.scrolloff = 4
 
