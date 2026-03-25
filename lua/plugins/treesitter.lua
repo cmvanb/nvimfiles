@@ -9,6 +9,7 @@ local ensure_installed = {
     'cpp',
     'css',
     'dockerfile',
+    'dtd',
     'fish',
     'go',
     'html',
@@ -24,6 +25,7 @@ local ensure_installed = {
     'toml',
     'typescript',
     'vim',
+    'xml',
     'yaml',
     'zig',
 }
