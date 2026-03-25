@@ -16,7 +16,6 @@ return {
 
     -- Syntax rules.
     { 'khaveesh/vim-fish-syntax' },
-    { 'camnw/lf-vim' },
     { 'LnL7/vim-nix' },
     { 'ziglang/zig.vim' },
     { 'imsnif/kdl.vim' },
