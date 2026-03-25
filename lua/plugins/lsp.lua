@@ -286,6 +286,7 @@ local function lsp_config()
 
     mason_lspconfig.setup({
         automatic_enable = {
+            -- rustaceanvim configures rust_analyzer
             exclude = {
                 'rust_analyzer',
             }
