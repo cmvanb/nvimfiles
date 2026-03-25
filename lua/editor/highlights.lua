@@ -71,7 +71,6 @@ hi('Removed',                   { fg = 'red_3', attrs = 'bold' },               
 
 hi('File',                      { fg = 'primary_15' },                                                 { fg = 'ansi_brcyan', bg = 'ansi_black' })
 hi('Directory',                 { fg = 'primary_10' },                                                 { fg = 'ansi_cyan', bg = 'ansi_black' })
-hi('SpecialKey',                { fg = 'debug' },                                                      { fg = 'ansi_brmagenta' })
 
 hi('DiagnosticError',           { fg = 'red_5', attrs = 'bold' },                                      { fg = 'ansi_red' })
 hi('DiagnosticWarn',            { fg = 'orange_6', attrs = 'bold' },                                   { fg = 'ansi_yellow' })
@@ -92,6 +91,7 @@ ln('Error',                'ErrorMsg')
 ln('healthSuccess',        'MoreMsg')
 ln('VertSplit',            'WinSeparator')
 ln('Whitespace',           'NonText')
+ln('SpecialKey',           'Error')
 ln('DiagnosticSignError',  'DiagnosticError')
 ln('DiagnosticSignWarn',   'DiagnosticWarn')
 ln('DiagnosticSignInfo',   'DiagnosticInfo')
@@ -101,11 +101,6 @@ ln('DiagnosticSignHint',   'DiagnosticHint')
 --------------------------------------------------------------------------------
 
 -- Highlights
-hi('CMenuNormal',           { fg = 'debug', bg = 'primary_2' },                                      { fg = 'ansi_cyan', bg = 'ansi_black' })
-hi('CMenuSelection',        { fg = 'menu_selection_fg', bg = 'menu_selection_bg', attrs = 'bold' },  { fg = 'ansi_brwhite', bg = 'ansi_black', attrs = 'bold' })
-hi('CMenuItem',             { fg = 'text_10' },                                                      { fg = 'ansi_brblue' })
-hi('CMenuItemMatch',        { fg = 'yellow_6', attrs = 'bold' },                                     { fg = 'ansi_bryellow' })
-
 hi('FloatMenuNormal',       { fg = 'text_10', bg = 'NONE' },                                         { fg = 'ansi_cyan', bg = 'ansi_black' })
 hi('FloatMenuSelection',    { fg = 'menu_selection_fg', bg = 'menu_selection_bg', attrs = 'bold' },  { fg = 'ansi_brwhite', bg = 'ansi_black', attrs = 'bold' })
 hi('FloatMenuItemMatch',    { fg = 'magenta_5', attrs = 'bold' },                                    { fg = 'ansi_cyan', bg = 'ansi_blue' })
