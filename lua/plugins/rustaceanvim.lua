@@ -19,6 +19,7 @@ end
 return {
     {
         'mrcjkb/rustaceanvim',
+        branch = 'main',
         config = config,
     },
 }
