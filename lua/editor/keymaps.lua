@@ -160,8 +160,14 @@ xnoremap('-', '<C-x>')
 -- Search
 --------------------------------------------------------------------------------
 
--- Clear search highlight, clear command line and clear search pattern.
-nnoremap('<C-y>', ':noh<cr>:let @/=""<cr>:echo ""<cr>', { desc = 'Clear search' })
+-- Clear search highlight, search pattern and command line.
+nnoremap('<C-y>',
+    function()
+        vim.fn.setreg('/', '')
+        vim.opt.hlsearch = false
+        vim.cmd('echo ""')
+    end,
+    { desc = 'Clear search' })
 
 -- View
 --------------------------------------------------------------------------------
