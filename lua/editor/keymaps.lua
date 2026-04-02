@@ -319,6 +319,34 @@ nnoremap('gm', ':GitMessenger<cr>', { desc = 'Show git log for line' })
 nnoremap('<leader>p', ':Lazy<cr>', { desc = 'Plugin manager' })
 nnoremap('<leader>t', ':Mason<cr>', { desc = 'Tooling manager' })
 
+-- Session reset
+--------------------------------------------------------------------------------
+
+-- Close all buffers without saving, reset layout, clear search, marks, and jumplist.
+nnoremap('<leader>x',
+    function()
+        -- Stop all LSP clients.
+        vim.lsp.stop_client(vim.lsp.get_clients(), true)
+        -- Clear search highlight and pattern.
+        vim.fn.setreg('/', '')
+        vim.opt.hlsearch = false
+        -- Clear marks.
+        vim.cmd('delmarks!')
+        -- Clear jumplist.
+        vim.cmd('clearjumps')
+        -- Clear the command line.
+        vim.cmd('echo ""')
+        -- Force-delete every listed buffer.
+        for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+            if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].buflisted then
+                require('bufdelete').bufwipeout(buf, true)
+            end
+        end
+        -- Reset to a single empty window.
+        vim.cmd('only')
+    end,
+    { silent = true, desc = 'Reset session' })
+
 -- Plugin management
 --------------------------------------------------------------------------------
 
