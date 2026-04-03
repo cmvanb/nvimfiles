@@ -290,14 +290,33 @@ nnoremap(
     { silent = true, desc = 'Maximize window width and height' })
 
 -- Split windows
+local function split_with_next_buf(vertical)
+    local bufs = vim.tbl_filter(
+        function(b)
+            return vim.bo[b].buflisted and vim.api.nvim_buf_is_loaded(b)
+        end,
+        vim.api.nvim_list_bufs()
+    )
+
+    local cur = vim.api.nvim_get_current_buf()
+    local idx = 1
+    for i, b in ipairs(bufs) do
+        if b == cur then idx = i; break end
+    end
+
+    local target = bufs[(idx % #bufs) + 1] or cur
+    vim.cmd('belowright ' .. (vertical and 'vsplit' or 'split'))
+    vim.api.nvim_set_current_buf(target)
+end
+
 nnoremap(
     '<C-A-n>',
-    ':belowright vnew<cr>',
-    { silent = true, desc = 'Split window vertically' })
+    function() split_with_next_buf(true) end,
+    { silent = true, desc = 'Split window vertically (+ next buffer)' })
 nnoremap(
     '<C-A-p>',
-    ':belowright new<cr>',
-    { silent = true, desc = 'Split window horizontally' })
+    function() split_with_next_buf(false) end,
+    { silent = true, desc = 'Split window horizontally (+ next buffer)' })
 
 -- Close window
 nnoremap('<C-A-w>', ':close<cr>', { silent = true, desc = 'Close window' })
