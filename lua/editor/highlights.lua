@@ -26,8 +26,8 @@ vim.cmd('syntax reset')
 --------------------------------------------------------------------------------
 
 -- Highlights
-hi('Normal',                    { fg = 'editor_text_normal', bg = 'NONE' },                            { fg = 'ansi_cyan', bg = 'ansi_black' })
-hi('NormalFloat',               { fg = 'editor_text_normal', bg = 'NONE' },                            { fg = 'ansi_cyan', bg = 'ansi_black' })
+hi('Normal',                    { fg = 'editor_text', bg = 'NONE' },                                   { fg = 'ansi_cyan', bg = 'ansi_black' })
+hi('NormalFloat',               { fg = 'editor_text', bg = 'NONE' },                                   { fg = 'ansi_cyan', bg = 'ansi_black' })
 hi('NonText',                   { fg = 'gray_2' },                                                     { fg = 'ansi_brwhite' })
 hi('EndOfBuffer',               { fg = 'primary_4' },                                                  { })
 hi('LineNr',                    { fg = 'primary_12' },                                                 { fg = 'ansi_blue' })
