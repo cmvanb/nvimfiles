@@ -29,6 +29,11 @@ local function show_full_path_preview_title(picker, item)
     end)
 end
 
+local shared_keymaps = {
+    ['<c-n>'] = { 'edit_vsplit', mode = { 'n', 'i' } },
+    ['<c-p>'] = { 'edit_split', mode = { 'n', 'i' } },
+}
+
 return {
     {
         'folke/snacks.nvim',
@@ -42,24 +47,19 @@ return {
                 ----------------------------------------------------------------
                 sources = {
                     buffers = {
-                        on_change = show_full_path_preview_title
-                    },
-                    explorer = {
-                        layout = { preset = 'explorer' },
+                        on_change = show_full_path_preview_title,
+                        win = { input = { keys = shared_keymaps } },
                     },
                     files = {
                         on_change = show_full_path_preview_title,
-                        win = {
-                            input = {
-                                keys = {
-                                    ['<c-n>'] = { 'edit_vsplit', mode = { 'n', 'i' } },
-                                    ['<c-p>'] = { 'edit_split', mode = { 'n', 'i' } },
-                                },
-                            },
-                        },
+                        win = { input = { keys = shared_keymaps } },
                     },
                     grep = {
-                        on_change = show_full_path_preview_title
+                        on_change = show_full_path_preview_title,
+                        win = { input = { keys = shared_keymaps } },
+                    },
+                    explorer = {
+                        layout = { preset = 'explorer' },
                     },
                     icons = {
                         icon_sources = { 'nerd_fonts', 'emoji', 'unicode' },
