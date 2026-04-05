@@ -208,6 +208,58 @@ nnoremap('<leader>m',
 --------------------------------------------------------------------------------
 
 nnoremap(
+    '<leader>l',
+    function()
+        local format =
+            function(item)
+                return {{ item.text }}
+            end
+
+        local confirm =
+            function(picker, item)
+                picker:close()
+                if item and item.action then
+                    vim.schedule(item.action)
+                end
+            end
+
+        Snacks.picker.pick({
+            title = 'LSP',
+            items = {
+                {
+                    text = 'LSP Start',
+                    action = function()
+                        vim.lsp.stop_client(vim.lsp.get_clients({ bufnr = 0 }), true)
+                        vim.cmd('edit')
+                    end,
+                },
+                {
+                    text = 'LSP Stop',
+                    action = function()
+                        vim.lsp.stop_client(vim.lsp.get_clients({ bufnr = 0 }), true)
+                    end,
+                },
+                {
+                    text = 'LSP Info',
+                    action = function()
+                        vim.cmd('checkhealth lsp')
+                    end,
+                },
+                {
+                    text = 'LSP Log',
+                    action = function()
+                        vim.cmd.edit(vim.lsp.get_log_path())
+                    end,
+                },
+            },
+            format = format,
+            confirm = confirm,
+            layout = { preset = 'smallmenu' },
+        })
+    end,
+    { desc = 'LSP commands' })
+
+nnoremap(
     'gd',
     function() Snacks.picker.lsp_definitions() end,
     { desc = 'LSP: Go to definition' })
