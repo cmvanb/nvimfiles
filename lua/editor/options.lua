@@ -99,11 +99,6 @@ opt.startofline = true
 -- Floating window border style
 opt.winborder = theme_config.border
 
--- `checkhealth` configuration
-vim.g.health = {
-    style = 'float',
-}
-
 -- Disable swapfiles
 opt.swapfile = false
 
