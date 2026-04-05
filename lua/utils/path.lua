@@ -2,8 +2,6 @@
 -- Path utilities
 --------------------------------------------------------------------------------
 
-local tbl = require('utils.table')
-
 local PathUtils = {}
 
 -- Private functions
@@ -19,7 +17,7 @@ end
 function PathUtils.append_to_package_path(path)
     local paths = _get_package_paths()
 
-    if tbl.contains(paths, path) then
+    if vim.tbl_contains(paths, path) then
         return
     end
 
@@ -32,7 +30,7 @@ end
 function PathUtils.prepend_to_package_path(path)
     local paths = _get_package_paths()
 
-    if tbl.contains(paths, path) then
+    if vim.tbl_contains(paths, path) then
         return
     end
 

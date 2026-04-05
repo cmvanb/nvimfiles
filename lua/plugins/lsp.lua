@@ -7,8 +7,6 @@
 local theme_config = require('theme.config')
 local theme_symbols = require('theme.symbols')
 local keys = require('utils.keymaps')
-local tbl = require('utils.table')
-
 -- Language servers to enable by default
 -- NOTE: Not limited to language servers, can also be DAPs, linters, formatters, etc.
 --
@@ -114,38 +112,38 @@ local function lsp_attach_keymaps(buffer)
                 focusable = false,
             })
         end,
-        tbl.merge(opts, { desc = 'LSP: Show hover' }))
+        vim.tbl_extend('force', opts, { desc = 'LSP: Show hover' }))
 
     keys.noremap(
         'gs',
         vim.lsp.buf.signature_help,
-        tbl.merge(opts, { desc = 'LSP: Show signature help' }))
+        vim.tbl_extend('force', opts, { desc = 'LSP: Show signature help' }))
 
     keys.noremap(
         'gc',
         function()
             require('utils.lsp_rename').rename({ position = 'cursor' })
         end,
-        tbl.merge(opts, { desc = 'LSP: Rename' }))
+        vim.tbl_extend('force', opts, { desc = 'LSP: Rename' }))
 
     keys.noremap(
         'ga',
         vim.lsp.buf.code_action,
-        tbl.merge(opts, { desc = 'LSP: Code action' }))
+        vim.tbl_extend('force', opts, { desc = 'LSP: Code action' }))
 
     keys.noremap(
         'gj',
         function()
             vim.diagnostic.jump({ count = 1, float = true })
         end,
-        tbl.merge(opts, { desc = 'LSP: Next diagnostic' }))
+        vim.tbl_extend('force', opts, { desc = 'LSP: Next diagnostic' }))
 
     keys.noremap(
         'gk',
         function()
             vim.diagnostic.jump({ count = -1, float = true })
         end,
-        tbl.merge(opts, { desc = 'LSP: Previous diagnostic' }))
+        vim.tbl_extend('force', opts, { desc = 'LSP: Previous diagnostic' }))
 
     -- TODO: This works as a 'dismiss', but it should instead globally toggle whether diagnostics show when hovering.
     keys.noremap(
@@ -160,7 +158,7 @@ local function lsp_attach_keymaps(buffer)
                 scope = 'cursor',
             })
         end,
-        tbl.merge(opts, { desc = 'LSP: Show diagnostic' }))
+        vim.tbl_extend('force', opts, { desc = 'LSP: Show diagnostic' }))
 end
 
 -- LSP attach autocommand
