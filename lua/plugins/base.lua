@@ -6,6 +6,9 @@ return {
     -- Sugar for UNIX shell commands.
     { 'tpope/vim-eunuch' },
 
+    -- Auto-detect indentation (tabstop/shiftwidth/expandtab) from file contents.
+    { 'tpope/vim-sleuth' },
+
     -- Surround.
     -- sa: add, sd: delete, sr: replace
     -- ib: inner select, ab: outer select (VISUAL mode)
