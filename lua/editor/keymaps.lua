@@ -44,6 +44,7 @@ map('<C-l>', '<nop>')
 
 map('<C-d>', '<nop>')
 map('<C-f>', '<nop>')
+map('<C-u>', '<nop>')
 
 map('<C-o>', '<nop>')
 
@@ -72,23 +73,20 @@ vim.g.mapleader = ' '
 -- Navigation
 --------------------------------------------------------------------------------
 
--- Half page up/down
-noremap(
-    '<PageDown>',
-    '<C-d>',
-    { desc = 'Scroll half page down' })
-noremap(
-    '<PageUp>',
-    '<C-u>',
-    { desc = 'Scroll half page up' })
-noremap(
-    '<C-f>',
-    '<C-d>',
-    { desc = 'Scroll half page down' })
-noremap(
-    '<C-d>',
-    '<C-u>',
-    { desc = 'Scroll half page up' })
+-- Smooth scroll with neoscroll
+local neoscroll = require('neoscroll')
+
+local function scroll_up()   neoscroll.ctrl_u({ duration = 40 }) end
+local function scroll_down() neoscroll.ctrl_d({ duration = 40 }) end
+
+nnoremap('<C-d>',      scroll_up,   { desc = 'Scroll half-page up' })
+xnoremap('<C-d>',      scroll_up,   { desc = 'Scroll half-page up' })
+nnoremap('<C-f>',      scroll_down, { desc = 'Scroll half-page down' })
+xnoremap('<C-f>',      scroll_down, { desc = 'Scroll half-page down' })
+nnoremap('<PageUp>',   scroll_up,   { desc = 'Scroll half-page up' })
+xnoremap('<PageUp>',   scroll_up,   { desc = 'Scroll half-page up' })
+nnoremap('<PageDown>', scroll_down, { desc = 'Scroll half-page down' })
+xnoremap('<PageDown>', scroll_down, { desc = 'Scroll half-page down' })
 
 -- Top/bottom
 noremap('<Home>', '0', { desc = 'Start of line' })
