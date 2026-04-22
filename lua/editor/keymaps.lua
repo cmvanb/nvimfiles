@@ -202,6 +202,27 @@ nnoremap('<leader>m',
     end,
     { desc = 'Toggle linebreaks' })
 
+-- Toggle linebreaks for all buffers
+nnoremap('<leader>M',
+    function()
+        local enable = not vim.wo.linebreak
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+            vim.wo[win].wrap = enable
+            vim.wo[win].linebreak = enable
+        end
+        vim.g.linebreak_synced = enable
+    end,
+    { desc = 'Toggle linebreaks for all buffers' })
+
+vim.api.nvim_create_autocmd('BufWinEnter', {
+    callback = function()
+        if vim.g.linebreak_synced ~= nil then
+            vim.wo.wrap = vim.g.linebreak_synced
+            vim.wo.linebreak = vim.g.linebreak_synced
+        end
+    end,
+})
+
 -- LSP & diagnostics
 --------------------------------------------------------------------------------
 
