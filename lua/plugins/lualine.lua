@@ -6,13 +6,13 @@
 local HighlightsUtils = require('utils.highlights')
 local hi = HighlightsUtils.highlight
 
-hi('LualineDiffAdd',     { fg = 'green_4', bg = 'primary_6', attrs = 'bold' },    { fg = 'ansi_green' })
-hi('LualineDiffChange',  { fg = 'orange_6', bg = 'primary_6', attrs = 'bold' },   { fg = 'ansi_yellow' })
-hi('LualineDiffDelete',  { fg = 'red_5', bg = 'primary_6', attrs = 'bold' },      { fg = 'ansi_red' })
-hi('LualineDiagError',   { fg = 'red_5', bg = 'primary_6', attrs = 'bold' },      { fg = 'ansi_red' })
-hi('LualineDiagWarn',    { fg = 'orange_6', bg = 'primary_6', attrs = 'bold' },   { fg = 'ansi_yellow' })
-hi('LualineDiagInfo',    { fg = 'text_10', bg = 'primary_6', attrs = 'bold' },    { fg = 'ansi_white' })
-hi('LualineDiagHint',    { fg = 'yellow_7', bg = 'primary_6', attrs = 'bold' },  { fg = 'ansi_brmagenta' })
+hi('LualineDiffAdd',     { fg = 'green_4', bg = 'primary_5', attrs = 'bold' },    { fg = 'ansi_green' })
+hi('LualineDiffChange',  { fg = 'orange_6', bg = 'primary_5', attrs = 'bold' },   { fg = 'ansi_yellow' })
+hi('LualineDiffDelete',  { fg = 'red_5', bg = 'primary_5', attrs = 'bold' },      { fg = 'ansi_red' })
+hi('LualineDiagError',   { fg = 'red_5', bg = 'primary_5', attrs = 'bold' },      { fg = 'ansi_red' })
+hi('LualineDiagWarn',    { fg = 'orange_6', bg = 'primary_5', attrs = 'bold' },   { fg = 'ansi_yellow' })
+hi('LualineDiagInfo',    { fg = 'text_10', bg = 'primary_5', attrs = 'bold' },    { fg = 'ansi_white' })
+hi('LualineDiagHint',    { fg = 'yellow_7', bg = 'primary_5', attrs = 'bold' },  { fg = 'ansi_brmagenta' })
 
 -- Theme
 local SystemTheme = require('theme.system')
@@ -32,7 +32,7 @@ local colors = {
         fg = color('text_15',    'ansi_brwhite'),
     },
     middle = {
-        bg = color('primary_6',  'ansi_blue'),
+        bg = color('primary_5',  'ansi_blue'),
         fg = color('text_12',    'ansi_white'),
     },
     inner = {

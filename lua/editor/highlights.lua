@@ -59,7 +59,7 @@ hi('FoldColumn',                { fg = 'gray_6', attrs = 'bold' },              
 hi('Title',                     { fg = 'heading_1', attrs = 'bold' },                                  { fg = 'ansi_brwhite' })
 hi('PMenu',                     { fg = 'text_8', bg = 'editor_bg' },                                   { fg = 'ansi_white', bg = 'ansi_black' })
 hi('PMenuSel',                  { fg = 'yellow_6', bg = 'primary_5', attrs = 'bold' },                 { fg = 'ansi_white', bg = 'ansi_black', attrs = 'bold' })
-hi('WinSeparator',              { fg = 'primary_6' },                                                  { fg = 'ansi_blue' })
+hi('WinSeparator',              { fg = 'primary_5' },                                                  { fg = 'ansi_blue' })
 hi('MatchParen',                { fg = 'text_15', attrs = 'bold' },                                    { fg = 'ansi_brwhite' })
 
 hi('DiffAdd',                   { fg = 'green_6', attrs = 'bold' },                                    { fg = 'ansi_green' })
