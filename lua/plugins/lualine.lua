@@ -184,6 +184,8 @@ return {
                     {
                         'branch',
                         icon = ThemeSymbols.lualine.git_branch,
+                        padding = { left = 1, right = 1 },
+                        separator = '',
                     },
                     {
                         'diff',
@@ -193,6 +195,7 @@ return {
                             modified = 'LualineDiffChange',
                             removed  = 'LualineDiffDelete',
                         },
+                        padding = { left = 0, right = 1 },
                         symbols = {
                             added = ThemeSymbols.diff_signs.added,
                             modified = ThemeSymbols.diff_signs.changed,
