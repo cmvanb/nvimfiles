@@ -7,7 +7,7 @@ local augroup = vim.api.nvim_create_augroup('ReloadConfig', { clear = true })
 
 vim.api.nvim_create_autocmd('BufWritePost', {
     group = augroup,
-    pattern = config_path .. '/*.lua',
+    pattern = config_path .. '/**/*.lua',
     callback = function()
         reload_config()
     end,
