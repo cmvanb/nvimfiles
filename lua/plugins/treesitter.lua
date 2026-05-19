@@ -22,6 +22,7 @@ local ensure_installed = {
     'nix',
     'python',
     'rust',
+    'ssh_config',
     'toml',
     'typescript',
     'vim',
