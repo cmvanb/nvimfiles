@@ -148,8 +148,8 @@ vnoremap('L', '>gv', { desc = 'Indent right' })
 -- Formatting
 nnoremap(';', '=', { desc = 'Format selected' })
 xnoremap(';', '=', { desc = 'Format selected' })
-nnoremap('<F17>', 'gg=G', { desc = 'Format buffer' })
-nnoremap('<F16>', ':TSJToggle<cr>', { desc = 'Split/join formatting' })
+nnoremap('<F20>', 'gg=G', { desc = 'Format buffer' })
+nnoremap('<F19>', ':TSJToggle<cr>', { desc = 'Split/join formatting' })
 
 -- Increment/decrement numbers
 xnoremap('+', '<C-a>')
