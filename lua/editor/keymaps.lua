@@ -125,12 +125,14 @@ noremap('<A-v>', '<C-v>', { desc = 'Visual block select' })
 -- Copy, paste
 -- NOTE: These are only working because the terminal (Alacritty) is configured for it.
 if not is_linux_virtual_terminal() then
-    noremap('<C-c>', '"+y', { desc = 'Copy' })
+    xnoremap('<C-c>', '"+y', { desc = 'Copy' })
     noremap('<C-v>', '"+p', { desc = 'Paste' })
+    -- xnoremap('<XF86Copy>', '"+y', { desc = 'Copy' })
+    -- noremap('<XF86Paste>', '"+p', { desc = 'Paste' })
 end
 
 -- Cut
-noremap('<C-x>', 'x', { desc = 'Cut' })
+xnoremap('<C-x>', 'x', { desc = 'Cut' })
 
 -- Undo
 nnoremap('<C-z>', 'u', { desc = 'Undo' })
