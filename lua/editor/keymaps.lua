@@ -6,6 +6,7 @@
 --------------------------------------------------------------------------------
 
 local keys = reload('utils.keymaps')
+local buffers = reload('utils.buffers')
 
 -- Shortcuts
 --------------------------------------------------------------------------------
@@ -321,17 +322,7 @@ nnoremap('<C-Tab>', '<C-6>', { desc = 'Last focused buffer' })
 nnoremap('<C-w>', ':Bdelete<cr>', { silent = true, desc = 'Close buffer' })
 
 -- Close all buffers
-nnoremap('<C-q>',
-    function()
-        local bufs = vim.tbl_filter(
-            function(b) return vim.api.nvim_buf_is_loaded(b) and vim.bo[b].buflisted end,
-            vim.api.nvim_list_bufs())
-        vim.cmd('enew')
-        for _, buf in ipairs(bufs) do
-            require('bufdelete').bufwipeout(buf, true)
-        end
-    end,
-    { silent = true, desc = 'Close all buffers' })
+nnoremap('<C-q>', buffers.close_all, { silent = true, desc = 'Close all buffers' })
 
 -- Quit NVIM
 noremap('<leader>w', ':wqa!<cr>', { desc = 'Quit NVIM' })
@@ -442,13 +433,8 @@ nnoremap('<leader>x',
         -- Clear the command line.
         vim.cmd('echo ""')
         -- Force-delete every listed buffer.
-        local bufs = vim.tbl_filter(
-            function(b) return vim.api.nvim_buf_is_loaded(b) and vim.bo[b].buflisted end,
-            vim.api.nvim_list_bufs())
-        vim.cmd('enew | only')
-        for _, buf in ipairs(bufs) do
-            require('bufdelete').bufwipeout(buf, true)
-        end
+        buffers.close_all()
+        vim.cmd('only')
     end,
     { silent = true, desc = 'Reset session' })
 
