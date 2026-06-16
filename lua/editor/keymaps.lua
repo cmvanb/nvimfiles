@@ -192,36 +192,28 @@ nnoremap('<leader>n',
     end,
     { silent = true, desc = 'Toggle indentation guides' })
 
--- Toggle linebreaks
+-- Toggle wrap
 nnoremap('<leader>m',
     function()
-        if vim.wo.linebreak then
-            vim.cmd('tabdo windo set nowrap')
-            vim.cmd('tabdo windo set nolinebreak')
-        else
-            vim.cmd('tabdo windo set wrap')
-            vim.cmd('tabdo windo set linebreak')
-        end
+        vim.cmd('tabdo windo set ' .. (vim.wo.wrap and 'nowrap' or 'wrap'))
     end,
-    { desc = 'Toggle linebreaks' })
+    { desc = 'Toggle wrap' })
 
--- Toggle linebreaks for all buffers
+-- Toggle wrap for all buffers
 nnoremap('<leader>M',
     function()
-        local enable = not vim.wo.linebreak
+        local enable = not vim.wo.wrap
         for _, win in ipairs(vim.api.nvim_list_wins()) do
             vim.wo[win].wrap = enable
-            vim.wo[win].linebreak = enable
         end
-        vim.g.linebreak_synced = enable
+        vim.g.wrap_synced = enable
     end,
-    { desc = 'Toggle linebreaks for all buffers' })
+    { desc = 'Toggle wrap for all buffers' })
 
 vim.api.nvim_create_autocmd('BufWinEnter', {
     callback = function()
-        if vim.g.linebreak_synced ~= nil then
-            vim.wo.wrap = vim.g.linebreak_synced
-            vim.wo.linebreak = vim.g.linebreak_synced
+        if vim.g.wrap_synced ~= nil then
+            vim.wo.wrap = vim.g.wrap_synced
         end
     end,
 })
