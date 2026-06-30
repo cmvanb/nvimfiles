@@ -23,6 +23,7 @@ local ensure_installed = {
     'python',
     'rust',
     'ssh_config',
+    'svelte',
     'toml',
     'typescript',
     'vim',
