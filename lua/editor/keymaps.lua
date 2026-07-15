@@ -151,6 +151,8 @@ vnoremap('L', '>gv', { desc = 'Indent right' })
 -- Formatting
 nnoremap(';', '=', { desc = 'Format selected' })
 xnoremap(';', '=', { desc = 'Format selected' })
+-- CTRL+; -> reindent fallback. When a formatting-capable language server is
+-- attached, lsp.lua overrides this buffer-locally with vim.lsp.buf.format().
 nnoremap('<F20>', 'gg=G', { desc = 'Format buffer' })
 nnoremap('<F19>', ':TSJToggle<cr>', { desc = 'Split/join formatting' })
 

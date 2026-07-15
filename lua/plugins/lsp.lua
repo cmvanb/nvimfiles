@@ -159,6 +159,13 @@ local function lsp_attach_keymaps(buffer)
             })
         end,
         vim.tbl_extend('force', opts, { desc = 'LSP: Show diagnostic' }))
+
+    -- CTRL+; -> format via the language server. Overrides the global <F20>
+    -- reindent fallback buffer-locally while an LSP is attached.
+    keys.noremap(
+        '<F20>',
+        vim.lsp.buf.format,
+        vim.tbl_extend('force', opts, { desc = 'LSP: Format buffer' }))
 end
 
 -- LSP attach autocommand
