@@ -318,6 +318,20 @@ nnoremap('<C-w>', ':Bdelete<cr>', { silent = true, desc = 'Close buffer' })
 -- Close all buffers
 nnoremap('<C-q>', buffers.close_all, { silent = true, desc = 'Close all buffers' })
 
+-- Yank fully qualified file path (resolves symlinks)
+nnoremap('gy',
+    function()
+        local path = vim.uv.fs_realpath(vim.api.nvim_buf_get_name(0))
+        if not path then
+            vim.notify('No resolvable file path for this buffer', vim.log.levels.WARN)
+            return
+        end
+        vim.fn.setreg('"', path)
+        vim.fn.setreg('+', path)
+        vim.notify(path)
+    end,
+    { desc = 'Yank file path' })
+
 -- Quit NVIM
 noremap('<leader>w', ':wqa!<cr>', { desc = 'Quit NVIM' })
 
