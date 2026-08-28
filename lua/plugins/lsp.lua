@@ -15,6 +15,7 @@ local keys = require('utils.keymaps')
 local language_servers = {
     'bashls',
     'clangd',
+    'csharp_ls',
     'cssls',
     'dockerls',
     'html',
@@ -274,6 +275,19 @@ local function lsp_config()
                 },
             }
         }
+    })
+
+    -- C#
+    -- NOTE: csharp-ls is a Roslyn-based .NET 10 host, so its DOTNET_ROOT must
+    -- expose a .NET 10 runtime. Prefer a project-local DOTNET_ROOT (e.g. one
+    -- set by direnv) so csharp-ls analyzes the project with its own pinned
+    -- SDK/NuGet cache instead of the system SDK, which won't have the
+    -- project's target framework or restored packages. Fall back to the
+    -- system SDK for projects with no local toolchain of their own.
+    vim.lsp.config('csharp_ls', {
+        cmd_env = {
+            DOTNET_ROOT = vim.env.DOTNET_ROOT or '/usr/share/dotnet',
+        },
     })
 
     -- YAML
