@@ -10,7 +10,21 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
         keys.nnoremap(
             '<leader>v',
             function()
-                vim.fn.jobstart('preview-markdown.sh ' .. vim.fn.shellescape(filename))
+                local stderr = {}
+                vim.fn.jobstart('preview-markdown.sh ' .. vim.fn.shellescape(filename), {
+                    stderr_buffered = true,
+                    on_stderr = function(_, data)
+                        stderr = data
+                    end,
+                    on_exit = function(_, code)
+                        if code ~= 0 then
+                            vim.notify(
+                                'preview-markdown.sh failed (exit ' .. code .. ')\n' .. table.concat(stderr, '\n'),
+                                vim.log.levels.ERROR
+                            )
+                        end
+                    end
+                })
             end,
             {
                 buffer = args.buf,
