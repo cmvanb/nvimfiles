@@ -151,9 +151,9 @@ vnoremap('L', '>gv', { desc = 'Indent right' })
 -- Formatting
 nnoremap(';', '=', { desc = 'Format selected' })
 xnoremap(';', '=', { desc = 'Format selected' })
--- CTRL+; -> reindent fallback. When a formatting-capable language server is
--- attached, lsp.lua overrides this buffer-locally with vim.lsp.buf.format().
-nnoremap('<F20>', 'gg=G', { desc = 'Format buffer' })
+-- When a formatting-capable language server is attached, lsp.lua overrides
+-- this buffer-locally with vim.lsp.buf.format().
+nnoremap('<leader>;', 'gg=G', { desc = 'Format buffer' })
 nnoremap('<F19>', ':TSJToggle<cr>', { desc = 'Split/join formatting' })
 
 -- Increment/decrement numbers
@@ -310,7 +310,9 @@ nnoremap('<C-h>', ':bprev<cr>', { silent = true, desc = 'Previous buffer' })
 nnoremap('<C-l>', ':bnext<cr>', { silent = true, desc = 'Next buffer' })
 
 -- Last focused buffer
-nnoremap('<C-Tab>', '<C-6>', { desc = 'Last focused buffer' })
+-- CTRL+; is remapped by the terminal to <F20> passthrough (raw CTRL+; is
+-- not a distinct key in legacy terminal protocols); see alacritty.mako.toml.
+nnoremap('<F20>', '<C-6>', { desc = 'Last focused buffer' })
 
 -- Close buffer
 nnoremap('<C-w>', ':Bdelete<cr>', { silent = true, desc = 'Close buffer' })
