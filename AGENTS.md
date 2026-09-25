@@ -1,5 +1,9 @@
 # Neovim Configuration Architecture
 
+## Git conventions
+
+- Commit prefix is the module name: `options:`, `keymaps:`, `plugins:`, `ftdetect:`, etc.
+
 ## Directory Structure
 
 ```
