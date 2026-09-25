@@ -197,7 +197,12 @@ nnoremap('<leader>n',
 -- Toggle wrap
 nnoremap('<leader>m',
     function()
-        vim.cmd('tabdo windo set ' .. (vim.wo.wrap and 'nowrap' or 'wrap'))
+        local enable = not vim.wo.wrap
+        for _, tab in ipairs(vim.api.nvim_list_tabpages()) do
+            for _, win in ipairs(vim.api.nvim_tabpage_list_wins(tab)) do
+                vim.wo[win].wrap = enable
+            end
+        end
     end,
     { desc = 'Toggle wrap' })
 
