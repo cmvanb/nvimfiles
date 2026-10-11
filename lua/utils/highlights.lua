@@ -9,6 +9,18 @@ local HighlightsUtils = {}
 
 local theme = reload('theme.system')
 
+-- Every applied group is recorded so a system theme switch can replay it.
+-- Global, because modules reload this file and would otherwise split it.
+_G._highlights_registry = _G._highlights_registry or { order = {}, groups = {} }
+local registry = _G._highlights_registry
+
+local function _record(group, entry)
+    if registry.groups[group] == nil then
+        table.insert(registry.order, group)
+    end
+    registry.groups[group] = entry
+end
+
 -- Private functions
 --------------------------------------------------------------------------------
 
@@ -80,6 +92,8 @@ end
 --------------------------------------------------------------------------------
 
 function HighlightsUtils.highlight(group, gui_options, terminal_options)
+    _record(group, { gui = gui_options, terminal = terminal_options })
+
     gui_options = gui_options or {}
     gui_options = _construct_gui_options(
         gui_options.fg,
@@ -115,12 +129,32 @@ end
 --------------------------------------------------------------------------------
 
 function HighlightsUtils.link(group, target)
+    _record(group, { target = target })
+
     local ok, result = pcall(
         vim.cmd,
         'hi! link ' .. group .. ' ' .. target
     )
     if not ok then
         error('Cannot link highlight group `' .. group .. '` to `' .. target .. '` because of the following error: ' .. result)
+    end
+end
+
+-- Reload the system theme and replay every recorded group
+--------------------------------------------------------------------------------
+
+function HighlightsUtils.reload_theme()
+    package.loaded['theme-data'] = nil
+    package.loaded['theme'] = nil
+    theme = reload('theme.system')
+
+    for _, group in ipairs(registry.order) do
+        local entry = registry.groups[group]
+        if entry.target then
+            HighlightsUtils.link(group, entry.target)
+        else
+            HighlightsUtils.highlight(group, entry.gui, entry.terminal)
+        end
     end
 end
 
