@@ -31,7 +31,7 @@ hi('NormalFloat',               { fg = 'editor_text', bg = 'NONE' },            
 hi('NonText',                   { fg = 'editor_nontext' },                                             { fg = 'ansi_brwhite' })
 hi('EndOfBuffer',               { fg = 'primary_4' },                                                  { })
 hi('LineNr',                    { fg = 'primary_12' },                                                 { fg = 'ansi_blue' })
-hi('Cursor',                    { fg = 'black', bg = 'text_15' },                                      { fg = 'ansi_black', bg = 'ansi_brwhite' })
+hi('Cursor',                    { fg = 'canvas', bg = 'text_15' },                                     { fg = 'ansi_black', bg = 'ansi_brwhite' })
 hi('CursorLine',                { bg = 'primary_8' },                                                  { bg = 'ansi_blue' })
 hi('CursorLineNr',              { fg = 'primary_12', bg = 'primary_8' },                               { fg = 'ansi_brblue', bg = 'ansi_blue' })
 hi('CursorLineFold',            { fg = 'primary_8', bg = 'primary_8' },                                { fg = 'ansi_brblue', bg = 'ansi_blue' })
