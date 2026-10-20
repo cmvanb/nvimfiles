@@ -15,7 +15,7 @@ return {
                         model = 'qwen/qwen3-coder-30b-a3b-instruct',
                         end_point = 'https://openrouter.ai/api/v1/chat/completions',
                         api_key = function()
-                            return vim.fn.system('rbw get "OpenRouter API Key"'):gsub('%s+$', '')
+                            return vim.fn.system('rbw get "OpenRouter API Key Neovim Completion"'):gsub('%s+$', '')
                         end,
                         name = 'OpenRouter',
                         stream = true,
