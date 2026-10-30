@@ -15,6 +15,7 @@ local ensure_installed = {
     'html',
     'javascript',
     'json',
+    'kdl',
     'lua',
     'make',
     'markdown',
