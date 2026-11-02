@@ -99,10 +99,6 @@ local function lsp_attach_keymaps(buffer)
 
     local opts = { silent = true, buffer = buffer }
 
-    -- Unmap some defaults
-    keys.unmap('<C-W>d')
-    keys.unmap('<C-W><C-D>')
-
     -- LSP actions
     keys.noremap(
         'gh',

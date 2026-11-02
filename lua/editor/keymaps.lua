@@ -49,6 +49,10 @@ map('<C-u>', '<nop>')
 
 map('<C-o>', '<nop>')
 
+-- Built-in defaults that make <C-w> wait for 'timeoutlen'
+unmap('<C-W>d')
+unmap('<C-W><C-D>')
+
 map('<C-n>', '<nop>')
 map('<C-p>', '<nop>')
 imap('<C-n>', '<nop>')
