@@ -109,13 +109,18 @@ local function lsp_attach_keymaps(buffer)
     keys.noremap(
         'gh',
         function()
-            -- TODO: Consider dismissing the hover if it's already open.
+            local win = vim.b.lsp_floating_preview
+            if win and vim.api.nvim_win_is_valid(win) and vim.w[win]['textDocument/hover'] then
+                vim.api.nvim_win_close(win, true)
+                return
+            end
+
             vim.lsp.buf.hover({
                 border = theme_config.border,
                 focusable = false,
             })
         end,
-        vim.tbl_extend('force', opts, { desc = 'LSP: Show hover' }))
+        vim.tbl_extend('force', opts, { desc = 'LSP: Toggle hover' }))
 
     keys.noremap(
         'gs',
