@@ -30,6 +30,8 @@ local language_servers = {
 -- LSP on_attach configuration
 --------------------------------------------------------------------------------
 -- LSP attach diagnostics
+local diagnostic_hover_enabled = true
+
 local function lsp_attach_diagnostics()
     vim.diagnostic.config({
         virtual_text = false,
@@ -62,6 +64,10 @@ local function lsp_attach_diagnostics()
     vim.api.nvim_create_autocmd('CursorHold', {
         group = augroup,
         callback = function()
+            if not diagnostic_hover_enabled then
+                return
+            end
+
             -- Don't open if any visible floating windows are already open.
             for _, win in ipairs(vim.api.nvim_list_wins()) do
                 local config = vim.api.nvim_win_get_config(win)
@@ -142,20 +148,13 @@ local function lsp_attach_keymaps(buffer)
         end,
         vim.tbl_extend('force', opts, { desc = 'LSP: Previous diagnostic' }))
 
-    -- TODO: This works as a 'dismiss', but it should instead globally toggle whether diagnostics show when hovering.
     keys.noremap(
         'gl',
         function()
-            vim.diagnostic.open_float(nil, {
-                focusable = false,
-                close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost' },
-                border = theme_config.border,
-                source = true,
-                prefix = ' ',
-                scope = 'cursor',
-            })
+            diagnostic_hover_enabled = not diagnostic_hover_enabled
+            vim.notify('Diagnostic hover ' .. (diagnostic_hover_enabled and 'enabled' or 'disabled'))
         end,
-        vim.tbl_extend('force', opts, { desc = 'LSP: Show diagnostic' }))
+        vim.tbl_extend('force', opts, { desc = 'LSP: Toggle diagnostic hover' }))
 
     -- Format via the language server.
     keys.noremap(
