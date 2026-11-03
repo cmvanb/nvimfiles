@@ -30,6 +30,7 @@ local ensure_installed = {
     'vim',
     'xml',
     'yaml',
+    'yuck',
     'zig',
 }
 
