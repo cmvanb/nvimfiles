@@ -94,50 +94,50 @@ local function lsp_attach_diagnostics()
 end
 
 -- LSP attach keymaps
-local function lsp_attach_keymaps(buffer)
-    -- TODO: Check client capabilities before creating keymaps.
-    -- see: https://neovim.io/doc/user/lsp.html
-
-    -- local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-    -- if client:supports_method('textDocument/implementation') then
-    --     -- Create a keymap for vim.lsp.buf.implementation ...
-    -- end
-
+local function lsp_attach_keymaps(client, buffer)
     local opts = { silent = true, buffer = buffer }
 
     -- LSP actions
-    keys.noremap(
-        'gh',
-        function()
-            local win = vim.b.lsp_floating_preview
-            if win and vim.api.nvim_win_is_valid(win) and vim.w[win]['textDocument/hover'] then
-                vim.api.nvim_win_close(win, true)
-                return
-            end
+    if client:supports_method('textDocument/hover', buffer) then
+        keys.noremap(
+            'gh',
+            function()
+                local win = vim.b.lsp_floating_preview
+                if win and vim.api.nvim_win_is_valid(win) and vim.w[win]['textDocument/hover'] then
+                    vim.api.nvim_win_close(win, true)
+                    return
+                end
 
-            vim.lsp.buf.hover({
-                border = theme_config.border,
-                focusable = false,
-            })
-        end,
-        vim.tbl_extend('force', opts, { desc = 'LSP: Toggle hover' }))
+                vim.lsp.buf.hover({
+                    border = theme_config.border,
+                    focusable = false,
+                })
+            end,
+            vim.tbl_extend('force', opts, { desc = 'LSP: Toggle hover' }))
+    end
 
-    keys.noremap(
-        'gs',
-        vim.lsp.buf.signature_help,
-        vim.tbl_extend('force', opts, { desc = 'LSP: Show signature help' }))
+    if client:supports_method('textDocument/signatureHelp', buffer) then
+        keys.noremap(
+            'gs',
+            vim.lsp.buf.signature_help,
+            vim.tbl_extend('force', opts, { desc = 'LSP: Show signature help' }))
+    end
 
-    keys.noremap(
-        'gc',
-        function()
-            require('utils.lsp_rename').rename({ position = 'cursor' })
-        end,
-        vim.tbl_extend('force', opts, { desc = 'LSP: Rename' }))
+    if client:supports_method('textDocument/rename', buffer) then
+        keys.noremap(
+            'gc',
+            function()
+                require('utils.lsp_rename').rename({ position = 'cursor' })
+            end,
+            vim.tbl_extend('force', opts, { desc = 'LSP: Rename' }))
+    end
 
-    keys.noremap(
-        'ga',
-        vim.lsp.buf.code_action,
-        vim.tbl_extend('force', opts, { desc = 'LSP: Code action' }))
+    if client:supports_method('textDocument/codeAction', buffer) then
+        keys.noremap(
+            'ga',
+            vim.lsp.buf.code_action,
+            vim.tbl_extend('force', opts, { desc = 'LSP: Code action' }))
+    end
 
     keys.noremap(
         'gj',
@@ -162,22 +162,25 @@ local function lsp_attach_keymaps(buffer)
         vim.tbl_extend('force', opts, { desc = 'LSP: Toggle diagnostic hover' }))
 
     -- Format via the language server.
-    keys.noremap(
-        '<leader>;',
-        vim.lsp.buf.format,
-        vim.tbl_extend('force', opts, { desc = 'LSP: Format buffer' }))
+    if client:supports_method('textDocument/formatting', buffer) then
+        keys.noremap(
+            '<leader>;',
+            vim.lsp.buf.format,
+            vim.tbl_extend('force', opts, { desc = 'LSP: Format buffer' }))
+
+        vim.api.nvim_buf_create_user_command(buffer, 'LspFormat', function()
+            vim.lsp.buf.format()
+        end, { desc = 'Format buffer with language server' })
+    end
 end
 
 -- LSP attach autocommand
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('my.lsp', {}),
     callback = function(args)
+        local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
         lsp_attach_diagnostics()
-        lsp_attach_keymaps(args.buf)
-
-        vim.api.nvim_buf_create_user_command(args.buf, 'LspFormat', function()
-            vim.lsp.buf.format()
-        end, { desc = 'Format buffer with language server' })
+        lsp_attach_keymaps(client, args.buf)
     end,
 })
 
