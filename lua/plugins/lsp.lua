@@ -225,11 +225,8 @@ local function lsp_config()
             -- If this is a Lua project which is not a Neovim config, exit early.
             if client.workspace_folders then
                 local path = client.workspace_folders[1].name
-                if path ~= vim.fn.stdpath('config')
-                    -- TODO: Needs more robust Neovim config detection, or at
-                    -- least a soft-coded path. It would be nice to detect not
-                    -- only our own setup but others as well.
-                    and path ~= '/home/surfer/Code/dotfiles/config/nvim'
+                -- TODO: Detect other Neovim configs as well.
+                if vim.uv.fs_realpath(path) ~= vim.uv.fs_realpath(vim.fn.stdpath('config'))
                     and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
                 then
                     return
