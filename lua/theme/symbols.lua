@@ -47,6 +47,17 @@ local default_terminal_symbols = {
     picker = {
         prompt = '❱',
     },
+    startup = {
+        session  = '\u{f0b9e}',
+        worktree = '\u{f062c}',
+        new      = '\u{f0224}',
+        find     = '\u{f0349}',
+        grep     = '\u{f0451}',
+        clean    = '\u{f0a7a}',
+        current  = '●',
+        branch   = '\u{e725}',
+        ellipsis = '…',
+    },
     kinds = {
         Array         = ' ',
         Boolean       = '󰨙 ',
@@ -137,6 +148,17 @@ local linux_vt_symbols = {
     },
     picker = {
         prompt = '>',
+    },
+    startup = {
+        session  = '#',
+        worktree = '+',
+        new      = '*',
+        find     = '/',
+        grep     = '?',
+        clean    = 'x',
+        current  = '*',
+        branch   = '@',
+        ellipsis = '~',
     },
     indent_char = '│',
 }

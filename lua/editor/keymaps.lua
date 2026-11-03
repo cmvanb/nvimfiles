@@ -309,7 +309,6 @@ nnoremap(
 --------------------------------------------------------------------------------
 
 -- Save all buffers
-nnoremap('<leader>s', ':wa!<cr>', { desc = 'Save all buffers' })
 nnoremap('<C-s>', ':wa!<cr>', { desc = 'Save all buffers' })
 xnoremap('<C-s>', '<esc>:wa!<cr>', { desc = 'Save all buffers' })
 inoremap('<C-s>', '<esc>:wa!<cr>', { desc = 'Save all buffers' })
@@ -456,6 +455,8 @@ nnoremap('<leader>x',
         vim.cmd('only')
     end,
     { silent = true, desc = 'Reset session' })
+
+nnoremap('<leader>s', function() require('startup').open() end, { desc = 'Startup screen' })
 
 -- Plugin management
 --------------------------------------------------------------------------------

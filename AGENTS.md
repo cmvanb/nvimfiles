@@ -20,6 +20,12 @@ nvim/
 │   ├── autocommands/
 │   │   ├── init.lua            # Explicit autocommand loader
 │   │   └── *.lua               # Required manually; not auto-discovered
+│   ├── startup/
+│   │   ├── init.lua            # Startup screen view and keymaps
+│   │   ├── model.lua           # Rows: sessions, worktrees, actions
+│   │   ├── project.lua         # Session anchor and git worktrees
+│   │   ├── session.lua         # Session file lookup and cheap read
+│   │   └── logo.lua            # Sharp NeoVim logo and ASCII fallback
 │   ├── theme/
 │   │   ├── system.lua          # External theme bridge
 │   │   ├── config.lua          # VT-dependent border config
@@ -43,6 +49,7 @@ Order matters for dependency resolution:
 6. `plugins`
 7. `autocommands`
 8. `editor.keymaps`
+9. `VimEnter`: `autocommands.startup_screen` opens `startup`
 
 ## Features
 
@@ -61,6 +68,31 @@ Theme is consumed from `$XDG_OPT_HOME/theme/theme.lua` — outside the nvim conf
 - **Symbols** (`theme/symbols.lua`): Unicode/Nerd fonts vs ASCII fallbacks
 - **Colors** (`utils/highlights.lua`): 24-bit vs 256-color
 - **Borders** (`theme/config.lua`): `rounded` normally, `single` on VT
+
+### Startup Screen
+
+A bare `nvim` opens the startup screen instead of loading a session.
+Any file, `-c`, `+cmd`, stdin, or headless start skips it.
+`<leader>s` reopens it.
+
+- **Anchor**: sessions belong to the git toplevel, or to the cwd outside git.
+  A submodule is its own toplevel.
+- **Rows**: the anchor's session, then every other worktree of the repo,
+  then the actions.
+  A worktree without a session offers to start there.
+- **Preview**: the selected session's buffers and save time,
+  read from its `badd` lines without sourcing the file.
+- **Autosave**: only a session that was loaded or explicitly started is saved.
+  Session manager runs with `autoload_mode = Disabled`
+  and `autosave_only_in_session = true`.
+
+Actions live in the table in `startup/model.lua`.
+Each has a `when` predicate, so a new environment-dependent action
+is one table entry.
+
+Lualine re-runs its setup on `OptionSet background`,
+which fires after startup once the terminal reports its colors.
+The screen hides lualine again on that event.
 
 ### Plugin Auto-Discovery
 

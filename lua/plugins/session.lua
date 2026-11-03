@@ -13,7 +13,7 @@ local function config()
         sessions_dir = Path:new(vim.fn.stdpath('data'), 'sessions'),
 
         -- Define what to do when Neovim is started without arguments.
-        autoload_mode = smconfig.AutoloadMode.CurrentDir,
+        autoload_mode = smconfig.AutoloadMode.Disabled,
 
         -- Automatically save last session on exit and on session switch.
         autosave_last_session = true,
@@ -35,7 +35,7 @@ local function config()
         autosave_ignore_buftypes = {},
 
         -- Always autosaves session. If true, only autosaves after a session is active.
-        autosave_only_in_session = false,
+        autosave_only_in_session = true,
 
         -- Shorten the display path if length exceeds this threshold. Use 0 if don't
         -- want to shorten the path at all.
