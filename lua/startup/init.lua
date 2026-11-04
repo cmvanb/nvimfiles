@@ -103,6 +103,9 @@ function Canvas:put_chunks(row, col, chunks, width)
 end
 
 local function preview_lines(row)
+    if row and row.new_session then
+        return { { { 'Start a session here', 'StartupDetail' } } }
+    end
     if not row or row.kind ~= 'session' then
         return {}
     end
@@ -128,8 +131,7 @@ local function row_chunks(row)
         return { { row.icon .. '  ', 'StartupIcon' }, { row.label, 'StartupItem' }, { row.detail and ('  ' .. row.detail) or '', 'StartupDetail' } }
     end
     local icon = (row.kind == 'session' and icons.session or icons.worktree) .. '  '
-    local detail = row.kind == 'worktree' and '  start here' or ''
-    return { { icon, 'StartupIcon' }, { row.label, 'StartupItem' }, { detail, 'StartupDetail' } }
+    return { { icon, 'StartupIcon' }, { row.label, 'StartupItem' } }
 end
 
 local function footer_text(state)

@@ -9,8 +9,8 @@ local Model = {}
 
 ---@alias startup.Row
 ---| { kind: 'session', label: string, detail: string, session: startup.Session }
----| { kind: 'worktree', label: string, detail: string, path: string }
----| { kind: 'action', label: string, icon: string, detail: string?, stay: boolean?, run: fun() }
+---| { kind: 'worktree', label: string, detail: string, path: string, new_session: true }
+---| { kind: 'action', label: string, icon: string, detail: string?, stay: boolean?, new_session: boolean?, run: fun() }
 
 local function home(path)
     return vim.fn.fnamemodify(path, ':~')
@@ -31,17 +31,19 @@ local function place_rows(project)
         if session then
             table.insert(rows, { kind = 'session', label = place.label, detail = home(place.path), session = session })
         elseif i > 1 then
-            table.insert(rows, { kind = 'worktree', label = place.label, detail = home(place.path), path = place.path })
+            table.insert(rows, { kind = 'worktree', label = place.label, detail = home(place.path), path = place.path, new_session = true })
         end
     end
     return rows
 end
 
 -- Actions in display order. `when` hides an action that does not apply here,
--- `stay` keeps the screen open and refreshes it afterwards.
+-- `stay` keeps the screen open and refreshes it afterwards, `new_session` marks
+-- actions that start a session, which the preview notes.
 local actions = {
     {
         label = 'Start session here',
+        new_session = true,
         icon = icons.session,
         when = function(ctx) return not Session.read(ctx.project.root) end,
         run = function(ctx)
@@ -96,6 +98,7 @@ function Model.rows(project)
                 icon = action.icon,
                 detail = action.detail and action.detail(ctx),
                 stay = action.stay,
+                new_session = action.new_session,
                 run = function() action.run(ctx) end,
             })
         end
