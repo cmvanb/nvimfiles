@@ -48,6 +48,8 @@ ln('StartupFooter',   'Comment')
 local COLUMN_WIDTH = 44
 -- Fraction of the window height to lower the centered logo and menu by.
 local TOP_SHIFT = 0.1
+-- Menu rows kept before the logo gives way on short windows.
+local MIN_LIST_HEIGHT = 8
 local ns = vim.api.nvim_create_namespace('startup')
 
 local function ago(sec)
@@ -158,13 +160,26 @@ local function render(state)
         preview_h = math.max(preview_h, #preview_lines(row))
     end
 
-    -- The footer owns the last line; the rest is centered above it.
+    -- The footer owns the last line; the rest is centered above it. Space goes to
+    -- the menu first, then a short preview, then the logo; a menu that still
+    -- does not fit scrolls in place.
     local room = height - 2
-    local show_logo = #logo + 2 + #list + 1 + math.min(preview_h, 3) <= room and width >= logo_w
+    local preview_min = preview_h > 0 and 1 + math.min(preview_h, 3) or 0
+    local show_logo = #logo + 2 + math.min(#list, MIN_LIST_HEIGHT) + preview_min <= room and width >= logo_w
     local logo_h = show_logo and #logo + 2 or 0
-    preview_h = math.max(0, math.min(preview_h, room - logo_h - #list - 1))
+    local list_h = math.max(1, math.min(#list, room - logo_h - preview_min))
+    preview_h = math.max(0, math.min(preview_h, room - logo_h - list_h - 1))
 
-    local block_h = logo_h + #list + (preview_h > 0 and 1 + preview_h or 0)
+    -- Keep the selected row inside the visible slice of the menu.
+    local cursor_line = 1
+    for line, i in ipairs(list) do
+        if i == state.cursor then cursor_line = line end
+    end
+    state.scroll = math.min(state.scroll or 0, cursor_line - 1)
+    state.scroll = math.max(state.scroll, cursor_line - list_h)
+    state.scroll = math.max(0, math.min(state.scroll, #list - list_h))
+
+    local block_h = logo_h + list_h + (preview_h > 0 and 1 + preview_h or 0)
     -- Centered, then lowered by TOP_SHIFT, short of the footer.
     local top = math.floor((room - block_h) / 2) + math.floor(height * TOP_SHIFT)
     top = math.max(0, math.min(top, room - block_h))
@@ -186,7 +201,8 @@ local function render(state)
 
     local left = math.max(0, math.floor((width - COLUMN_WIDTH) / 2))
     state.row_lines = {}
-    for _, i in ipairs(list) do
+    for line = state.scroll + 1, state.scroll + list_h do
+        local i = list[line]
         local row = i and state.rows[i]
         if row then
             if i == state.cursor then
