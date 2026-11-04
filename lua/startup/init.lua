@@ -312,7 +312,8 @@ function Startup.open()
         statuscolumn = '', cursorline = false, list = false, spell = false, wrap = false,
         fillchars = 'eob: ',
     }) do
-        vim.wo[win][opt] = value
+        -- Like :setlocal, so the editor's own window settings stay untouched.
+        vim.api.nvim_set_option_value(opt, value, { scope = 'local', win = win })
     end
 
     local state = { buf = buf, win = win, project = project, rows = Model.rows(project), cursor = 1 }
