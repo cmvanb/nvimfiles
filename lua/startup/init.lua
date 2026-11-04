@@ -373,7 +373,7 @@ function Startup.open()
     hide_ui()
 
     local function move(delta)
-        state.cursor = (state.cursor - 1 + delta) % #state.rows + 1
+        state.cursor = math.max(1, math.min(state.cursor + delta, #state.rows))
         render(state)
     end
 
