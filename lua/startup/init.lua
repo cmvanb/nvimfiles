@@ -52,6 +52,8 @@ local TOP_SHIFT = 0.1
 local MIN_LIST_HEIGHT = 8
 -- Blank lines always kept above the logo and menu.
 local MIN_TOP_MARGIN = 3
+-- Blank lines always kept between the menu or preview and the footer.
+local MIN_BOTTOM_MARGIN = 3
 
 local ns = vim.api.nvim_create_namespace('startup')
 
@@ -166,7 +168,7 @@ local function render(state)
     -- The footer owns the last line; the rest is centered above it. Space goes to
     -- the menu first, then a short preview, then the logo; a menu that still
     -- does not fit scrolls in place.
-    local room = height - 2
+    local room = height - 1 - MIN_BOTTOM_MARGIN
     local space = room - MIN_TOP_MARGIN
     local preview_min = preview_h > 0 and 1 + math.min(preview_h, 3) or 0
     local show_logo = #logo + 2 + math.min(#list, MIN_LIST_HEIGHT) + preview_min <= space and width >= logo_w
