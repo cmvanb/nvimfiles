@@ -223,6 +223,9 @@ local function render(state)
     if line then
         vim.api.nvim_win_set_cursor(win, { line, left + 1 })
     end
+    -- A resize scrolls the view to keep the cursor visible before this render
+    -- runs; pin it back to the origin so the layout stays centered.
+    vim.api.nvim_win_call(win, function() vim.fn.winrestview({ topline = 1, leftcol = 0 }) end)
 end
 
 -- Interaction
@@ -310,7 +313,7 @@ function Startup.open()
     for opt, value in pairs({
         number = false, relativenumber = false, signcolumn = 'no', foldcolumn = '0',
         statuscolumn = '', cursorline = false, list = false, spell = false, wrap = false,
-        fillchars = 'eob: ',
+        fillchars = 'eob: ', scrolloff = 0, sidescrolloff = 0,
     }) do
         -- Like :setlocal, so the editor's own window settings stay untouched.
         vim.api.nvim_set_option_value(opt, value, { scope = 'local', win = win })
