@@ -51,7 +51,8 @@ local TOP_SHIFT = 0.1
 -- Menu rows kept before the logo gives way on short windows.
 local MIN_LIST_HEIGHT = 8
 -- Blank lines always kept above the logo and menu.
-local MIN_TOP_MARGIN = 2
+local MIN_TOP_MARGIN = 3
+
 local ns = vim.api.nvim_create_namespace('startup')
 
 local function ago(sec)
