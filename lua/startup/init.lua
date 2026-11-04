@@ -126,12 +126,7 @@ local function row_chunks(row)
 end
 
 local function footer_text(state)
-    local parts = {}
-    local ok, lazy = pcall(require, 'lazy')
-    if ok then
-        local stats = lazy.stats()
-        table.insert(parts, string.format('%d plugins in %.0f ms', stats.count, stats.startuptime))
-    end
+    local parts = { vim.fn.fnamemodify(vim.uv.cwd(), ':~') }
     if state.project.branch then
         table.insert(parts, icons.branch .. ' ' .. state.project.branch)
     end
@@ -337,11 +332,6 @@ function Startup.open()
     map('q', function() vim.cmd.quitall() end)
 
     local group = vim.api.nvim_create_augroup('startup_screen', { clear = true })
-    vim.api.nvim_create_autocmd('User', {
-        group = group,
-        pattern = 'LazyVimStarted',
-        callback = function() render(state) end,
-    })
     vim.api.nvim_create_autocmd({ 'VimResized', 'WinResized' }, {
         group = group,
         callback = function() render(state) end,
