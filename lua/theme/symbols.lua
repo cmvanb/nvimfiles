@@ -57,6 +57,8 @@ local default_terminal_symbols = {
         current  = '●',
         branch   = '\u{e725}',
         ellipsis = '…',
+        more_up   = '▲',
+        more_down = '▼',
     },
     kinds = {
         Array         = ' ',
@@ -159,6 +161,8 @@ local linux_vt_symbols = {
         current  = '*',
         branch   = '@',
         ellipsis = '~',
+        more_up   = '^',
+        more_down = 'v',
     },
     indent_char = '│',
 }

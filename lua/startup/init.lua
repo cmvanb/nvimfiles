@@ -178,9 +178,12 @@ local function render(state)
     for line, i in ipairs(list) do
         if i == state.cursor then cursor_line = line end
     end
+    -- An overflowing menu gives its first and last line to scroll indicators.
+    local overflow = #list > list_h and list_h >= 3
+    local view_h = overflow and list_h - 2 or list_h
     state.scroll = math.min(state.scroll or 0, cursor_line - 1)
-    state.scroll = math.max(state.scroll, cursor_line - list_h)
-    state.scroll = math.max(0, math.min(state.scroll, #list - list_h))
+    state.scroll = math.max(state.scroll, cursor_line - view_h)
+    state.scroll = math.max(0, math.min(state.scroll, #list - view_h))
 
     local block_h = logo_h + list_h + (preview_h > 0 and 1 + preview_h or 0)
     -- Centered, then lowered by TOP_SHIFT, short of the footer.
@@ -203,8 +206,25 @@ local function render(state)
     end
 
     local left = math.max(0, math.floor((width - COLUMN_WIDTH) / 2))
+    local function rows_in(from, to)
+        local n = 0
+        for line = from, to do
+            if list[line] then n = n + 1 end
+        end
+        return n
+    end
+    local function indicator(icon, n)
+        if n > 0 then
+            canvas:put_chunks(r, left + 1, { { icon .. '  ' .. n .. ' more', 'StartupDetail' } }, COLUMN_WIDTH - 1)
+        end
+        r = r + 1
+    end
+
     state.row_lines = {}
-    for line = state.scroll + 1, state.scroll + list_h do
+    if overflow then
+        indicator(icons.more_up, rows_in(1, state.scroll))
+    end
+    for line = state.scroll + 1, state.scroll + view_h do
         local i = list[line]
         local row = i and state.rows[i]
         if row then
@@ -218,6 +238,9 @@ local function render(state)
             state.row_lines[i] = r
         end
         r = r + 1
+    end
+    if overflow then
+        indicator(icons.more_down, rows_in(state.scroll + view_h + 1, #list))
     end
 
     if preview_h > 0 then
