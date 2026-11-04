@@ -45,9 +45,9 @@ ln('StartupFooter',   'Comment')
 -- Layout
 --------------------------------------------------------------------------------
 
-local LIST_WIDTH = 40
-local GAP = 4
-local PREVIEW_WIDTH = 44
+local COLUMN_WIDTH = 44
+-- Fraction of the window height to lower the centered logo and menu by.
+local TOP_SHIFT = 0.1
 local ns = vim.api.nvim_create_namespace('startup')
 
 local function ago(sec)
@@ -152,16 +152,23 @@ local function render(state)
         table.insert(list, i)
     end
 
-    local show_preview = width >= LIST_WIDTH + GAP + PREVIEW_WIDTH
-    local body_w = show_preview and (LIST_WIDTH + GAP + PREVIEW_WIDTH) or LIST_WIDTH
-    local preview = show_preview and preview_lines(state.rows[state.cursor]) or {}
-    local body_h = math.max(#list, #preview)
-    local show_logo = height >= #logo + 2 + body_h + 2 and width >= logo_w
+    -- Reserve room for the longest preview so the menu holds still while moving.
+    local preview_h = 0
+    for _, row in ipairs(state.rows) do
+        preview_h = math.max(preview_h, #preview_lines(row))
+    end
 
-    local block_h = (show_logo and #logo + 2 or 0) + body_h + 2
-    local top = math.max(0, math.floor((height - block_h) / 2))
+    -- The footer owns the last line; the rest is centered above it.
+    local room = height - 2
+    local show_logo = #logo + 2 + #list + 1 + math.min(preview_h, 3) <= room and width >= logo_w
+    local logo_h = show_logo and #logo + 2 or 0
+    preview_h = math.max(0, math.min(preview_h, room - logo_h - #list - 1))
+
+    local block_h = logo_h + #list + (preview_h > 0 and 1 + preview_h or 0)
+    -- Centered, then lowered by TOP_SHIFT, short of the footer.
+    local top = math.floor((room - block_h) / 2) + math.floor(height * TOP_SHIFT)
+    top = math.max(0, math.min(top, room - block_h))
     local canvas = Canvas.new()
-    for r = 1, top do canvas.lines[r] = '' end
     local r = top + 1
 
     if show_logo then
@@ -177,33 +184,39 @@ local function render(state)
         r = r + 2
     end
 
-    local left = math.floor((width - body_w) / 2)
+    local left = math.max(0, math.floor((width - COLUMN_WIDTH) / 2))
     state.row_lines = {}
-    for line = 1, body_h do
-        local i = list[line]
+    for _, i in ipairs(list) do
         local row = i and state.rows[i]
         if row then
-            local col = left
-            local hl_sel = i == state.cursor
-            local text = ''
-            for _, c in ipairs(row_chunks(row)) do text = text .. c[1] end
-            if hl_sel then
-                canvas:put(r, col, pad(' ' .. text, LIST_WIDTH), 'StartupSelected')
+            if i == state.cursor then
+                local text = ''
+                for _, c in ipairs(row_chunks(row)) do text = text .. c[1] end
+                canvas:put(r, left, pad(' ' .. text, COLUMN_WIDTH), 'StartupSelected')
             else
-                canvas:put_chunks(r, col + 1, row_chunks(row), LIST_WIDTH - 1)
+                canvas:put_chunks(r, left + 1, row_chunks(row), COLUMN_WIDTH - 1)
             end
             state.row_lines[i] = r
         end
-        local p = preview[line]
-        if p then
-            canvas:put_chunks(r, left + LIST_WIDTH + GAP, p, PREVIEW_WIDTH)
-        end
-        canvas.lines[r] = canvas.lines[r] or ''
         r = r + 1
     end
 
-    r = r + 1
+    if preview_h > 0 then
+        r = r + 1
+        local preview = preview_lines(state.rows[state.cursor])
+        if #preview > preview_h then
+            local hidden = #preview - preview_h + 1
+            preview = vim.list_slice(preview, 1, preview_h - 1)
+            table.insert(preview, { { '  ' .. icons.ellipsis .. ' ' .. hidden .. ' more', 'StartupDetail' } })
+        end
+        for _, p in ipairs(preview) do
+            canvas:put_chunks(r, left + 1, p, COLUMN_WIDTH - 1)
+            r = r + 1
+        end
+    end
+
     local foot = footer_text(state)
+    r = height
     canvas:put(r, math.floor((width - vim.fn.strdisplaywidth(foot)) / 2), foot, 'StartupFooter')
 
     for i = 1, r do canvas.lines[i] = canvas.lines[i] or '' end
